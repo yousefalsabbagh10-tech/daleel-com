@@ -1,0 +1,8 @@
+{
+  "name": "Remix: Remix: Remix: سوق العقارات والسيارات",
+  "description": "تطبيق لبيع وشراء العقارات والسيارات، مع عرض الاعلانات المميزة، الاشعارات وتسجيل الدخول المبسط برقم الهاتف.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
