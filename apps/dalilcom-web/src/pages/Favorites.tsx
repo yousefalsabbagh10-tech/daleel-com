@@ -14,19 +14,19 @@ export function FavoritesPage() {
     <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-300">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-gray-150">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-[#F6F2E8]">
         <div className="text-right">
           <div className="flex items-center gap-2 text-[#C9A15A] mb-1">
             <Heart className="fill-current" size={20} />
             <span className="text-xs font-bold uppercase tracking-wider">قائمتي المفضلة</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">الإعلانات المحفوظة</h1>
-          <p className="text-xs sm:text-sm text-slate-500 font-medium">الوصول السريع إلى العقارات والسيارات التي تثير اهتمامك ومتابعة آخر تحديثاتها</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#2B2B2B] tracking-tight">الإعلانات المحفوظة</h1>
+          <p className="text-xs sm:text-sm text-[#C9A15A] font-medium">الوصول السريع إلى العقارات والسيارات التي تثير اهتمامك ومتابعة آخر تحديثاتها</p>
         </div>
 
         <button 
           onClick={() => navigate('/')}
-          className="flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition-all cursor-pointer"
+          className="flex items-center gap-2 px-4 py-2 bg-[#F6F2E8] hover:bg-[#F6F2E8] text-[#2B2B2B] text-xs font-bold rounded-xl transition-all cursor-pointer"
         >
           <ArrowLeft size={16} className="rtl:-scale-x-100" />
           <span>الرجوع للرئيسية</span>
@@ -35,13 +35,13 @@ export function FavoritesPage() {
 
       {favoritedItems.length === 0 ? (
         /* Empty State with Apple elegance */
-        <div className="bg-white border border-gray-150 rounded-2xl p-10 sm:p-16 text-center max-w-lg mx-auto shadow-sm space-y-6">
+        <div className="bg-white border border-[#F6F2E8] rounded-2xl p-10 sm:p-16 text-center max-w-lg mx-auto shadow-sm space-y-6">
           <div className="w-16 h-16 bg-[#C9A15A]/10 rounded-full flex items-center justify-center text-[#C9A15A] mx-auto">
             <FolderHeart size={32} />
           </div>
           <div className="space-y-2">
-            <h3 className="text-lg font-bold text-slate-800">لا توجد إعلانات محفوظة بعد</h3>
-            <p className="text-xs text-slate-500 font-semibold leading-relaxed max-w-sm mx-auto">
+            <h3 className="text-lg font-bold text-[#2B2B2B]">لا توجد إعلانات محفوظة بعد</h3>
+            <p className="text-xs text-[#C9A15A] font-semibold leading-relaxed max-w-sm mx-auto">
               تصفح تصنيفات السيارات والعقارات المميزة واضغط على أيقونة القلب لحفظ الإعلانات التي تثير اهتمامك لسهولة الوصول إليها لاحقاً.
             </p>
           </div>
@@ -58,7 +58,7 @@ export function FavoritesPage() {
         /* Grid with favorited cards */
         <div className="space-y-6">
           <div className="flex items-center justify-between text-right">
-            <span className="text-xs font-bold text-slate-400">({favoritedItems.length}) إعلان محفوظ</span>
+            <span className="text-xs font-bold text-[#C9A15A]">({favoritedItems.length}) إعلان محفوظ</span>
             <button 
               onClick={() => {
                 if (window.confirm('هل أنت متأكد من إزالة جميع الإعلانات من المفضلة؟')) {

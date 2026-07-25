@@ -42,18 +42,18 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       {/* Pickers Form */}
-      <div className="bg-white border border-gray-150 p-6 rounded-2xl space-y-6 shadow-sm">
-        <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
+      <div className="bg-white border border-[#F6F2E8] p-6 rounded-2xl space-y-6 shadow-sm">
+        <div className="flex items-center gap-3 border-b border-[#F6F2E8] pb-4">
           <Calculator size={20} className="text-[#C9A15A]" />
           <div className="text-right">
-            <h4 className="font-black text-xs sm:text-sm text-slate-800">حاسبة الأقساط الشهرية والتكاليف</h4>
-            <span className="text-[10px] text-slate-400 font-semibold">تخطيط مالي مرن وبسيط لحساب تمويل المشتريات</span>
+            <h4 className="font-black text-xs sm:text-sm text-[#2B2B2B]">حاسبة الأقساط الشهرية والتكاليف</h4>
+            <span className="text-[10px] text-[#C9A15A] font-semibold">تخطيط مالي مرن وبسيط لحساب تمويل المشتريات</span>
           </div>
         </div>
 
         {/* Down Payment Slider */}
         <div className="space-y-2">
-          <div className="flex justify-between text-xs font-bold text-slate-700">
+          <div className="flex justify-between text-xs font-bold text-[#2B2B2B]">
             <span>الدفعة الأولى المقدمة ({downPaymentPct}%)</span>
             <span className="text-[#C9A15A] font-black">{formatValue(downPaymentAmount)}</span>
           </div>
@@ -63,9 +63,9 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
             max={80} 
             value={downPaymentPct}
             onChange={(e) => setDownPaymentPct(Number(e.target.value))}
-            className="w-full accent-[#C9A15A] bg-gray-100 h-2 rounded-lg cursor-pointer"
+            className="w-full accent-[#C9A15A] bg-[#F6F2E8] h-2 rounded-lg cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] text-slate-400 font-medium">
+          <div className="flex justify-between text-[10px] text-[#C9A15A] font-medium">
             <span>الحد الأدنى المقترح (10%)</span>
             <span>80% كحد أقصى</span>
           </div>
@@ -73,7 +73,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
 
         {/* Tenure Slider */}
         <div className="space-y-2">
-          <div className="flex justify-between text-xs font-bold text-slate-700">
+          <div className="flex justify-between text-xs font-bold text-[#2B2B2B]">
             <span>مدة القرض والتمويل المستهدف</span>
             <span className="text-[#C9A15A] font-black">{tenureYears} سنة ({totalMonths} شهر)</span>
           </div>
@@ -83,9 +83,9 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
             max={isCar ? 7 : 30} 
             value={tenureYears}
             onChange={(e) => setTenureYears(Number(e.target.value))}
-            className="w-full accent-[#C9A15A] bg-gray-100 h-2 rounded-lg cursor-pointer"
+            className="w-full accent-[#C9A15A] bg-[#F6F2E8] h-2 rounded-lg cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] text-slate-400 font-medium">
+          <div className="flex justify-between text-[10px] text-[#C9A15A] font-medium">
             <span>سنة واحدة</span>
             <span>الأقصى ({isCar ? '7 سنوات' : '30 سنة'})</span>
           </div>
@@ -93,7 +93,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
 
         {/* Interest rate Slider */}
         <div className="space-y-2">
-          <div className="flex justify-between text-xs font-bold text-slate-700">
+          <div className="flex justify-between text-xs font-bold text-[#2B2B2B]">
             <span>معدل الفائدة السنوي المتوقع</span>
             <span className="text-[#C9A15A] font-black">{interestRate}%</span>
           </div>
@@ -104,7 +104,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
             step={0.1}
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value))}
-            className="w-full accent-[#C9A15A] bg-gray-100 h-2 rounded-lg cursor-pointer"
+            className="w-full accent-[#C9A15A] bg-[#F6F2E8] h-2 rounded-lg cursor-pointer"
           />
         </div>
 
@@ -120,7 +120,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
           ) : (
             <button
               onClick={handleApplyFinance}
-              className="w-full h-11 bg-slate-900 hover:bg-slate-850 text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 cursor-pointer"
+              className="w-full h-11 bg-[#2B2B2B] hover:bg-[#2B2B2B] text-white rounded-xl font-bold text-xs flex items-center justify-center gap-2 transition-transform active:scale-95 cursor-pointer"
             >
               <Landmark size={15} />
               {eligibleStatus === 'loading' ? 'جاري الفحص المالي التلقائي...' : 'افحص إمكانية التمويل من المصارف الشريكة'}
@@ -131,40 +131,40 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
 
       {/* Result Display */}
       <div className="space-y-6">
-        <div className="bg-white border border-gray-150 p-6 rounded-2xl shadow-sm text-center space-y-4">
-          <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-widest">القسط الشهري المتوقع</span>
+        <div className="bg-white border border-[#F6F2E8] p-6 rounded-2xl shadow-sm text-center space-y-4">
+          <span className="text-[11px] font-bold text-[#C9A15A] block uppercase tracking-widest">القسط الشهري المتوقع</span>
           <div className="inline-block py-3 px-6 bg-[#C9A15A]/5 rounded-3xl border border-[#C9A15A]/25">
             <h3 className="text-3xl sm:text-4xl font-extrabold text-[#C9A15A]">
               {Math.round(monthlyInstallment).toLocaleString('en-US')}{' '}
               <span className="text-sm font-semibold">{currency} / شهر</span>
             </h3>
           </div>
-          <p className="text-[11px] text-slate-500 max-w-sm mx-auto">
+          <p className="text-[11px] text-[#C9A15A] max-w-sm mx-auto">
             * الحسابات تقريبية تختلف باختلاف معايير مصارف التمويل المحلية وأنظمتها الائتمانية.
           </p>
         </div>
 
-        <div className="bg-slate-900 text-white p-6 rounded-2xl space-y-4 shadow-xl border border-slate-800">
-          <h4 className="font-extrabold text-xs text-[#C9A15A] pb-3 border-b border-slate-800">تفاصيل وهيكلية تكاليف التمويل:</h4>
+        <div className="bg-[#2B2B2B] text-white p-6 rounded-2xl space-y-4 shadow-xl border border-[#2B2B2B]">
+          <h4 className="font-extrabold text-xs text-[#C9A15A] pb-3 border-b border-[#2B2B2B]">تفاصيل وهيكلية تكاليف التمويل:</h4>
           <div className="space-y-3.5 text-xs font-semibold" dir="rtl">
             <div className="flex justify-between pb-1">
-              <span className="text-slate-400">سعر الإعلان الإجمالي</span>
+              <span className="text-[#C9A15A]">سعر الإعلان الإجمالي</span>
               <span>{formatValue(originalPrice)}</span>
             </div>
             <div className="flex justify-between pb-1">
-              <span className="text-slate-400">الدفعة المقدمة المدفوعة نقداً</span>
+              <span className="text-[#C9A15A]">الدفعة المقدمة المدفوعة نقداً</span>
               <span>- {formatValue(downPaymentAmount)}</span>
             </div>
             <div className="flex justify-between pb-1">
-              <span className="text-slate-400">قيمة أصل القرض المستحق</span>
+              <span className="text-[#C9A15A]">قيمة أصل القرض المستحق</span>
               <span className="text-[#C9A15A] font-bold">{formatValue(loanPrincipal)}</span>
             </div>
-            <div className="flex justify-between pb-1 border-b border-slate-800/80 pb-3">
-              <span className="text-slate-400">إجمالي الأرباح / الفوائد المقدرة</span>
-              <span className="text-amber-400">+ {formatValue(totalInterestPaid)}</span>
+            <div className="flex justify-between pb-1 border-b border-[#2B2B2B]/80 pb-3">
+              <span className="text-[#C9A15A]">إجمالي الأرباح / الفوائد المقدرة</span>
+              <span className="text-[#C9A15A]">+ {formatValue(totalInterestPaid)}</span>
             </div>
             <div className="flex justify-between text-sm font-extrabold pt-1">
-              <span className="text-slate-300">مجموع التدفق النقدي المتوقع المدفوع</span>
+              <span className="text-[#C9A15A]">مجموع التدفق النقدي المتوقع المدفوع</span>
               <span className="text-white">{formatValue(totalPayment)}</span>
             </div>
           </div>

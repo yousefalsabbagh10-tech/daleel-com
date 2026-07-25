@@ -14,20 +14,20 @@ export function CalculatorsPage() {
     <div className="max-w-6xl mx-auto space-y-6 px-4 py-6 pb-24" dir="rtl">
       
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-100 pb-5 gap-3">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-[#F6F2E8] pb-5 gap-3">
         <div className="flex items-center gap-3 text-right">
           <div className="bg-[#C9A15A]/10 p-2.5 rounded-2xl text-[#0D3B46]">
             <Calculator size={24} className="stroke-[2.5]" />
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900">محرك الحاسبات المالي الذكي</h2>
-            <p className="text-[11px] sm:text-[13px] text-slate-500 font-semibold mt-0.5">احسب قيمة التمويل العقاري، وقسط مركبتك أو قيم قدرتك الشرائية والادخارية بالمرونة والليرة/الدولار</p>
+            <h2 className="text-xl sm:text-2xl font-black text-[#2B2B2B]">محرك الحاسبات المالي الذكي</h2>
+            <p className="text-[11px] sm:text-[13px] text-[#C9A15A] font-semibold mt-0.5">احسب قيمة التمويل العقاري، وقسط مركبتك أو قيم قدرتك الشرائية والادخارية بالمرونة والليرة/الدولار</p>
           </div>
         </div>
       </div>
 
       {/* Tabs list selector */}
-      <div className="flex flex-wrap p-1 gap-1.5 bg-slate-100/90 backdrop-blur-sm rounded-2xl border border-gray-200/50">
+      <div className="flex flex-wrap p-1 gap-1.5 bg-[#F6F2E8]/90 backdrop-blur-sm rounded-2xl border border-[#E3C98D]/50">
         {[
           { id: 'mortgage', label: 'حاسبة التمويل العقاري السكني', icon: Building2 },
           { id: 'auto', label: 'حاسبة أقساط وفائدة السيارات', icon: CarFront },
@@ -40,8 +40,8 @@ export function CalculatorsPage() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex-1 min-w-[150px] py-3 px-4 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 isTabActive 
-                  ? 'bg-slate-950 text-white shadow-md scale-[1.01]' 
-                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200'
+                  ? 'bg-[#2B2B2B] text-white shadow-md scale-[1.01]' 
+                  : 'text-[#C9A15A] hover:text-[#2B2B2B] hover:bg-[#F6F2E8]'
               }`}
             >
               <tab.icon size={15} />
@@ -52,7 +52,7 @@ export function CalculatorsPage() {
       </div>
 
       {/* Display active tab content */}
-      <div className="bg-slate-50/50 border border-gray-200/40 rounded-[32px] p-4 sm:p-6 shadow-sm min-h-[40vh]">
+      <div className="bg-[#F6F2E8]/50 border border-[#E3C98D]/40 rounded-[32px] p-4 sm:p-6 shadow-sm min-h-[40vh]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}

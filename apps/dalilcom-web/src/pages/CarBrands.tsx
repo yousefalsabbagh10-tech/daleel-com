@@ -67,12 +67,12 @@ function BrandCard({ brand }: { brand: CarBrand }) {
         ) : brand.icon ? (
           <DynamicLucideIcon name={brand.icon} size={36} className="text-[var(--color-primary)] opacity-80 group-hover:opacity-100 transition-colors" />
         ) : (
-          <CarFront className="text-gray-300 opacity-60 group-hover:text-[var(--color-primary)] transition-colors" size={36} />
+          <CarFront className="text-[#C9A15A] opacity-60 group-hover:text-[var(--color-primary)] transition-colors" size={36} />
         )}
       </div>
-      <h3 className="font-bold text-[14px] text-gray-900 mb-0.5">{brand.ar}</h3>
+      <h3 className="font-bold text-[14px] text-[#2B2B2B] mb-0.5">{brand.ar}</h3>
       <p className="text-[12px] text-[var(--color-secondary)] font-medium mb-1">{brand.en}</p>
-      <p className="text-[13px] text-gray-400 font-bold" dir="ltr">({brandCount})</p>
+      <p className="text-[13px] text-[#C9A15A] font-bold" dir="ltr">({brandCount})</p>
     </button>
   );
 }
@@ -99,23 +99,23 @@ export function CarBrandsPage() {
     <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
       {/* Search Bar - Mimicking Screenshot style */}
-      <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden flex items-center px-4 h-12 sticky top-20 z-40">
+      <div className="bg-white rounded-lg border border-[#E3C98D] shadow-sm overflow-hidden flex items-center px-4 h-12 sticky top-20 z-40">
         <input 
           type="text" 
           placeholder="ابحث عن تصنيف..." 
-          className="w-full h-full outline-none text-[15px] bg-transparent text-gray-900 placeholder:text-gray-400"
+          className="w-full h-full outline-none text-[15px] bg-transparent text-[#2B2B2B] placeholder:text-[#C9A15A]"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <Search className="text-gray-400 shrink-0" size={20} />
+        <Search className="text-[#C9A15A] shrink-0" size={20} />
       </div>
 
       {/* Header bar */}
-      <div className="flex items-center justify-between bg-white border border-gray-100 rounded-[12px] p-4 shadow-sm mb-4">
-        <h2 className="font-bold text-[16px] text-gray-900">كل إعلانات سيارات للبيع</h2>
+      <div className="flex items-center justify-between bg-white border border-[#F6F2E8] rounded-[12px] p-4 shadow-sm mb-4">
+        <h2 className="font-bold text-[16px] text-[#2B2B2B]">كل إعلانات سيارات للبيع</h2>
         <button 
           onClick={() => navigate(`/ads?category=cars&purpose=${encodeURIComponent('للبيع')}&title=${encodeURIComponent('سيارات للبيع')}`)}
-          className="flex items-center gap-2 text-[var(--color-secondary)] hover:text-gray-900 transition-colors font-semibold"
+          className="flex items-center gap-2 text-[var(--color-secondary)] hover:text-[#2B2B2B] transition-colors font-semibold"
         >
           <span className="text-[14px]" dir="ltr">({forSaleCarsCount})</span>
           <ChevronLeft size={18} />
@@ -140,7 +140,7 @@ export function CarBrandsPage() {
       </div>
 
       {filteredBrands.length === 0 && (
-        <div className="py-20 text-center text-[var(--color-secondary)] bg-white rounded-[16px] border border-gray-100">
+        <div className="py-20 text-center text-[var(--color-secondary)] bg-white rounded-[16px] border border-[#F6F2E8]">
           لا توجد نتائج مطابقة للبحث.
         </div>
       )}

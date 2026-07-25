@@ -67,11 +67,11 @@ export function BrandModelsPage() {
       {/* List */}
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 pb-20">
-          <div className="bg-white rounded-[12px] shadow-[0_2px_12px_rgba(0,0,0,0.02)] border border-gray-100 overflow-hidden flex flex-col">
+          <div className="bg-white rounded-[12px] shadow-[0_2px_12px_rgba(0,0,0,0.02)] border border-[#F6F2E8] overflow-hidden flex flex-col">
             {models.map((model, idx) => (
               <React.Fragment key={idx}>
                 <button 
-                  className="w-full flex items-center justify-between p-4 hover:bg-gray-50/80 transition-colors group text-right"
+                  className="w-full flex items-center justify-between p-4 hover:bg-[#F6F2E8]/80 transition-colors group text-right"
                   onClick={() => {
                     const isAll = idx === 0;
                     if (isAll) {
@@ -82,29 +82,29 @@ export function BrandModelsPage() {
                   }} 
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-50 text-gray-500 shrink-0 shadow-sm transition-transform group-hover:scale-105 border border-gray-100">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#F6F2E8] text-[#C9A15A] shrink-0 shadow-sm transition-transform group-hover:scale-105 border border-[#F6F2E8]">
                       <Car size={20} />
                     </div>
                     <div className="flex flex-col items-start">
                       <span 
-                        className={`text-[15px] ${idx === 0 ? 'font-bold text-[#0D3B46]' : 'font-semibold text-gray-800'}`}
+                        className={`text-[15px] ${idx === 0 ? 'font-bold text-[#0D3B46]' : 'font-semibold text-[#2B2B2B]'}`}
                       >
                         {model.ar}
                       </span>
                       {model.en && (
-                        <span className="text-[12px] text-gray-500 font-medium mt-0.5" dir="ltr">
+                        <span className="text-[12px] text-[#C9A15A] font-medium mt-0.5" dir="ltr">
                           {model.en}
                         </span>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-gray-400 group-hover:text-gray-600 transition-colors">
-                    <span className={`text-[13px] font-medium px-2 py-0.5 rounded-full ${idx === 0 ? 'bg-[#C9A15A]/10 text-[#0D3B46]' : 'bg-gray-100 text-gray-500'}`} dir="ltr">{model.count} إعلان</span>
+                  <div className="flex items-center gap-2 text-[#C9A15A] group-hover:text-[#0D3B46] transition-colors">
+                    <span className={`text-[13px] font-medium px-2 py-0.5 rounded-full ${idx === 0 ? 'bg-[#C9A15A]/10 text-[#0D3B46]' : 'bg-[#F6F2E8] text-[#C9A15A]'}`} dir="ltr">{model.count} إعلان</span>
                     <ChevronLeft size={16} className="opacity-60" />
                   </div>
                 </button>
                 {idx < models.length - 1 && (
-                  <div className="h-[1px] bg-gray-50 mx-4" />
+                  <div className="h-[1px] bg-[#F6F2E8] mx-4" />
                 )}
               </React.Fragment>
             ))}

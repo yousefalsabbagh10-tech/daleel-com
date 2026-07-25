@@ -16,8 +16,8 @@ export function MapPage() {
           <MapPinned size={26} />
         </div>
         <div>
-          <h2 className="text-2xl font-black text-gray-900">الإعلانات على الخريطة</h2>
-          <p className="text-sm text-gray-500 font-medium">{realEstateAds.length.toLocaleString('ar-SY')} موقع عقاري معروض</p>
+          <h2 className="text-2xl font-black text-[#2B2B2B]">الإعلانات على الخريطة</h2>
+          <p className="text-sm text-[#C9A15A] font-medium">{realEstateAds.length.toLocaleString('ar-SY')} موقع عقاري معروض</p>
         </div>
       </div>
 
@@ -40,7 +40,7 @@ export function MapPage() {
           </div>
         ))}
         {realEstateAds.length === 0 && (
-          <div className="col-span-full py-20 text-center text-gray-500 bg-white rounded-2xl border border-gray-100 font-bold">
+          <div className="col-span-full py-20 text-center text-[#C9A15A] bg-white rounded-2xl border border-[#F6F2E8] font-bold">
             لا توجد إعلانات لعرضها على الخريطة
           </div>
         )}

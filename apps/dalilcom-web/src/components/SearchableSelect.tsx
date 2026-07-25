@@ -78,17 +78,17 @@ export function SearchableSelect({
       <button
         type="button"
         onClick={toggleDropdown}
-        className="w-full h-11 px-3 py-2 flex items-center justify-between text-right text-[14px] bg-white text-gray-800 rounded-xl border border-gray-200 shadow-sm hover:border-[#0D3B46]/50 focus:outline-none focus:ring-2 focus:ring-[#0D3B46]/20 focus:border-[#0D3B46] transition-all cursor-pointer font-sans"
+        className="w-full h-11 px-3 py-2 flex items-center justify-between text-right text-[14px] bg-white text-[#2B2B2B] rounded-xl border border-[#E3C98D] shadow-sm hover:border-[#0D3B46]/50 focus:outline-none focus:ring-2 focus:ring-[#0D3B46]/20 focus:border-[#0D3B46] transition-all cursor-pointer font-sans"
       >
-        <span className="truncate font-semibold text-gray-800">{displayLabel}</span>
-        <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#0D3B46]' : ''}`} />
+        <span className="truncate font-semibold text-[#2B2B2B]">{displayLabel}</span>
+        <ChevronDown size={18} className={`text-[#C9A15A] transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#0D3B46]' : ''}`} />
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute z-50 w-full mt-1.5 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
+        <div className="absolute z-50 w-full mt-1.5 bg-white border border-[#E3C98D] rounded-xl shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
           {/* Search Bar Input */}
-          <div className="p-2 border-b border-gray-100 flex items-center gap-2 bg-gray-50">
+          <div className="p-2 border-b border-[#F6F2E8] flex items-center gap-2 bg-[#F6F2E8]">
             <div className="relative w-full">
               <input
                 ref={searchInputRef}
@@ -96,7 +96,7 @@ export function SearchableSelect({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="ابحث..."
-                className="w-full h-9 pr-8 pl-3 text-xs bg-white rounded-lg border border-gray-200 focus:outline-none focus:border-[#0D3B46] focus:ring-1 focus:ring-[#0D3B46] transition-all text-right font-medium"
+                className="w-full h-9 pr-8 pl-3 text-xs bg-white rounded-lg border border-[#E3C98D] focus:outline-none focus:border-[#0D3B46] focus:ring-1 focus:ring-[#0D3B46] transition-all text-right font-medium"
               />
               <Search size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#0D3B46]" />
             </div>
@@ -115,7 +115,7 @@ export function SearchableSelect({
                     className={`w-full px-3 py-2.5 text-right text-xs font-semibold flex items-center justify-between transition-colors cursor-pointer ${
                       isSelected
                         ? 'bg-[#0D3B46]/10 text-[#0D3B46]'
-                        : 'text-gray-700 hover:bg-gray-50'
+                        : 'text-[#2B2B2B] hover:bg-[#F6F2E8]'
                     }`}
                   >
                     <span>{opt.label}</span>
@@ -124,7 +124,7 @@ export function SearchableSelect({
                 );
               })
             ) : (
-              <div className="px-3 py-4 text-center text-xs text-gray-400 font-medium">
+              <div className="px-3 py-4 text-center text-xs text-[#C9A15A] font-medium">
                 لا توجد نتائج مطابقة
               </div>
             )}

@@ -22,9 +22,9 @@ export function SubPanels() {
           <div 
             key={opt.id}
             onClick={() => { updateFilter('sortBy', opt.id); setActiveSubPanel(null); }}
-            className="flex items-center justify-between p-3.5 border border-gray-150 rounded-xl hover:border-[#0D3B46] cursor-pointer"
+            className="flex items-center justify-between p-3.5 border border-[#F6F2E8] rounded-xl hover:border-[#0D3B46] cursor-pointer"
           >
-            <span className={`text-[14px] font-bold ${filters.sortBy === opt.id ? 'text-[#0D3B46]' : 'text-gray-750'}`}>{opt.label}</span>
+            <span className={`text-[14px] font-bold ${filters.sortBy === opt.id ? 'text-[#0D3B46]' : 'text-[#2B2B2B]'}`}>{opt.label}</span>
             {filters.sortBy === opt.id && <Check size={18} className="text-[#0D3B46]" />}
           </div>
         ))}
@@ -42,11 +42,11 @@ export function SubPanels() {
             <input
               type="text"
               placeholder="ابحث عن مدينة..."
-              className="w-full h-11 pr-10 pl-4 text-xs bg-gray-50 rounded-xl border border-gray-200 focus:outline-[#0D3B46] focus:bg-white text-right font-medium"
+              className="w-full h-11 pr-10 pl-4 text-xs bg-[#F6F2E8] rounded-xl border border-[#E3C98D] focus:outline-[#0D3B46] focus:bg-white text-right font-medium"
               onChange={(e) => setLocQuery(e.target.value)}
               value={locQuery}
             />
-            <Search size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#C9A15A]" />
           </div>
         </div>
         <div className="max-h-96 overflow-y-auto space-y-2 py-1">
@@ -54,9 +54,9 @@ export function SubPanels() {
             <div 
               key={loc}
               onClick={() => { updateFilter('location', loc); setActiveSubPanel(null); }}
-              className="flex items-center justify-between p-3.5 border border-gray-150 rounded-xl hover:border-[#0D3B46] cursor-pointer"
+              className="flex items-center justify-between p-3.5 border border-[#F6F2E8] rounded-xl hover:border-[#0D3B46] cursor-pointer"
             >
-              <span className={`text-[14px] font-bold ${filters.location === loc ? 'text-[#0D3B46]' : 'text-gray-750'}`}>{loc}</span>
+              <span className={`text-[14px] font-bold ${filters.location === loc ? 'text-[#0D3B46]' : 'text-[#2B2B2B]'}`}>{loc}</span>
               {filters.location === loc && <Check size={18} className="text-[#0D3B46]" />}
             </div>
           ))}
@@ -76,7 +76,7 @@ export function SubPanels() {
       <div className="space-y-4">
         {/* Brand */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-gray-600">الماركة (الشركة المصنعة)</label>
+          <label className="text-xs font-bold text-[#0D3B46]">الماركة (الشركة المصنعة)</label>
           <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-1 border rounded-xl">
             {[{ ar: 'الكل' }, ...brands].map((b) => (
               <button
@@ -85,7 +85,7 @@ export function SubPanels() {
                   updateFilter('selectedBrand', b.ar);
                   updateFilter('selectedModel', 'الكل');
                 }}
-                className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedBrand === b.ar ? 'bg-[#0D3B46]/10 text-[#0D3B46]' : 'hover:bg-gray-50 text-gray-700'}`}
+                className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedBrand === b.ar ? 'bg-[#0D3B46]/10 text-[#0D3B46]' : 'hover:bg-[#F6F2E8] text-[#2B2B2B]'}`}
               >
                 {b.ar}
               </button>
@@ -96,7 +96,7 @@ export function SubPanels() {
         {/* Model */}
         {filters.selectedBrand !== 'الكل' && (
           <div className="space-y-1">
-            <label className="text-xs font-bold text-gray-600">الموديل (الطراز)</label>
+            <label className="text-xs font-bold text-[#0D3B46]">الموديل (الطراز)</label>
             <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto p-1 border rounded-xl">
               {[{ ar: 'الكل' }, ...activeModels].map((m) => (
                 <button
@@ -105,7 +105,7 @@ export function SubPanels() {
                     updateFilter('selectedModel', m.ar);
                     setActiveSubPanel(null);
                   }}
-                  className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedModel === m.ar ? 'bg-[#0D3B46]/10 text-[#0D3B46]' : 'hover:bg-gray-50 text-gray-700'}`}
+                  className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedModel === m.ar ? 'bg-[#0D3B46]/10 text-[#0D3B46]' : 'hover:bg-[#F6F2E8] text-[#2B2B2B]'}`}
                 >
                   {m.ar}
                 </button>

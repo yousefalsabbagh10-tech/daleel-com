@@ -56,7 +56,7 @@ export function LoginPage() {
 
   return (
     <div className="max-w-md mx-auto mt-4 sm:mt-8 pb-10">
-      <div className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100/80">
+      <div className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#F6F2E8]/80">
         <div className="bg-[#0fbc83] text-white p-8 pb-7 text-center relative overflow-hidden">
           <div className="w-[56px] h-[56px] bg-white/15 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20">
             <MessageSquare size={30} />
@@ -65,10 +65,10 @@ export function LoginPage() {
           <p className="text-white/85 text-[14px] font-medium">سجل دخولك باستخدام رقم الهاتف</p>
         </div>
         <form onSubmit={submit} className="p-6 sm:p-8 flex flex-col" dir="rtl">
-          <label className="text-[13px] font-bold text-gray-500 mb-2">رقم الهاتف</label>
+          <label className="text-[13px] font-bold text-[#C9A15A] mb-2">رقم الهاتف</label>
           <div className="relative mb-5">
-            <div className="flex border border-gray-200 rounded-xl overflow-hidden h-13" dir="ltr">
-              <button type="button" onClick={() => setOpen(!open)} className="flex items-center gap-1 px-3 bg-gray-50 border-r border-gray-200">
+            <div className="flex border border-[#E3C98D] rounded-xl overflow-hidden h-13" dir="ltr">
+              <button type="button" onClick={() => setOpen(!open)} className="flex items-center gap-1 px-3 bg-[#F6F2E8] border-r border-[#E3C98D]">
                 <span className="text-xl">{country?.flag || ''}</span>
                 <span className="font-bold">{country?.code || '--'}</span>
               </button>
@@ -81,16 +81,16 @@ export function LoginPage() {
               />
             </div>
             {open && (
-              <div className="absolute z-30 left-0 right-0 top-14 bg-white border border-gray-100 rounded-xl shadow-xl max-h-64 overflow-y-auto">
+              <div className="absolute z-30 left-0 right-0 top-14 bg-white border border-[#F6F2E8] rounded-xl shadow-xl max-h-64 overflow-y-auto">
                 {countries.map(item => (
                   <button
                     key={item.code}
                     type="button"
                     onClick={() => { setCountry(item); setOpen(false); }}
-                    className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50"
+                    className="w-full px-4 py-3 flex items-center justify-between hover:bg-[#F6F2E8]"
                   >
-                    <span className="font-medium text-gray-700">{item.name}</span>
-                    <span dir="ltr" className="font-bold text-gray-500">{item.flag} {item.code}</span>
+                    <span className="font-medium text-[#2B2B2B]">{item.name}</span>
+                    <span dir="ltr" className="font-bold text-[#C9A15A]">{item.flag} {item.code}</span>
                   </button>
                 ))}
               </div>
@@ -100,7 +100,7 @@ export function LoginPage() {
             <span className="w-[18px] h-[18px] border rounded flex items-center justify-center bg-white">
               {accepted && <Check size={12} className="text-[#0fbc83]" />}
             </span>
-            <span className="text-[13px] text-gray-500 font-medium">أوافق على سياسة الاستخدام والخصوصية</span>
+            <span className="text-[13px] text-[#C9A15A] font-medium">أوافق على سياسة الاستخدام والخصوصية</span>
           </button>
           <button
             type="submit"

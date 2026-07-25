@@ -197,7 +197,7 @@ function xt() {
       (a(null), r > 1 && n(r - 1));
     };
   return o("div", {
-    className: "min-h-screen bg-gray-50 flex flex-col font-sans select-none",
+    className: "min-h-screen bg-[#F6F2E8] flex flex-col font-sans select-none",
     dir: "rtl",
     children: [
       t(Qe, { currentStep: r, steps: We }),
@@ -248,13 +248,13 @@ function xt() {
                     children: [
                       o("div", {
                         className:
-                          "bg-white p-5 rounded-3xl border border-gray-150 space-y-4",
+                          "bg-white p-5 rounded-3xl border border-[#F6F2E8] space-y-4",
                         children: [
                           o("div", {
                             className: "space-y-1",
                             children: [
                               t("label", {
-                                className: "text-xs font-bold text-gray-750",
+                                className: "text-xs font-bold text-[#2B2B2B]",
                                 children:
                                   "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0625\u0639\u0644\u0627\u0646 \u0627\u0644\u0623\u0633\u0627\u0633\u064A *",
                               }),
@@ -265,7 +265,7 @@ function xt() {
                                 placeholder:
                                   "\u0645\u062B\u0627\u0644: \u0634\u0642\u0629 \u0633\u0648\u0628\u0631 \u062F\u064A\u0644\u0648\u0643\u0633 \u0645\u0641\u0631\u0648\u0634\u0629 \u0641\u064A \u0645\u0634\u0631\u0648\u0639 \u062F\u0645\u0631",
                                 className:
-                                  "w-full h-11 px-3 border border-gray-200 bg-slate-50 focus:bg-white rounded-xl text-xs font-bold outline-none",
+                                  "w-full h-11 px-3 border border-[#E3C98D] bg-[#F6F2E8] focus:bg-white rounded-xl text-xs font-bold outline-none",
                               }),
                             ],
                           }),
@@ -273,7 +273,7 @@ function xt() {
                             className: "space-y-1",
                             children: [
                               t("label", {
-                                className: "text-xs font-bold text-gray-750",
+                                className: "text-xs font-bold text-[#2B2B2B]",
                                 children:
                                   "\u0648\u0635\u0641 \u0627\u0644\u0633\u0644\u0639\u0629 \u0648\u062A\u0641\u0627\u0635\u064A\u0644 \u0643\u0634\u0641 \u0627\u0644\u062D\u0627\u0644\u0629 *",
                               }),
@@ -283,7 +283,7 @@ function xt() {
                                 placeholder:
                                   "\u0627\u0643\u062A\u0628 \u0623\u062F\u0642 \u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u0634\u0642\u0629 \u0623\u0648 \u0627\u0644\u0633\u064A\u0627\u0631\u0629 \u0648\u0639\u0645\u0631 \u0627\u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0644\u0646\u064A\u0644 \u062B\u0642\u0629 \u0627\u0644\u0645\u0634\u062A\u0631\u064A \u0627\u0644\u0641\u0648\u0631\u064A\u0629...",
                                 className:
-                                  "w-full h-24 p-3 border border-gray-200 bg-slate-50 focus:bg-white rounded-xl text-xs font-bold outline-none resize-none",
+                                  "w-full h-24 p-3 border border-[#E3C98D] bg-[#F6F2E8] focus:bg-white rounded-xl text-xs font-bold outline-none resize-none",
                               }),
                             ],
                           }),
@@ -291,7 +291,7 @@ function xt() {
                       }),
                       t("div", {
                         className:
-                          "bg-white p-5 rounded-3xl border border-gray-150",
+                          "bg-white p-5 rounded-3xl border border-[#F6F2E8]",
                         children:
                           s === "cars"
                             ? t(He, {
@@ -382,7 +382,7 @@ function xt() {
                     exit: { opacity: 0 },
                     children: t("div", {
                       className:
-                        "bg-white p-5 rounded-3xl border border-gray-150",
+                        "bg-white p-5 rounded-3xl border border-[#F6F2E8]",
                       children: t(Oe, {
                         category: s,
                         imageUrl: $,
@@ -447,7 +447,7 @@ function xt() {
                   type: "button",
                   onClick: we,
                   className: Ge(
-                    "px-5 py-2.5 rounded-xl border border-gray-250 bg-white hover:bg-gray-100 text-xs font-black transition-all cursor-pointer flex items-center gap-1",
+                    "px-5 py-2.5 rounded-xl border border-[#E3C98D] bg-white hover:bg-[#F6F2E8] text-xs font-black transition-all cursor-pointer flex items-center gap-1",
                     r === 1 && "opacity-0 pointer-events-none",
                   ),
                   children: [

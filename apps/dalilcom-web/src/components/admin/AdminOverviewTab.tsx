@@ -35,11 +35,11 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
           { title: 'ماركات السيارات النشطة', value: uniqueCarBrandsCount, desc: 'علامة تجارية مدرجة', color: 'text-[#0D3B46]', bg: 'bg-[#C9A15A]/5', icon: CarFront },
           { title: 'الفئات العقارية الأساسية', value: uniqueRealEstateCats, desc: 'تقسيمات ثنائية المستوى', color: 'text-[#0D3B46]', bg: 'bg-[#C9A15A]/10/5', icon: Building2 },
         ].map((s, idx) => (
-          <div key={idx} className="bg-white border border-gray-150 p-6 rounded-2xl flex items-center justify-between shadow-sm hover:border-slate-300 transition-all">
+          <div key={idx} className="bg-white border border-[#F6F2E8] p-6 rounded-2xl flex items-center justify-between shadow-sm hover:border-[#E3C98D] transition-all">
             <div className="space-y-1">
-              <span className="text-[12px] font-bold text-slate-400">{s.title}</span>
-              <h3 className="text-3xl font-black text-slate-800 select-all">{s.value}</h3>
-              <p className="text-[11px] text-slate-500 font-medium">{s.desc}</p>
+              <span className="text-[12px] font-bold text-[#C9A15A]">{s.title}</span>
+              <h3 className="text-3xl font-black text-[#2B2B2B] select-all">{s.value}</h3>
+              <p className="text-[11px] text-[#C9A15A] font-medium">{s.desc}</p>
             </div>
             <div className={`w-14 h-14 rounded-2xl ${s.bg} flex items-center justify-center`}>
               <s.icon size={26} className={s.color} />
@@ -52,11 +52,11 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
         {/* Chart 1: City Statistics Bar Chart */}
-        <div className="bg-white border border-gray-150 rounded-2xl p-6 lg:col-span-2 shadow-sm flex flex-col justify-between">
+        <div className="bg-white border border-[#F6F2E8] rounded-2xl p-6 lg:col-span-2 shadow-sm flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-5 border-b border-gray-100 mb-4">
+            <div className="flex items-center justify-between pb-5 border-b border-[#F6F2E8] mb-4">
               <div className="text-right">
-                <h4 className="font-extrabold text-sm text-slate-800">توزيع الإعلانات جغرافياً حسب المحافظات السورية 🇸🇾</h4>
+                <h4 className="font-extrabold text-sm text-[#2B2B2B]">توزيع الإعلانات جغرافياً حسب المحافظات السورية 🇸🇾</h4>
                 <span className="text-[10px] bg-[#C9A15A]/10 text-[#0D3B46] px-3 py-1 rounded-full font-bold">الإحصائيات فورية وتفاعلية</span>
               </div>
               <BarChart3 size={18} className="text-[#0D3B46]" />
@@ -89,12 +89,12 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
         </div>
 
         {/* Chart 2: Category Mix Area Chart */}
-        <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+        <div className="bg-white border border-[#F6F2E8] rounded-2xl p-6 shadow-sm flex flex-col justify-between">
           <div>
-            <div className="flex items-center justify-between pb-5 border-b border-gray-150 mb-4">
+            <div className="flex items-center justify-between pb-5 border-b border-[#F6F2E8] mb-4">
               <div className="text-right">
-                <h4 className="font-extrabold text-sm text-slate-800">مزيج التصنيفات النشطة</h4>
-                <span className="text-[10px] text-slate-400 font-bold">مقارنة بين العقارات والسيارات</span>
+                <h4 className="font-extrabold text-sm text-[#2B2B2B]">مزيج التصنيفات النشطة</h4>
+                <span className="text-[10px] text-[#C9A15A] font-bold">مقارنة بين العقارات والسيارات</span>
               </div>
               <Activity size={18} className="text-[#C9A15A]" />
             </div>
@@ -119,7 +119,7 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
             </ResponsiveContainer>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-slate-50 flex justify-around text-xs font-bold text-slate-700">
+          <div className="mt-4 pt-4 border-t border-[#F6F2E8] flex justify-around text-xs font-bold text-[#2B2B2B]">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 rounded-full bg-[#C9A15A]" />
               <span>سيارات ({ads.filter(a => a.category === 'cars').length})</span>
@@ -134,19 +134,19 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
       </div>
 
       {/* Secondary list of activity logs (smaller size for elegant feel) */}
-      <div className="bg-white border border-gray-150 rounded-2xl p-6 shadow-sm">
-        <div className="flex items-center justify-between pb-4 border-b border-gray-100">
-          <h4 className="font-extrabold text-sm text-slate-800">بث عمليات لوحة الإشراف المتفرقة</h4>
-          <span className="text-[10px] text-slate-500 font-bold">النشاطات المقيدة اليومية</span>
+      <div className="bg-white border border-[#F6F2E8] rounded-2xl p-6 shadow-sm">
+        <div className="flex items-center justify-between pb-4 border-b border-[#F6F2E8]">
+          <h4 className="font-extrabold text-sm text-[#2B2B2B]">بث عمليات لوحة الإشراف المتفرقة</h4>
+          <span className="text-[10px] text-[#C9A15A] font-bold">النشاطات المقيدة اليومية</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 text-xs font-semibold text-slate-600">
-          <div className="p-3 bg-slate-50 border border-gray-100 rounded-xl flex items-center justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 text-xs font-semibold text-[#0D3B46]">
+          <div className="p-3 bg-[#F6F2E8] border border-[#F6F2E8] rounded-xl flex items-center justify-between">
             <span>إجمالي القيمة التقديرية لكافة الإعلانات النشطة:</span>
             <span className="text-[#C9A15A] font-extrabold">
               {ads.reduce((sum, a) => sum + a.price, 0).toLocaleString('en-US')} ل.س / دولار
             </span>
           </div>
-          <div className="p-3 bg-slate-50 border border-gray-100 rounded-xl flex items-center justify-between">
+          <div className="p-3 bg-[#F6F2E8] border border-[#F6F2E8] rounded-xl flex items-center justify-between">
             <span>حالة الاتصال والخدمات السحابية:</span>
             <span className="text-[#0D3B46] font-extrabold">عمليات نشطة ومؤمنة بالكامل</span>
           </div>

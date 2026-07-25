@@ -24,7 +24,7 @@ export function HotelAptFilters() {
       
       {/* Rent Period */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-700 block text-right">📅 أقل مدة إيجار مقبولة</label>
+        <label className="text-xs font-bold text-[#2B2B2B] block text-right">📅 أقل مدة إيجار مقبولة</label>
         <div className="grid grid-cols-5 gap-1" dir="rtl">
           {[
             { value: 'الكل', label: 'الكل' },
@@ -40,7 +40,7 @@ export function HotelAptFilters() {
               className={`py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-center ${
                 filters.minRentPeriod === opt.value
                   ? 'bg-[#0D3B46] text-white font-black shadow-sm'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                  : 'bg-white text-[#0D3B46] hover:bg-[#F6F2E8] border border-[#E3C98D]'
               }`}
             >
               {opt.label}
@@ -51,7 +51,7 @@ export function HotelAptFilters() {
 
       {/* Bed count */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-700 block text-right">🛏️ عدد الأسرة المتوفرة بالشقة</label>
+        <label className="text-xs font-bold text-[#2B2B2B] block text-right">🛏️ عدد الأسرة المتوفرة بالشقة</label>
         <div className="grid grid-cols-3 gap-1" dir="rtl">
           {['الكل', '1 سرير', '2 سرير', '3 أسرة', '4 أسرة فأكثر'].map((opt) => (
             <button
@@ -61,7 +61,7 @@ export function HotelAptFilters() {
               className={`py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 filters.bedsCount === opt
                   ? 'bg-[#0D3B46] text-white font-black shadow-sm'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
+                  : 'bg-white text-[#0D3B46] hover:bg-[#F6F2E8] border border-[#E3C98D]'
               }`}
             >
               {opt}
@@ -72,7 +72,7 @@ export function HotelAptFilters() {
 
       {/* Amenities */}
       <div className="space-y-2">
-        <label className="text-xs font-bold text-gray-700 block text-right">✨ وسائل الراحة والخدمات المتوفرة بالشقة</label>
+        <label className="text-xs font-bold text-[#2B2B2B] block text-right">✨ وسائل الراحة والخدمات المتوفرة بالشقة</label>
         <div className="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto p-1.5 bg-white/50 rounded-lg border border-[#C9A15A]/25">
           {hotelAmenitiesList.map((amenity) => {
             const isSelected = filters.hotelAmenities.includes(amenity);
@@ -90,11 +90,11 @@ export function HotelAptFilters() {
                 className={`p-1.5 text-[10px] text-right font-semibold rounded-lg border flex items-center justify-between transition-all cursor-pointer ${
                   isSelected
                     ? 'bg-[#C9A15A]/20 border-[#C9A15A] text-[#0D3B46] font-extrabold shadow-sm'
-                    : 'bg-white border-gray-150 text-gray-650 hover:border-gray-300'
+                    : 'bg-white border-[#F6F2E8] text-[#0D3B46] hover:border-[#E3C98D]'
                 }`}
               >
                 <span>{amenity}</span>
-                <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center border shrink-0 mr-1 text-[8px] ${isSelected ? 'bg-[#0D3B46] border-[#C9A15A] text-white' : 'border-gray-300'}`}>
+                <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center border shrink-0 mr-1 text-[8px] ${isSelected ? 'bg-[#0D3B46] border-[#C9A15A] text-white' : 'border-[#E3C98D]'}`}>
                   {isSelected && '✓'}
                 </span>
               </button>

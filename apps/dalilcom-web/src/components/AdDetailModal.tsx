@@ -22,15 +22,15 @@ export function AdDetailModal({ item, onClose }: AdDetailModalProps) {
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="bg-white rounded-3xl shadow-2xl w-full max-w-5xl h-[90vh] sm:h-[82vh] flex flex-col overflow-hidden border border-gray-150"
+        className="bg-white rounded-3xl shadow-2xl w-full max-w-5xl h-[90vh] sm:h-[82vh] flex flex-col overflow-hidden border border-[#F6F2E8]"
       >
-        <div className="px-4 sm:px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-slate-55 shrink-0 gap-3">
+        <div className="px-4 sm:px-6 py-4 border-b border-[#F6F2E8] flex items-center justify-between bg-[#F6F2E8] shrink-0 gap-3">
           <div className="text-[11px] text-[#0D3B46] font-extrabold flex items-center gap-1 bg-[#C9A15A]/15 px-2.5 py-1 rounded-full border border-[#C9A15A]/30">
             <ShieldCheck size={13} />
             <span>إعلان موثق ضمن دليل كوم</span>
           </div>
 
-          <div className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white px-3 sm:px-4 py-2 shadow-sm">
+          <div className="flex items-center gap-3 rounded-2xl border border-[#F6F2E8] bg-white px-3 sm:px-4 py-2 shadow-sm">
             <img src="/logo-mark.png" alt="دليل كوم" className="h-12 w-32 object-contain" />
 
           </div>
@@ -40,7 +40,7 @@ export function AdDetailModal({ item, onClose }: AdDetailModalProps) {
               onClick={() => toggleComparison(item.id)}
               className={cn(
                 'w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer border',
-                comp ? 'bg-slate-900 border-slate-900 text-white' : 'bg-slate-50 border-gray-200 text-slate-600 hover:bg-slate-100',
+                comp ? 'bg-[#2B2B2B] border-[#2B2B2B] text-white' : 'bg-[#F6F2E8] border-[#E3C98D] text-[#0D3B46] hover:bg-[#F6F2E8]',
               )}
               title={comp ? 'حذف من المقارنة' : 'إضافة للمقارنة'}
             >
@@ -50,19 +50,19 @@ export function AdDetailModal({ item, onClose }: AdDetailModalProps) {
               onClick={() => toggleFavorite(item.id)}
               className={cn(
                 'w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer border',
-                fav ? 'bg-[#C9A15A]/10 border-[#C9A15A]/25 text-[#C9A15A]' : 'bg-slate-50 border-gray-200 text-slate-600 hover:bg-slate-100',
+                fav ? 'bg-[#C9A15A]/10 border-[#C9A15A]/25 text-[#C9A15A]' : 'bg-[#F6F2E8] border-[#E3C98D] text-[#0D3B46] hover:bg-[#F6F2E8]',
               )}
               title={fav ? 'حذف من المفضلة' : 'إضافة للمفضلة'}
             >
               <Heart size={18} className={cn(fav && 'fill-[#C9A15A]')} />
             </button>
-            <button onClick={onClose} className="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-500 cursor-pointer">
+            <button onClick={onClose} className="w-10 h-10 rounded-full hover:bg-[#F6F2E8] flex items-center justify-center text-[#C9A15A] cursor-pointer">
               <X size={20} />
             </button>
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 sm:p-8 bg-gray-55 space-y-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-8 bg-[#F6F2E8] space-y-6">
           <DetailsTab item={item} />
         </div>
 

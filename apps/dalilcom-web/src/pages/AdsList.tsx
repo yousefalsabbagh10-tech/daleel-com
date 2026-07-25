@@ -44,7 +44,7 @@ function AdsListContent() {
   const finalFilteredAds = applyFiltersAndSort(rawFilteredAds, filters);
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 pb-20">
+    <div className="flex flex-col min-h-screen bg-[#F6F2E8] pb-20">
       <HeaderNav filteredCount={finalFilteredAds.length} />
       <FilterDrawer />
       <div className="max-w-7xl mx-auto w-full p-4 sm:p-6 lg:p-8 flex flex-col gap-8">

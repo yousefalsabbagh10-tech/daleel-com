@@ -113,7 +113,7 @@ export function Layout() {
               {/* Add Ad Button */}
               <button 
                 onClick={() => navigate('/create-ad')}
-                className="hidden sm:flex items-center gap-1.5 bg-[#F6F2E8] text-[#0D3B46] px-4 py-2 rounded-md font-bold text-[14px] hover:bg-gray-50 transition-colors shadow-sm"
+                className="hidden sm:flex items-center gap-1.5 bg-[#F6F2E8] text-[#0D3B46] px-4 py-2 rounded-md font-bold text-[14px] hover:bg-[#F6F2E8] transition-colors shadow-sm"
               >
                 <PlusCircle size={18} />
                 أضف إعلان
@@ -132,7 +132,7 @@ export function Layout() {
 
 
       {/* Bottom Navigation for Mobile */}
-      <nav className="fixed bottom-0 w-full bg-white border-t border-gray-100 pb-safe z-50 md:hidden shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
+      <nav className="fixed bottom-0 w-full bg-white border-t border-[#F6F2E8] pb-safe z-50 md:hidden shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
         <div className="flex justify-around items-center h-16">
           {bottomNavItems.map((item, index) => {
             if ('type' in item && item.type === "add") {
@@ -157,7 +157,7 @@ export function Layout() {
                 className={({ isActive }) =>
                   cn(
                     "flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors relative",
-                    isActive ? "text-[#0D3B46] font-bold" : "text-gray-500 hover:text-gray-950"
+                    isActive ? "text-[#0D3B46] font-bold" : "text-[#C9A15A] hover:text-[#2B2B2B]"
                   )
                 }
               >

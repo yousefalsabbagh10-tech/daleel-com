@@ -26,16 +26,16 @@ export function StepLocation({
   };
 
   return (
-    <div className="bg-white p-6 rounded-3xl border border-gray-150 space-y-4 text-right animate-fadeIn" dir="rtl">
+    <div className="bg-white p-6 rounded-3xl border border-[#F6F2E8] space-y-4 text-right animate-fadeIn" dir="rtl">
       <span className="text-xs font-bold text-[#0D3B46] block">تأكيد المنطقة الجغرافية (سوريا)</span>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1">
-          <label className="text-xs font-bold text-gray-650">المحافظة</label>
+          <label className="text-xs font-bold text-[#0D3B46]">المحافظة</label>
           <select
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
-            className="w-full h-11 px-3 bg-slate-50 border border-gray-200 rounded-xl outline-none text-xs font-bold text-right"
+            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs font-bold text-right"
           >
             {governorates.map(city => (
               <option key={city} value={city}>{city}</option>
@@ -44,24 +44,24 @@ export function StepLocation({
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-bold text-gray-650">الحي أو المنطقة الفرعية *</label>
+          <label className="text-xs font-bold text-[#0D3B46]">الحي أو المنطقة الفرعية *</label>
           <input 
             type="text" 
             value={neighborhood} 
             onChange={(e) => setNeighborhood(e.target.value)} 
             placeholder="مثال: مشروع دمر، الشهباء، الكورنيش..." 
-            className="w-full h-11 px-4 bg-slate-50 border border-gray-200 rounded-xl text-xs font-bold outline-none text-right font-sans"
+            className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl text-xs font-bold outline-none text-right font-sans"
           />
         </div>
 
         <div className="space-y-1 sm:col-span-2">
-          <label className="text-xs font-bold text-gray-650">رابط الموقع على الخريطة (Google Maps)</label>
+          <label className="text-xs font-bold text-[#0D3B46]">رابط الموقع على الخريطة (Google Maps)</label>
           <input 
             type="text" 
             value={mapUrl} 
             onChange={(e) => setMapUrl(e.target.value)} 
             placeholder="مثال: https://maps.google.com/..." 
-            className="w-full h-11 px-4 bg-slate-50 border border-gray-200 rounded-xl text-xs font-bold outline-none text-left font-sans"
+            className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl text-xs font-bold outline-none text-left font-sans"
             dir="ltr"
           />
         </div>

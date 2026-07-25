@@ -33,7 +33,7 @@ export function HeaderNav({ filteredCount }: HeaderNavProps) {
           onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)}
           className={`p-2 rounded-full transition-all flex items-center justify-center gap-1.5 px-3 py-1.5 border cursor-pointer ${
             isFilterPanelOpen 
-              ? 'bg-[#C9A15A] text-black border-[#C9A15A] font-bold shadow' 
+              ? 'bg-[#C9A15A] text-[#2B2B2B] border-[#C9A15A] font-bold shadow' 
               : 'hover:bg-white/10 border-white/20 text-white'
           }`}
         >

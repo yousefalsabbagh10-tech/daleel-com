@@ -24,7 +24,7 @@ export function CarFilters() {
       
       {/* Brand */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-600 block">الماركة (الشركة المصنعة)</label>
+        <label className="text-xs font-bold text-[#0D3B46] block">الماركة (الشركة المصنعة)</label>
         <SearchableSelect
           value={filters.selectedBrand}
           onChange={(val) => {
@@ -40,7 +40,7 @@ export function CarFilters() {
 
       {/* Model */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-600 block">الموديل (الطراز)</label>
+        <label className="text-xs font-bold text-[#0D3B46] block">الموديل (الطراز)</label>
         <SearchableSelect
           value={filters.selectedModel}
           onChange={(val) => updateFilter('selectedModel', val)}
@@ -53,10 +53,10 @@ export function CarFilters() {
 
       {/* Manufacture Year Ranges */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-600 block">سنة الصنع (من عام إلى عام)</label>
+        <label className="text-xs font-bold text-[#0D3B46] block">سنة الصنع (من عام إلى عام)</label>
         <div className="grid grid-cols-2 gap-2">
           <div className="space-y-1">
-            <span className="text-[10px] text-gray-400 font-bold block">من سنة</span>
+            <span className="text-[10px] text-[#C9A15A] font-bold block">من سنة</span>
             <SearchableSelect
               value={filters.minYear}
               onChange={(val) => updateFilter('minYear', val)}
@@ -65,7 +65,7 @@ export function CarFilters() {
             />
           </div>
           <div className="space-y-1">
-            <span className="text-[10px] text-gray-400 font-bold block">إلى سنة</span>
+            <span className="text-[10px] text-[#C9A15A] font-bold block">إلى سنة</span>
             <SearchableSelect
               value={filters.maxYear}
               onChange={(val) => updateFilter('maxYear', val)}
@@ -78,28 +78,28 @@ export function CarFilters() {
 
       {/* Mileage (كم) Range */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-600 block">المسافة المقطوعة (كم)</label>
+        <label className="text-xs font-bold text-[#0D3B46] block">المسافة المقطوعة (كم)</label>
         <div className="grid grid-cols-2 gap-2" dir="ltr">
           <input
             type="number"
             placeholder="أقصى كم"
             value={filters.maxMileage}
             onChange={(e) => updateFilter('maxMileage', e.target.value === '' ? '' : Number(e.target.value))}
-            className="w-full h-11 pl-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#0D3B46] font-medium"
+            className="w-full h-11 pl-2 text-xs rounded-lg border border-[#E3C98D] text-center outline-none bg-[#F6F2E8] focus:bg-white focus:border-[#0D3B46] font-medium"
           />
           <input
             type="number"
             placeholder="أدنى كم"
             value={filters.minMileage}
             onChange={(e) => updateFilter('minMileage', e.target.value === '' ? '' : Number(e.target.value))}
-            className="w-full h-11 pl-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#0D3B46] font-medium"
+            className="w-full h-11 pl-2 text-xs rounded-lg border border-[#E3C98D] text-center outline-none bg-[#F6F2E8] focus:bg-white focus:border-[#0D3B46] font-medium"
           />
         </div>
       </div>
 
       {/* Transmission (Gearbox) */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-600 block">ناقل الحركة</label>
+        <label className="text-xs font-bold text-[#0D3B46] block">ناقل الحركة</label>
         <div className="flex gap-2">
           {['الكل', 'أوتوماتيك', 'عادي'].map((gear) => (
             <button
@@ -109,7 +109,7 @@ export function CarFilters() {
               className={`flex-1 py-1.5 text-xs font-semibold rounded-md border text-center transition-all cursor-pointer ${
                 filters.transmission === gear 
                   ? 'bg-[#C9A15A]/10 border-[#C9A15A] text-[#0D3B46] font-bold' 
-                  : 'border-gray-200 text-gray-600 bg-white hover:bg-gray-50'
+                  : 'border-[#E3C98D] text-[#0D3B46] bg-white hover:bg-[#F6F2E8]'
               }`}
             >
               {gear}
@@ -120,7 +120,7 @@ export function CarFilters() {
 
       {/* Fuel Specification */}
       <div className="space-y-1.5">
-        <label className="text-xs font-bold text-gray-600 block">نوع الوقود</label>
+        <label className="text-xs font-bold text-[#0D3B46] block">نوع الوقود</label>
         <div className="flex flex-wrap gap-1.5">
           {['الكل', 'بنزين', 'ديزل', 'كهرباء', 'هجين'].map((fuel) => (
             <button
@@ -130,7 +130,7 @@ export function CarFilters() {
               className={`px-2.5 py-1 text-xs font-medium rounded-full border transition-all cursor-pointer ${
                 filters.fuelType === fuel 
                   ? 'bg-[#C9A15A]/10 border-[#C9A15A] text-[#0D3B46] font-bold' 
-                  : 'border-gray-200 text-gray-500 bg-white hover:bg-gray-50'
+                  : 'border-[#E3C98D] text-[#C9A15A] bg-white hover:bg-[#F6F2E8]'
               }`}
             >
               {fuel}

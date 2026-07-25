@@ -15,11 +15,11 @@ export function AnalyticsTab() {
   return (
     <div className="space-y-6 text-right" dir="rtl">
       <div>
-        <h3 className="font-black text-slate-800 text-sm">مؤشر الأسعار السكني حسب المدينة والمنطقة</h3>
-        <p className="text-[11px] text-slate-500">مقارنة متوسط أسعار عقارات التمليك والدراسات الإيجارية السنوية التقديرية بالـ ($) لكل متر مربع</p>
+        <h3 className="font-black text-[#2B2B2B] text-sm">مؤشر الأسعار السكني حسب المدينة والمنطقة</h3>
+        <p className="text-[11px] text-[#C9A15A]">مقارنة متوسط أسعار عقارات التمليك والدراسات الإيجارية السنوية التقديرية بالـ ($) لكل متر مربع</p>
       </div>
 
-      <div className="bg-white border border-gray-150 rounded-3xl p-4 shadow-sm">
+      <div className="bg-white border border-[#F6F2E8] rounded-3xl p-4 shadow-sm">
         <div className="h-60 w-full" dir="ltr">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={realEstateLocationData} margin={{ top: 10, right: 10, left: 10, bottom: 0 }}>
@@ -46,7 +46,7 @@ export function AnalyticsTab() {
       </div>
 
       {/* Advisory Note */}
-      <div className="bg-slate-900 text-slate-300 p-4 rounded-3xl border border-slate-800 text-[11px] leading-relaxed">
+      <div className="bg-[#2B2B2B] text-[#C9A15A] p-4 rounded-3xl border border-[#2B2B2B] text-[11px] leading-relaxed">
         <strong>* معلومات استبيانية:</strong> تعتمد هذه الأرقام الاستبيانية الإرشادية على قراءة ذكية وحسابية لكثافة الإعلانات المعتمدة على موقعنا سوريازيل. تذبذبات الصرف الفعلي والموقع ونظافة البناء تلعب دوراً تفاوضياً شديد الأهمية أثناء إتمام الصفقات على أرض الواقع.
       </div>
     </div>

@@ -37,18 +37,18 @@ export function AffordabilityCalculator() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left Input Pillar */}
-        <div className="lg:col-span-7 bg-white border border-gray-200 rounded-3xl p-5 sm:p-6 shadow-sm space-y-5">
-          <div className="flex items-center justify-between border-b border-gray-100 pb-3">
+        <div className="lg:col-span-7 bg-white border border-[#E3C98D] rounded-3xl p-5 sm:p-6 shadow-sm space-y-5">
+          <div className="flex items-center justify-between border-b border-[#F6F2E8] pb-3">
             <span className="font-extrabold text-xs text-[#0D3B46] flex items-center gap-1 bg-[#C9A15A]/10 px-2.5 py-1 rounded-lg">
               <Settings2 size={13} />
               معايير القدرة والشروط المالية
             </span>
-            <div className="flex bg-slate-100 p-0.5 rounded-lg">
+            <div className="flex bg-[#F6F2E8] p-0.5 rounded-lg">
               {['ل.س', '$'].map((unit) => (
                 <button
                   key={unit}
                   onClick={() => setCurrency(unit as any)}
-                  className={`px-3 py-1 text-xs font-black rounded-md ${currency === unit ? 'bg-[#0D3B46] text-white' : 'text-slate-600'}`}
+                  className={`px-3 py-1 text-xs font-black rounded-md ${currency === unit ? 'bg-[#0D3B46] text-white' : 'text-[#0D3B46]'}`}
                 >
                   {unit}
                 </button>
@@ -59,7 +59,7 @@ export function AffordabilityCalculator() {
           <div className="space-y-4">
             {/* Monthly Salary */}
             <div className="space-y-2">
-              <div className="flex justify-between items-center text-xs font-bold text-slate-600">
+              <div className="flex justify-between items-center text-xs font-bold text-[#0D3B46]">
                 <span>الراتب / الدخل الشهري الصافي</span>
                 <span>{monthlySalary.toLocaleString()} {currency}</span>
               </div>
@@ -76,7 +76,7 @@ export function AffordabilityCalculator() {
 
             {/* Other Debts */}
             <div className="space-y-2">
-              <div className="flex justify-between items-center text-xs font-bold text-slate-600">
+              <div className="flex justify-between items-center text-xs font-bold text-[#0D3B46]">
                 <span>الالتزامات أو الأقساط الشهرية الأخرى</span>
                 <span>{otherMonthlyDebts.toLocaleString()} {currency}</span>
               </div>
@@ -93,7 +93,7 @@ export function AffordabilityCalculator() {
 
             {/* Cash Savings / Downpayment */}
             <div className="space-y-2">
-              <div className="flex justify-between items-center text-xs font-bold text-slate-600">
+              <div className="flex justify-between items-center text-xs font-bold text-[#0D3B46]">
                 <span>مجموع الكاش / المدخرات للدفعة الفورية الاولى</span>
                 <span>{cashDownpayment.toLocaleString()} {currency}</span>
               </div>
@@ -111,24 +111,24 @@ export function AffordabilityCalculator() {
             <div className="grid grid-cols-2 gap-4">
               {/* Interest */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-500">فائدة افتراضية (%)</label>
+                <label className="text-xs font-bold text-[#C9A15A]">فائدة افتراضية (%)</label>
                 <input 
                   type="number"
                   step="0.1"
                   value={affordabilityInterestRate}
                   onChange={(e) => setAffordabilityInterestRate(Number(e.target.value))}
-                  className="h-10 w-full px-3 text-xs border border-gray-200 bg-slate-50 rounded-xl font-bold font-mono text-center outline-none focus:border-[#C9A15A]"
+                  className="h-10 w-full px-3 text-xs border border-[#E3C98D] bg-[#F6F2E8] rounded-xl font-bold font-mono text-center outline-none focus:border-[#C9A15A]"
                 />
               </div>
 
               {/* Term */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold text-slate-500">سنوات السداد</label>
+                <label className="text-xs font-bold text-[#C9A15A]">سنوات السداد</label>
                 <input 
                   type="number"
                   value={affordabilityTermYears}
                   onChange={(e) => setAffordabilityTermYears(Number(e.target.value))}
-                  className="h-10 w-full px-3 text-xs border border-gray-200 bg-slate-50 rounded-xl font-bold font-mono text-center outline-none focus:border-[#C9A15A]"
+                  className="h-10 w-full px-3 text-xs border border-[#E3C98D] bg-[#F6F2E8] rounded-xl font-bold font-mono text-center outline-none focus:border-[#C9A15A]"
                 />
               </div>
             </div>
@@ -137,28 +137,28 @@ export function AffordabilityCalculator() {
 
         {/* Right Output Pillar */}
         <div className="lg:col-span-5 space-y-5">
-          <div className="bg-slate-900 border border-slate-800 text-white rounded-3xl p-5 sm:p-6 shadow-xl space-y-4">
-            <span className="text-[10px] text-slate-400 font-extrabold block">القدرة الشرائية القصوى المقدرة لك</span>
+          <div className="bg-[#2B2B2B] border border-[#2B2B2B] text-white rounded-3xl p-5 sm:p-6 shadow-xl space-y-4">
+            <span className="text-[10px] text-[#C9A15A] font-extrabold block">القدرة الشرائية القصوى المقدرة لك</span>
             <div className="space-y-1">
               <h2 className="text-3xl font-black text-[#C9A15A] font-mono tracking-tight leading-none">
                 {maxHomePurchaseValue.toLocaleString()} {currency}
               </h2>
-              <span className="text-[10px] text-slate-400 block font-semibold">مجموع قيمة العقار أو السيارة الممكن شراؤها بالكامل</span>
+              <span className="text-[10px] text-[#C9A15A] block font-semibold">مجموع قيمة العقار أو السيارة الممكن شراؤها بالكامل</span>
             </div>
 
             <div className="border-t border-white/10 pt-3 space-y-3 font-bold text-xs">
-              <div className="flex justify-between items-center text-slate-300">
+              <div className="flex justify-between items-center text-[#C9A15A]">
                 <span className="font-mono text-white">{maxEstimatedLoan.toLocaleString()} {currency}</span>
-                <span className="text-[10px] text-slate-400">القرض الأقصى الممكن:</span>
+                <span className="text-[10px] text-[#C9A15A]">القرض الأقصى الممكن:</span>
               </div>
-              <div className="flex justify-between items-center text-slate-300">
+              <div className="flex justify-between items-center text-[#C9A15A]">
                 <span className="font-mono text-white">{cashDownpayment.toLocaleString()} {currency}</span>
-                <span className="text-[10px] text-slate-400">الدفعة النقدية المتوفرة:</span>
+                <span className="text-[10px] text-[#C9A15A]">الدفعة النقدية المتوفرة:</span>
               </div>
               <div className="h-px bg-white/10" />
-              <div className="flex justify-between items-center text-slate-300">
+              <div className="flex justify-between items-center text-[#C9A15A]">
                 <span className="font-mono text-[#C9A15A]">{maxTotalAllowableInstallment.toLocaleString()} {currency}/شهر</span>
-                <span className="text-[10px] text-slate-400">القسط الشهري الأقصى المسموح:</span>
+                <span className="text-[10px] text-[#C9A15A]">القسط الشهري الأقصى المسموح:</span>
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@ export function AffordabilityCalculator() {
               <ShieldCheck size={14} className="text-[#0D3B46]" />
               الضوابط والتحليلات المالية
             </span>
-            <p className="text-[11px] text-slate-600 leading-relaxed font-semibold">
+            <p className="text-[11px] text-[#0D3B46] leading-relaxed font-semibold">
               بموجب أنظمة تقدير المعيار المالي المحلي، يُنصح بألا تتخطى التزاماتك الإجمالية الشهرية سقف الـ <strong>%40</strong> من راتبك الصافي لضمان المعيشة المستقرة والقدرة المستدامة على سداد الأقساط.
             </p>
           </div>

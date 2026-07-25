@@ -30,7 +30,7 @@ export function StepperHeader({ currentStep, steps }: StepperHeaderProps) {
 
       {/* Stepper Status Indicators */}
       {currentStep <= 5 && (
-        <div className="bg-white border-b border-gray-250 py-3 overflow-x-auto text-right" dir="rtl">
+        <div className="bg-white border-b border-[#E3C98D] py-3 overflow-x-auto text-right" dir="rtl">
           <div className="flex items-center justify-center max-w-4xl mx-auto px-4 gap-2.5 sm:gap-4">
             {steps.map((st) => (
               <div key={st.id} className="flex items-center gap-1.5 shrink-0">
@@ -39,15 +39,15 @@ export function StepperHeader({ currentStep, steps }: StepperHeaderProps) {
                   st.id === currentStep 
                     ? "bg-[#0D3B46] text-white ring-4 ring-[#0D3B46]/10" 
                     : st.id < currentStep 
-                      ? "bg-green-500 text-white" 
-                      : "bg-gray-200 text-gray-500"
+                      ? "bg-[#C9A15A] text-white" 
+                      : "bg-[#F6F2E8] text-[#C9A15A]"
                 )}>
                   {st.id < currentStep ? '✓' : st.id}
                 </div>
-                <span className={cn("text-[10px] sm:text-xs font-bold", st.id === currentStep ? "text-gray-900" : "text-gray-400")}>
+                <span className={cn("text-[10px] sm:text-xs font-bold", st.id === currentStep ? "text-[#2B2B2B]" : "text-[#C9A15A]")}>
                   {st.label}
                 </span>
-                {st.id < steps.length && <div className="w-10 h-[1.5px] bg-gray-200" />}
+                {st.id < steps.length && <div className="w-10 h-[1.5px] bg-[#F6F2E8]" />}
               </div>
             ))}
           </div>
