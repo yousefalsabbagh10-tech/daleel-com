@@ -91,7 +91,7 @@ export default function CarsTab() {
   }, [refresh]);
 
   const brandOptions = useMemo(() => brands.map(brand => ({ ar: brand.ar_name, en: brand.en_name })), [brands]);
-  const filteredCars = useMemo(() => applyCarFilters(cars, { ...filters, query }, brandOptions, carModelsMap), [cars, filters, query, brandOptions, carModelsMap]);
+  const filteredCars = useMemo(() => applyCarFilters(cars, { ...filters, query: query || filters.query }, brandOptions, carModelsMap), [cars, filters, query, brandOptions, carModelsMap]);
 
   const filteredBrands = useMemo(() => {
     const key = query.trim().toLowerCase();

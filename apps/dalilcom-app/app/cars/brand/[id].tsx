@@ -1,11 +1,25 @@
-import React, { useEffect } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useMemo, useState } from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { AppHeaderLogo, BottomBackButton } from '../../../components/common/AppHeader';
+import { CarFiltersSheet, applyCarFilters, initialCarFilters } from '../../../components/automotive/CarFiltersSheet';
 import { EstateCard } from '../../../components/realestate/EstateCard';
 import { NativeIcon } from '../../../components/common/NativeIcon';
 import { useApp, AdItem } from '../../../context/AppContext';
+import { listApi } from '../../../services/api';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../../constants/theme';
+
+type Brand = {
+  id: number | string;
+  ar_name: string;
+  en_name: string;
+};
+
+type CarModel = {
+  brand_id: number | string;
+  ar_name: string;
+  en_name: string;
+};
 
 const isRent = (ad: AdItem) => `${ad.title} ${ad.details.join(' ')} ${ad.currency}`.includes('إيجار');
 
@@ -13,17 +27,45 @@ export default function CarResultsPage() {
   const router = useRouter();
   const { id, title, brandAr } = useLocalSearchParams<{ id: string; title?: string; brandAr?: string }>();
   const { getFilteredAds, refresh } = useApp();
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filters, setFilters] = useState(initialCarFilters);
+  const [brands, setBrands] = useState<Brand[]>([]);
+  const [carModelsMap, setCarModelsMap] = useState<Record<string, { ar: string; en: string }[]>>({});
   const cars = getFilteredAds({ category: 'cars' });
 
-  useEffect(() => { refresh(); }, [refresh]);
+  useEffect(() => {
+    async function loadCarsData() {
+      const [brandRows, modelRows] = await Promise.all([
+        listApi<Brand>('/car-brands', { per_page: '200' }).catch(() => []),
+        listApi<CarModel>('/car-models', { per_page: '1000' }).catch(() => []),
+      ]);
+      setBrands(brandRows);
+      const models = modelRows.reduce<Record<string, { ar: string; en: string }[]>>((acc, row) => {
+        const brand = brandRows.find(item => String(item.id) === String(row.brand_id));
+        if (brand) acc[brand.en_name] = [...(acc[brand.en_name] || []), { ar: row.ar_name, en: row.en_name }];
+        return acc;
+      }, {});
+      setCarModelsMap(models);
+    }
 
-  const filtered = cars.filter(ad => {
+    loadCarsData();
+    refresh();
+  }, [refresh]);
+
+  const brandOptions = useMemo(() => brands.map(brand => ({ ar: brand.ar_name, en: brand.en_name })), [brands]);
+
+  const routeFiltered = useMemo(() => cars.filter(ad => {
     if (id === 'all') return true;
     if (id === 'sale') return !isRent(ad);
     if (id === 'rent') return isRent(ad);
     const key = String(id || '').toLowerCase();
     return (ad.carBrand || '').toLowerCase() === key || ad.carBrand === brandAr || ad.title.includes(brandAr || '');
-  });
+  }), [cars, id, brandAr]);
+
+  const filtered = useMemo(
+    () => applyCarFilters(routeFiltered, filters, brandOptions, carModelsMap),
+    [routeFiltered, filters, brandOptions, carModelsMap],
+  );
 
   const renderItem = ({ item }: { item: AdItem }) => (
     <EstateCard item={item} compact onPress={() => router.push(`/details/car/${item.id}` as any)} />
@@ -32,6 +74,14 @@ export default function CarResultsPage() {
   return (
     <View style={styles.container}>
       <AppHeaderLogo title={title || 'السيارات'} />
+      <CarFiltersSheet
+        visible={filterOpen}
+        filters={filters}
+        brands={brandOptions}
+        carModelsMap={carModelsMap}
+        setFilters={setFilters}
+        onClose={() => setFilterOpen(false)}
+      />
       <FlatList
         data={filtered}
         key="cars-grid-3"
@@ -41,18 +91,25 @@ export default function CarResultsPage() {
         columnWrapperStyle={styles.columns}
         contentContainerStyle={styles.list}
         ListHeaderComponent={(
-          <View style={styles.topBar}>
-            <View style={styles.icon}><NativeIcon name="car" size={23} color={COLORS.white} /></View>
-            <View style={styles.resultBox}>
-              <Text style={styles.resultLabel}>النتائج المطابقة</Text>
-              <Text style={styles.resultCount}>{filtered.length.toLocaleString('ar-SY')} إعلان</Text>
+          <View>
+            <TouchableOpacity activeOpacity={0.86} style={styles.filterButton} onPress={() => setFilterOpen(true)}>
+              <NativeIcon name="options-outline" size={20} color={COLORS.white} />
+              <Text style={styles.filterButtonText}>فلتر السيارات</Text>
+              <Text style={styles.filterCount}>{filtered.length.toLocaleString('ar-SY')}</Text>
+            </TouchableOpacity>
+            <View style={styles.topBar}>
+              <View style={styles.icon}><NativeIcon name="car" size={23} color={COLORS.white} /></View>
+              <View style={styles.resultBox}>
+                <Text style={styles.resultLabel}>النتائج المطابقة</Text>
+                <Text style={styles.resultCount}>{filtered.length.toLocaleString('ar-SY')} إعلان</Text>
+              </View>
             </View>
           </View>
         )}
         ListEmptyComponent={(
           <View style={styles.emptyBox}>
             <NativeIcon name="alert-circle-outline" size={38} color={COLORS.primary} />
-            <Text style={styles.emptyTitle}>لا توجد سيارات مطابقة حالياً</Text>
+            <Text style={styles.emptyTitle}>لا توجد سيارات مطابقة حاليا</Text>
           </View>
         )}
       />
@@ -67,6 +124,9 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.offWhite },
   list: { padding: SPACING.md, paddingBottom: 170, gap: SPACING.sm },
   columns: { gap: SPACING.sm },
+  filterButton: { height: 52, backgroundColor: '#0D3B46', borderRadius: BORDER_RADIUS.lg, paddingHorizontal: SPACING.md, marginBottom: SPACING.md, flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'center', gap: SPACING.sm, ...shadow },
+  filterButtonText: { color: COLORS.white, fontSize: FONT_SIZES.md, fontWeight: '900' },
+  filterCount: { minWidth: 32, textAlign: 'center', color: '#0D3B46', backgroundColor: '#C9A15A', borderRadius: BORDER_RADIUS.full, paddingHorizontal: 8, paddingVertical: 2, fontWeight: '900' },
   topBar: { flexDirection: 'row-reverse', alignItems: 'center', backgroundColor: COLORS.white, padding: SPACING.md, borderRadius: BORDER_RADIUS.xl, marginBottom: SPACING.lg, ...shadow },
   icon: { width: 46, height: 46, borderRadius: 23, backgroundColor: '#C9A15A', alignItems: 'center', justifyContent: 'center', marginLeft: SPACING.md },
   resultBox: { flex: 1, alignItems: 'flex-end' },
