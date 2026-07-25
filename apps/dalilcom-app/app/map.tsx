@@ -54,7 +54,7 @@ export default function MapPage() {
   );
 }
 
-const shadow = { shadowColor: '#0b1b2f', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
+const shadow = { shadowColor: '#0D3B46', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.offWhite },
@@ -67,9 +67,10 @@ const styles = StyleSheet.create({
   location: { color: COLORS.gray500, fontSize: FONT_SIZES.sm, marginTop: 4 },
   price: { color: COLORS.danger, fontSize: FONT_SIZES.md, fontWeight: '900', marginTop: 6 },
   actions: { flexDirection: 'row-reverse', gap: SPACING.sm, marginTop: SPACING.md },
-  mapBtn: { backgroundColor: '#1e3c5a', borderRadius: BORDER_RADIUS.full, paddingHorizontal: SPACING.md, paddingVertical: SPACING.sm },
-  detailBtn: { backgroundColor: '#eef5ff', borderRadius: BORDER_RADIUS.full, paddingHorizontal: SPACING.md, paddingVertical: SPACING.sm },
+  mapBtn: { backgroundColor: '#0D3B46', borderRadius: BORDER_RADIUS.full, paddingHorizontal: SPACING.md, paddingVertical: SPACING.sm },
+  detailBtn: { backgroundColor: 'rgba(246,242,232,0.74)', borderRadius: BORDER_RADIUS.full, paddingHorizontal: SPACING.md, paddingVertical: SPACING.sm },
   mapText: { color: COLORS.white, fontSize: FONT_SIZES.xs, fontWeight: '900' },
   detailText: { color: COLORS.primary, fontSize: FONT_SIZES.xs, fontWeight: '900' },
   empty: { color: COLORS.gray500, textAlign: 'center', marginTop: 120, fontWeight: '800' },
 });
+

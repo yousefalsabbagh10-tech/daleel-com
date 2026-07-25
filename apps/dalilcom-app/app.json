@@ -2,14 +2,14 @@
   "expo": {
     "name": "دليل كوم",
     "slug": "dalilcom-app",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0d6efd"
+      "backgroundColor": "#0D3B46"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,10 +21,10 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo.png",
-        "backgroundColor": "#0d6efd"
+        "backgroundColor": "#0D3B46"
       },
       "package": "com.dalilcom.app",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": []
     },
     "plugins": [

@@ -100,8 +100,8 @@ export function MediaStep({ form, setField }: Props) {
           <View style={styles.previewList}>
             {videos.map((uri, index) => (
               <View key={index} style={[styles.mediaWrapper, { marginBottom: 10 }]}>
-                <View style={[styles.preview, { backgroundColor: '#000', justifyContent: 'center', alignItems: 'center' }]}>
-                    <Text style={{color: '#fff'}}>فيديو مرفق</Text>
+                <View style={[styles.preview, { backgroundColor: '#2B2B2B', justifyContent: 'center', alignItems: 'center' }]}>
+                    <Text style={{color: '#F6F2E8'}}>فيديو مرفق</Text>
                 </View>
                 <TouchableOpacity style={styles.removeBtn} onPress={() => removeVideo(index)}>
                   <Text style={styles.removeText}>X</Text>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.lg,
   },
   button: {
-    backgroundColor: '#0d6efd',
+    backgroundColor: '#0D3B46',
     padding: SPACING.md,
     borderRadius: BORDER_RADIUS.md,
     alignItems: 'center',
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -5,
     right: -5,
-    backgroundColor: '#dc3545',
+    backgroundColor: '#C9A15A',
     width: 24,
     height: 24,
     borderRadius: 12,
@@ -184,3 +184,4 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
+

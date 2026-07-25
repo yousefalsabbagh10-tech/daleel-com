@@ -123,7 +123,7 @@ export default function CarsTab() {
   );
 }
 
-const shadow = { shadowColor: '#0b1b2f', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
+const shadow = { shadowColor: '#0D3B46', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.offWhite },
@@ -141,3 +141,4 @@ const styles = StyleSheet.create({
   brandEn: { maxWidth: '100%', textAlign: 'center', color: COLORS.gray500, fontSize: FONT_SIZES.xs, marginTop: 3 },
   count: { color: COLORS.gray500, fontSize: FONT_SIZES.xs, fontWeight: '900', marginTop: 7 },
 });
+

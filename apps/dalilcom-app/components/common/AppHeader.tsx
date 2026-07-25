@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   logoImage: { width: 54, height: 54 },
   logoTextBox: { alignItems: 'flex-end' },
-  logoTitle: { color: '#063f9e', fontSize: 22, fontWeight: '900', lineHeight: 24 },
+  logoTitle: { color: '#0D3B46', fontSize: 22, fontWeight: '900', lineHeight: 24 },
   logoSub: { color: COLORS.primary, fontSize: 12, fontWeight: '700', marginTop: 3 },
   pageTitle: { color: COLORS.white, fontSize: FONT_SIZES.lg, fontWeight: '900' },
   bottomWrap: {
@@ -64,14 +64,14 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     padding: SPACING.md,
-    backgroundColor: 'rgba(245,245,247,0.94)',
+    backgroundColor: 'rgba(246,242,232,0.94)',
     borderTopWidth: 1,
     borderTopColor: COLORS.gray200,
   },
   backButton: {
     height: 48,
     borderRadius: BORDER_RADIUS.full,
-    backgroundColor: '#244b70',
+    backgroundColor: '#0D3B46',
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row-reverse',
@@ -79,3 +79,4 @@ const styles = StyleSheet.create({
   },
   backText: { color: COLORS.white, fontSize: FONT_SIZES.md, fontWeight: '900' },
 });
+

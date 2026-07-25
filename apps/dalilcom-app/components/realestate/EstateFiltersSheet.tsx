@@ -79,21 +79,22 @@ function Chips({ title, items, value, onPick }: { title: string; items: string[]
 }
 
 const styles = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'flex-end' },
+  backdrop: { flex: 1, backgroundColor: 'rgba(13,59,70,0.58)', justifyContent: 'flex-end' },
   sheet: { maxHeight: '92%', backgroundColor: COLORS.offWhite, borderTopLeftRadius: 22, borderTopRightRadius: 22, overflow: 'hidden' },
-  header: { backgroundColor: '#1e3c5a', padding: SPACING.lg, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  header: { backgroundColor: '#0D3B46', padding: SPACING.lg, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   headerTitle: { color: COLORS.white, fontSize: FONT_SIZES.md, fontWeight: '900' },
-  reset: { color: '#fde047', fontSize: FONT_SIZES.xs, fontWeight: '900' },
+  reset: { color: '#C9A15A', fontSize: FONT_SIZES.xs, fontWeight: '900' },
   content: { padding: SPACING.lg, gap: SPACING.md },
   label: { textAlign: 'right', color: COLORS.gray900, fontSize: FONT_SIZES.sm, fontWeight: '900', marginBottom: SPACING.xs },
   row: { flexDirection: 'row', gap: SPACING.sm },
   input: { flex: 1, minHeight: 46, backgroundColor: COLORS.white, borderWidth: 1, borderColor: COLORS.gray200, borderRadius: BORDER_RADIUS.lg, paddingHorizontal: SPACING.md, color: COLORS.gray900 },
   chips: { flexDirection: 'row-reverse', flexWrap: 'wrap', gap: SPACING.sm },
   chip: { backgroundColor: COLORS.white, borderWidth: 1, borderColor: COLORS.gray200, borderRadius: BORDER_RADIUS.full, paddingHorizontal: SPACING.md, paddingVertical: SPACING.sm },
-  chipActive: { backgroundColor: '#f3e8ff', borderColor: '#8b5cf6' },
+  chipActive: { backgroundColor: 'rgba(201,161,90,0.18)', borderColor: '#C9A15A' },
   chipText: { color: COLORS.gray600, fontWeight: '800', fontSize: FONT_SIZES.xs },
-  chipTextActive: { color: '#581c87' },
+  chipTextActive: { color: '#0D3B46' },
   footer: { backgroundColor: COLORS.white, padding: SPACING.lg, borderTopWidth: 1, borderTopColor: COLORS.gray100 },
-  apply: { height: 48, borderRadius: BORDER_RADIUS.lg, backgroundColor: '#1e3c5a', alignItems: 'center', justifyContent: 'center' },
+  apply: { height: 48, borderRadius: BORDER_RADIUS.lg, backgroundColor: '#0D3B46', alignItems: 'center', justifyContent: 'center' },
   applyText: { color: COLORS.white, fontWeight: '900' },
 });
+

@@ -100,8 +100,8 @@ const styles = StyleSheet.create({
   detailItem: { fontSize: FONT_SIZES.md, color: COLORS.gray600, lineHeight: 22 },
   description: { fontSize: FONT_SIZES.md, color: COLORS.gray600, lineHeight: 24 },
   actions: { flexDirection: 'row', gap: SPACING.md, marginTop: SPACING.lg },
-  favBtn: { width: 48, height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: COLORS.white, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 2 },
+  favBtn: { width: 48, height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: COLORS.white, justifyContent: 'center', alignItems: 'center', shadowColor: '#2B2B2B', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.06, shadowRadius: 8, elevation: 2 },
   callBtn: { flex: 1, flexDirection: 'row', height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', gap: SPACING.sm },
   callText: { color: COLORS.white, fontWeight: '700', fontSize: FONT_SIZES.md },
-  whatsappBtn: { flexDirection: 'row', height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: '#25D366', justifyContent: 'center', alignItems: 'center', gap: SPACING.sm, marginTop: SPACING.sm },
+  whatsappBtn: { flexDirection: 'row', height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: '#0D3B46', justifyContent: 'center', alignItems: 'center', gap: SPACING.sm, marginTop: SPACING.sm },
 });

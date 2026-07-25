@@ -61,17 +61,17 @@ export default function CarResultsPage() {
   );
 }
 
-const shadow = { shadowColor: '#0b1b2f', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
+const shadow = { shadowColor: '#0D3B46', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.offWhite },
   list: { padding: SPACING.md, paddingBottom: 170, gap: SPACING.sm },
   columns: { gap: SPACING.sm },
   topBar: { flexDirection: 'row-reverse', alignItems: 'center', backgroundColor: COLORS.white, padding: SPACING.md, borderRadius: BORDER_RADIUS.xl, marginBottom: SPACING.lg, ...shadow },
-  icon: { width: 46, height: 46, borderRadius: 23, backgroundColor: '#f43f5e', alignItems: 'center', justifyContent: 'center', marginLeft: SPACING.md },
+  icon: { width: 46, height: 46, borderRadius: 23, backgroundColor: '#C9A15A', alignItems: 'center', justifyContent: 'center', marginLeft: SPACING.md },
   resultBox: { flex: 1, alignItems: 'flex-end' },
   resultLabel: { color: COLORS.gray500, fontSize: FONT_SIZES.xs, fontWeight: '800' },
-  resultCount: { color: '#1e3c5a', fontSize: FONT_SIZES.md, fontWeight: '900', marginTop: 3 },
+  resultCount: { color: '#0D3B46', fontSize: FONT_SIZES.md, fontWeight: '900', marginTop: 3 },
   emptyBox: { alignItems: 'center', backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.xxl, padding: SPACING.xl, marginTop: SPACING.lg, ...shadow },
   emptyTitle: { color: COLORS.gray900, fontSize: FONT_SIZES.md, fontWeight: '900', marginTop: SPACING.md },
 });

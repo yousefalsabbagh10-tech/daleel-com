@@ -63,15 +63,16 @@ export default function RealEstateTab() {
   );
 }
 
-const shadow = { shadowColor: '#0b1b2f', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
+const shadow = { shadowColor: '#0D3B46', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.offWhite },
   content: { padding: SPACING.lg, paddingBottom: 105 },
   sectionTitle: { alignSelf: 'flex-end', fontSize: 21, fontWeight: '900', color: COLORS.gray900, marginBottom: SPACING.lg },
   categoryRow: { minHeight: 82, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, padding: SPACING.md, marginBottom: SPACING.md, flexDirection: 'row-reverse', alignItems: 'center', borderWidth: 1, borderColor: COLORS.gray100, ...shadow },
-  categoryIcon: { width: 52, height: 52, borderRadius: 26, backgroundColor: '#9417f4', alignItems: 'center', justifyContent: 'center', marginLeft: SPACING.md },
+  categoryIcon: { width: 52, height: 52, borderRadius: 26, backgroundColor: '#0D3B46', alignItems: 'center', justifyContent: 'center', marginLeft: SPACING.md },
   categoryInfo: { flex: 1, alignItems: 'flex-end' },
   categoryTitle: { fontSize: 17, fontWeight: '900', color: COLORS.gray900 },
   categorySub: { fontSize: 13, color: COLORS.gray500, marginTop: 5 },
 });
+

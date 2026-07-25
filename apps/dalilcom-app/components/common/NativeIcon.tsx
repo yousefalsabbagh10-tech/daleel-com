@@ -51,6 +51,7 @@ interface Props {
   color?: string;
 }
 
-export function NativeIcon({ name, size = 20, color = '#000' }: Props) {
+export function NativeIcon({ name, size = 20, color = '#2B2B2B' }: Props) {
   return <Icon name={iconMap[name] || name || 'help-circle-outline'} size={size} color={color} />;
 }
+

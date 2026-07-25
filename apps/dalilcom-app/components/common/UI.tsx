@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: COLORS.white,
     borderRadius: BORDER_RADIUS.lg,
-    shadowColor: '#000',
+    shadowColor: '#2B2B2B',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.06,
     shadowRadius: 8,
@@ -67,3 +67,4 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 });
+

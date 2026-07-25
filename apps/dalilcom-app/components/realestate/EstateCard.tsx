@@ -25,7 +25,7 @@ export function EstateCard({ item, onPress, compact = false }: { item: AdItem; o
   );
 }
 
-const shadow = { shadowColor: '#0b1b2f', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
+const shadow = { shadowColor: '#0D3B46', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.07, shadowRadius: 16, elevation: 4 };
 
 const styles = StyleSheet.create({
   card: {
@@ -47,3 +47,4 @@ const styles = StyleSheet.create({
   price: { fontSize: FONT_SIZES.md, fontWeight: '900', color: COLORS.danger, marginTop: 7 },
   compactPrice: { fontSize: 11 },
 });
+

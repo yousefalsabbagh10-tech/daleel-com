@@ -62,7 +62,7 @@ export default function PropertyDetail() {
           </View>
 
           <View style={styles.trustPill}>
-            <NativeIcon name="shield-checkmark-outline" size={14} color="#059669" />
+            <NativeIcon name="shield-checkmark-outline" size={14} color="#C9A15A" />
             <Text style={styles.trustText}>إعلان موثق ضمن دليل كوم</Text>
           </View>
 
@@ -132,43 +132,43 @@ export default function PropertyDetail() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: 'rgba(15,23,42,0.78)' },
+  screen: { flex: 1, backgroundColor: 'rgba(13,59,70,0.78)' },
   content: { padding: SPACING.md, paddingBottom: 34 },
   modal: { backgroundColor: COLORS.white, borderRadius: 28, overflow: 'hidden', minHeight: '100%' },
   topBar: { height: 82, paddingHorizontal: SPACING.lg, flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: COLORS.gray100 },
-  iconButton: { width: 44, height: 44, borderRadius: 22, backgroundColor: '#F8FAFC', borderWidth: 1, borderColor: COLORS.gray200, alignItems: 'center', justifyContent: 'center' },
+  iconButton: { width: 44, height: 44, borderRadius: 22, backgroundColor: '#F6F2E8', borderWidth: 1, borderColor: COLORS.gray200, alignItems: 'center', justifyContent: 'center' },
   logoCard: { flexDirection: 'row-reverse', alignItems: 'center', gap: 8, backgroundColor: COLORS.white, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 1, borderColor: COLORS.gray100 },
   logo: { width: 42, height: 42 },
   logoCopy: { alignItems: 'flex-end' },
-  logoTitle: { color: '#063f9e', fontSize: 18, fontWeight: '900' },
+  logoTitle: { color: '#0D3B46', fontSize: 18, fontWeight: '900' },
   logoSub: { color: COLORS.gray500, fontSize: 10, fontWeight: '800' },
-  trustPill: { alignSelf: 'flex-end', margin: SPACING.md, flexDirection: 'row-reverse', gap: 5, backgroundColor: '#ECFDF5', borderColor: '#BBF7D0', borderWidth: 1, borderRadius: 99, paddingHorizontal: 10, paddingVertical: 5 },
-  trustText: { color: '#059669', fontSize: FONT_SIZES.xs, fontWeight: '900' },
-  gallery: { marginHorizontal: SPACING.lg, borderRadius: 18, overflow: 'hidden', backgroundColor: '#0F172A' },
-  safeBox: { margin: SPACING.lg, padding: SPACING.lg, borderRadius: 18, borderWidth: 1, borderColor: COLORS.gray200, backgroundColor: '#FAFAF9', gap: 7 },
+  trustPill: { alignSelf: 'flex-end', margin: SPACING.md, flexDirection: 'row-reverse', gap: 5, backgroundColor: 'rgba(201,161,90,0.16)', borderColor: 'rgba(201,161,90,0.34)', borderWidth: 1, borderRadius: 99, paddingHorizontal: 10, paddingVertical: 5 },
+  trustText: { color: '#C9A15A', fontSize: FONT_SIZES.xs, fontWeight: '900' },
+  gallery: { marginHorizontal: SPACING.lg, borderRadius: 18, overflow: 'hidden', backgroundColor: '#0D3B46' },
+  safeBox: { margin: SPACING.lg, padding: SPACING.lg, borderRadius: 18, borderWidth: 1, borderColor: COLORS.gray200, backgroundColor: '#F6F2E8', gap: 7 },
   safeTitle: { color: COLORS.gray900, fontSize: FONT_SIZES.sm, fontWeight: '900', textAlign: 'right' },
   safeLine: { color: COLORS.gray600, fontSize: FONT_SIZES.xs, lineHeight: 20, textAlign: 'right' },
   info: { paddingHorizontal: SPACING.lg, gap: SPACING.sm },
   title: { color: COLORS.gray900, fontSize: 23, fontWeight: '900', lineHeight: 32, textAlign: 'right' },
   locationRow: { flexDirection: 'row-reverse', alignItems: 'center', gap: 5 },
   location: { color: COLORS.gray500, fontSize: FONT_SIZES.sm, fontWeight: '700' },
-  priceBox: { margin: SPACING.lg, padding: SPACING.lg, borderRadius: 18, borderWidth: 1, borderColor: '#FECACA', backgroundColor: '#FFF1F2', alignItems: 'flex-end', gap: 5 },
+  priceBox: { margin: SPACING.lg, padding: SPACING.lg, borderRadius: 18, borderWidth: 1, borderColor: 'rgba(201,161,90,0.34)', backgroundColor: 'rgba(246,242,232,0.74)', alignItems: 'flex-end', gap: 5 },
   priceLabel: { color: COLORS.gray400, fontSize: FONT_SIZES.xs, fontWeight: '900' },
-  price: { color: '#E11D48', fontSize: 27, fontWeight: '900' },
-  featured: { color: '#A16207', backgroundColor: '#FEF3C7', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 99, fontSize: FONT_SIZES.xs, fontWeight: '900' },
-  card: { marginHorizontal: SPACING.lg, marginBottom: SPACING.md, padding: SPACING.lg, borderRadius: 18, borderWidth: 1, borderColor: COLORS.gray200, backgroundColor: '#F8FAFC', gap: SPACING.md },
+  price: { color: '#C9A15A', fontSize: 27, fontWeight: '900' },
+  featured: { color: '#0D3B46', backgroundColor: 'rgba(201,161,90,0.18)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 99, fontSize: FONT_SIZES.xs, fontWeight: '900' },
+  card: { marginHorizontal: SPACING.lg, marginBottom: SPACING.md, padding: SPACING.lg, borderRadius: 18, borderWidth: 1, borderColor: COLORS.gray200, backgroundColor: '#F6F2E8', gap: SPACING.md },
   sectionTitle: { color: COLORS.gray900, fontSize: FONT_SIZES.md, fontWeight: '900', textAlign: 'right' },
   description: { color: COLORS.gray600, fontSize: FONT_SIZES.sm, lineHeight: 23, textAlign: 'right', fontWeight: '700' },
   detailsGrid: { flexDirection: 'row-reverse', flexWrap: 'wrap', gap: SPACING.sm },
   detailChip: { width: '47%', minHeight: 42, borderRadius: 12, backgroundColor: COLORS.white, borderWidth: 1, borderColor: COLORS.gray200, flexDirection: 'row-reverse', alignItems: 'center', gap: 6, paddingHorizontal: 10 },
   detailText: { flex: 1, color: COLORS.gray900, fontSize: FONT_SIZES.xs, fontWeight: '800', textAlign: 'right' },
-  mapBtn: { marginHorizontal: SPACING.lg, height: 50, borderRadius: 14, backgroundColor: '#0F172A', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 8 },
+  mapBtn: { marginHorizontal: SPACING.lg, height: 50, borderRadius: 14, backgroundColor: '#0D3B46', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 8 },
   actions: { flexDirection: 'row-reverse', gap: SPACING.md, padding: SPACING.lg },
   callBtn: { flex: 1, height: 50, borderRadius: 14, backgroundColor: COLORS.primary, flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 7 },
-  whatsappBtn: { flex: 1, height: 50, borderRadius: 14, backgroundColor: '#25D366', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 7 },
+  whatsappBtn: { flex: 1, height: 50, borderRadius: 14, backgroundColor: '#0D3B46', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 7 },
   actionText: { color: COLORS.white, fontSize: FONT_SIZES.sm, fontWeight: '900' },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: COLORS.offWhite, gap: SPACING.md },
   errorText: { color: COLORS.danger, fontSize: FONT_SIZES.md, fontWeight: '800' },
-  backButton: { backgroundColor: '#244b70', borderRadius: 99, paddingHorizontal: 26, paddingVertical: 12 },
+  backButton: { backgroundColor: '#0D3B46', borderRadius: 99, paddingHorizontal: 26, paddingVertical: 12 },
   backText: { color: COLORS.white, fontWeight: '900' },
 });

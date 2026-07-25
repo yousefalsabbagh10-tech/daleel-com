@@ -56,9 +56,10 @@ export default function TabLayout() {
 }
 
 const styles = StyleSheet.create({
-  bar: { backgroundColor: COLORS.white, borderTopColor: '#d9dce2', borderTopWidth: 1, height: 76, paddingTop: 8, paddingBottom: 12, elevation: 12 },
+  bar: { backgroundColor: COLORS.white, borderTopColor: 'rgba(201,161,90,0.34)', borderTopWidth: 1, height: 76, paddingTop: 8, paddingBottom: 12, elevation: 12 },
   label: { fontSize: 11, fontWeight: '700' },
-  addButton: { width: 58, height: 58, borderRadius: 29, backgroundColor: '#244b70', alignItems: 'center', justifyContent: 'center', borderWidth: 5, borderColor: COLORS.white, marginTop: -27, elevation: 10 },
-  badge: { position: 'absolute', top: -8, right: -9, width: 20, height: 20, borderRadius: 10, backgroundColor: '#ff2f68', alignItems: 'center', justifyContent: 'center' },
+  addButton: { width: 58, height: 58, borderRadius: 29, backgroundColor: '#0D3B46', alignItems: 'center', justifyContent: 'center', borderWidth: 5, borderColor: COLORS.white, marginTop: -27, elevation: 10 },
+  badge: { position: 'absolute', top: -8, right: -9, width: 20, height: 20, borderRadius: 10, backgroundColor: '#C9A15A', alignItems: 'center', justifyContent: 'center' },
   badgeText: { color: COLORS.white, fontSize: 11, fontWeight: '900' },
 });
+

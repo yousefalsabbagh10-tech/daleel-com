@@ -36,8 +36,9 @@ const styles = StyleSheet.create({
   headerTitle: { fontSize: FONT_SIZES.xxl, fontWeight: '900', color: COLORS.white },
   list: { padding: SPACING.lg, paddingBottom: 105, gap: SPACING.md },
   card: { backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.xl, padding: SPACING.lg, flexDirection: 'row-reverse', gap: SPACING.md, elevation: 4 },
-  icon: { width: 44, height: 44, borderRadius: 22, backgroundColor: '#eef5ff', alignItems: 'center', justifyContent: 'center' },
+  icon: { width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(246,242,232,0.74)', alignItems: 'center', justifyContent: 'center' },
   body: { flex: 1, alignItems: 'flex-end' },
   title: { color: COLORS.gray900, fontSize: FONT_SIZES.md, fontWeight: '900' },
   text: { color: COLORS.gray500, fontSize: FONT_SIZES.sm, marginTop: SPACING.xs, textAlign: 'right' },
 });
+

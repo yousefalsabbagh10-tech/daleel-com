@@ -79,7 +79,7 @@ export default function HomeTab() {
           subtitle="شقق، فلل، محلات وأراضي للبيع أو الإيجار"
           count={realEstate.length}
           icon="business"
-          color="#9417f4"
+          color="#0D3B46"
           onPress={() => router.push('/real-estate' as any)}
         />
         <CategoryCard
@@ -87,7 +87,7 @@ export default function HomeTab() {
           subtitle="سيارات ومركبات للبيع أو الإيجار"
           count={cars.length}
           icon="car"
-          color="#ff2f68"
+          color="#C9A15A"
           onPress={() => router.push('/cars' as any)}
         />
 
@@ -104,7 +104,7 @@ export default function HomeTab() {
         </View>
 
         <TouchableOpacity style={styles.mapCard} activeOpacity={0.85} onPress={() => router.push('/map' as any)}>
-          <NativeIcon name="map" size={32} color="#367bf5" />
+          <NativeIcon name="map" size={32} color="#C9A15A" />
           <View>
             <Text style={styles.mapTitle}>ابحث في الخريطة</Text>
             <Text style={styles.mapSub}>اختر الموقع مباشرة</Text>
@@ -143,7 +143,7 @@ export default function HomeTab() {
   );
 }
 
-const shadow = { shadowColor: '#0b1b2f', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.08, shadowRadius: 18, elevation: 5 };
+const shadow = { shadowColor: '#0D3B46', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.08, shadowRadius: 18, elevation: 5 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.offWhite },
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   logoCard: { backgroundColor: COLORS.white, borderRadius: 10, paddingHorizontal: 16, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', width: 300, height: 88, flexDirection: 'row-reverse', gap: 12 },
   logoImage: { width: 58, height: 58 },
   logoTextBox: { alignItems: 'flex-end' },
-  logoTitle: { color: '#063f9e', fontSize: 23, fontWeight: '900', lineHeight: 25 },
+  logoTitle: { color: '#0D3B46', fontSize: 23, fontWeight: '900', lineHeight: 25 },
   logoSub: { color: COLORS.primary, fontSize: 12, fontWeight: '800', marginTop: 3 },
   content: { padding: SPACING.lg, paddingBottom: 110 },
   sectionTitle: { alignSelf: 'flex-end', fontSize: 22, fontWeight: '900', color: COLORS.gray900, marginBottom: SPACING.lg },
@@ -165,12 +165,12 @@ const styles = StyleSheet.create({
   countText: { color: COLORS.gray500, fontSize: 16, fontWeight: '700' },
   hero: { height: 158, marginTop: 18, overflow: 'hidden', borderRadius: BORDER_RADIUS.xl, ...shadow },
   heroImage: { borderRadius: BORDER_RADIUS.xl },
-  heroOverlay: { flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end', padding: SPACING.lg, backgroundColor: 'rgba(5,10,20,0.42)' },
+  heroOverlay: { flex: 1, justifyContent: 'flex-end', alignItems: 'flex-end', padding: SPACING.lg, backgroundColor: 'rgba(13,59,70,0.50)' },
   heroTitle: { color: COLORS.white, fontSize: 24, fontWeight: '900' },
   heroSub: { color: COLORS.white, fontSize: 15, marginTop: 5 },
   quickRow: { flexDirection: 'row-reverse', gap: SPACING.lg, marginTop: 24 },
   quickCard: { flex: 1, height: 118, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.xl, alignItems: 'center', justifyContent: 'center', gap: SPACING.md, ...shadow },
-  quickIcon: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#eef5ff', alignItems: 'center', justifyContent: 'center' },
+  quickIcon: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(246,242,232,0.74)', alignItems: 'center', justifyContent: 'center' },
   quickTitle: { fontSize: 16, fontWeight: '900', color: COLORS.gray900 },
   mapCard: { marginTop: 20, borderRadius: BORDER_RADIUS.xl, backgroundColor: COLORS.white, minHeight: 90, padding: SPACING.lg, flexDirection: 'row-reverse', alignItems: 'center', gap: SPACING.lg, ...shadow },
   mapTitle: { color: COLORS.primary, fontSize: 17, fontWeight: '900', textAlign: 'right' },
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   latestHeader: { marginTop: 24, marginBottom: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   latestTitle: { color: COLORS.gray900, fontSize: 20, fontWeight: '900', textAlign: 'right' },
   refreshButton: { width: 36, height: 36, borderRadius: 18, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center' },
-  errorText: { color: '#b91c1c', backgroundColor: '#fee2e2', borderRadius: 10, padding: SPACING.md, textAlign: 'right', fontWeight: '800' },
+  errorText: { color: '#0D3B46', backgroundColor: 'rgba(201,161,90,0.18)', borderRadius: 10, padding: SPACING.md, textAlign: 'right', fontWeight: '800' },
   emptyText: { color: COLORS.gray500, backgroundColor: COLORS.white, borderRadius: 10, padding: SPACING.md, textAlign: 'right', fontWeight: '800' },
   adRow: { minHeight: 108, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, marginBottom: SPACING.md, padding: SPACING.sm, flexDirection: 'row-reverse', alignItems: 'center', gap: SPACING.md, ...shadow },
   adImage: { width: 92, height: 78, borderRadius: BORDER_RADIUS.md, backgroundColor: COLORS.gray100 },
@@ -188,3 +188,4 @@ const styles = StyleSheet.create({
   adLocation: { color: COLORS.gray500, fontSize: 12, marginTop: 5, textAlign: 'right' },
   adPrice: { color: COLORS.primary, fontSize: 14, fontWeight: '900', marginTop: 6, textAlign: 'right' },
 });
+

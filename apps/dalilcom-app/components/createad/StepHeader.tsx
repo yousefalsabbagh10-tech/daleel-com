@@ -26,7 +26,7 @@ export function StepHeader({ step }: { step: number }) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#1f4668',
+    backgroundColor: '#0D3B46',
     padding: SPACING.lg,
     borderRadius: BORDER_RADIUS.lg,
     marginBottom: SPACING.lg,
@@ -44,13 +44,14 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    backgroundColor: '#dce3ec',
+    backgroundColor: 'rgba(246,242,232,0.74)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   dotActive: { backgroundColor: COLORS.primary },
   number: { color: COLORS.gray600, fontWeight: '900' },
   numberActive: { color: COLORS.white },
-  label: { color: '#dce3ec', fontSize: FONT_SIZES.xs, fontWeight: '800', marginTop: 5 },
+  label: { color: 'rgba(246,242,232,0.74)', fontSize: FONT_SIZES.xs, fontWeight: '800', marginTop: 5 },
   labelActive: { color: COLORS.white },
 });
+

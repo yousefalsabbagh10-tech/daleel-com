@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   videoContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#2B2B2B',
   },
   playBtn: {
     marginTop: 10,
@@ -83,21 +83,22 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   playText: {
-    color: '#fff',
+    color: '#F6F2E8',
     fontWeight: 'bold',
   },
   indicatorContainer: {
     position: 'absolute',
     bottom: 15,
     right: 15,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(13,59,70,0.72)',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 15,
   },
   indicatorText: {
-    color: '#fff',
+    color: '#F6F2E8',
     fontSize: 12,
     fontWeight: 'bold',
   }
 });
+
