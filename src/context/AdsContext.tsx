@@ -78,6 +78,8 @@ const mapAd = (row: any): AdItem => {
     reFurnished: reSpecs.furnished,
     reBuildingAge: reSpecs.building_age,
     reType: reSpecs.re_type,
+    ownerPhone: ad.owner_phone || '',
+    whatsappPhone: ad.whatsapp_phone || '',
   };
 };
 export function AdsProvider({ children }: { children: ReactNode }) {
@@ -92,10 +94,9 @@ export function AdsProvider({ children }: { children: ReactNode }) {
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
   const [userLimits, setUserLimits] = useState<Record<string, { maxImages: number; maxVideos: number }>>({});
   const [defaultLimits, setDefaultLimits] = useState({ maxImages: 3, maxVideos: 1 });
-  const [carsEnabled, setCarsEnabled] = useState(true);
   const refresh = async () => {
     try {
-      const [adRows, brandRows, modelRows, catRows, subRows, notifRows, limitRows, defaults, icons, favRows, settingRows] = await Promise.all([
+      const [adRows, brandRows, modelRows, catRows, subRows, notifRows, limitRows, defaults, icons, favRows] = await Promise.all([
         listApi<any>('/ads?per_page=200').catch(() => []),
         listApi<any>('/car-brands?per_page=200').catch(() => []),
         listApi<any>('/car-models?per_page=1000').catch(() => []),
@@ -106,7 +107,6 @@ export function AdsProvider({ children }: { children: ReactNode }) {
         listApi<any>('/default-limits?per_page=1').catch(() => []),
         listApi<any>('/icon-overrides?per_page=500').catch(() => []),
         listApi<any>('/favorites?per_page=500').catch(() => []),
-        listApi<any>('/app-settings?per_page=50').catch(() => []),
       ]);
       const brandList = brandRows.map(mapBrand);
       const models = modelRows.reduce((acc: any, row: any) => {
@@ -114,10 +114,7 @@ export function AdsProvider({ children }: { children: ReactNode }) {
         if (brand) acc[brand] = [...(acc[brand] || []), { ar: row.ar_name, en: row.en_name }];
         return acc;
       }, {});
-      const settings = Object.fromEntries(settingRows.map((row: any) => [row.setting_key, row.setting_value]));
-      const showCars = settings.cars_enabled !== '0';
-      setCarsEnabled(showCars);
-      setAds(adRows.map(mapAd).filter((ad: AdItem) => showCars || ad.category !== 'cars'));
+      setAds(adRows.map(mapAd));
       setBrands(brandList);
       setCarModelsMap(models);
       setRealEstateCats(catRows.map(mapCategory));
@@ -143,9 +140,11 @@ export function AdsProvider({ children }: { children: ReactNode }) {
       cover_image_url: ad.image || ad.imageUrl,
       published_on: new Date().toISOString().slice(0, 10),
       images: ad.images || ad.imageUrls || [ad.image || ad.imageUrl].filter(Boolean),
-      videos: [ad.video || ad.videoUrl].filter(Boolean),
+      videos: ad.videos || ad.videoUrls || [ad.video || ad.videoUrl].filter(Boolean),
       details: requestDetails(ad.category, ad.specs, ad.details || []),
       specs: ad.specs || {},
+      owner_phone: ad.ownerPhone,
+      whatsapp_phone: ad.whatsappPhone,
     };
     const created = await api.post<any>('/ads', payload);
     setAds(prev => [mapAd(created.ad ? { ...created.ad, images: created.images, videos: created.videos, details: created.details, car_specs: created.car_specs, real_estate_specs: created.real_estate_specs } : created), ...prev]);
@@ -184,7 +183,7 @@ export function AdsProvider({ children }: { children: ReactNode }) {
   };
   const toggleComparison = (id: string) => setComparisons(prev => prev.includes(id) ? prev.filter(x => x !== id) : prev.length >= 3 ? [...prev.slice(1), id] : [...prev, id]);
   const value = useMemo(() => ({
-    ads, addAd, updateAd, deleteAd, getFilteredAds: (criteria: FilterCriteria) => filterAds(ads, carsEnabled ? criteria : { ...criteria, category: 'real-estate' }, brands, carModelsMap),
+    ads, addAd, updateAd, deleteAd, getFilteredAds: (criteria: FilterCriteria) => filterAds(ads, criteria, brands, carModelsMap),
     brands, addBrand, updateBrand, deleteBrand, carModelsMap, updateCarModels,
     realEstateCats, updateRealEstateCat, realEstateSubs, updateRealEstateSubs,
     iconOverrides, updateIconOverride, favorites, toggleFavorite, isFavorite: (id: string) => favorites.includes(id),
@@ -192,7 +191,7 @@ export function AdsProvider({ children }: { children: ReactNode }) {
     notifications, unreadNotificationsCount: notifications.filter(n => !n.isRead).length,
     markAllNotificationsRead, clearAllNotifications, addNotification, deleteNotification,
     userLimits, updateUserLimit: () => refresh(), deleteUserLimit: () => refresh(), defaultLimits, updateDefaultLimits: () => refresh(),
-  }), [ads, brands, carModelsMap, realEstateCats, realEstateSubs, iconOverrides, favorites, comparisons, notifications, userLimits, defaultLimits, carsEnabled]);
+  }), [ads, brands, carModelsMap, realEstateCats, realEstateSubs, iconOverrides, favorites, comparisons, notifications, userLimits, defaultLimits]);
   return <AdsContext.Provider value={value}>{children}</AdsContext.Provider>;
 }
 export function useAds() { const context = useContext(AdsContext); if (!context) throw new Error('useAds must be used within an AdsProvider'); return context; }

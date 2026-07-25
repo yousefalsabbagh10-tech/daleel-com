@@ -63,7 +63,10 @@ export function HomeSidebarWidgets() {
       </button>
 
       {/* Map Search Widget */}
-      <button className="apple-card bg-blue-50 border-blue-100 p-4 flex items-center justify-between hover:bg-blue-100/80 transition-colors group text-right cursor-pointer">
+      <button 
+        onClick={() => navigate('/map')}
+        className="apple-card bg-blue-50 border-blue-100 p-4 flex items-center justify-between hover:bg-blue-100/80 transition-colors group text-right cursor-pointer"
+      >
         <div>
           <h4 className="font-bold text-[15px] text-[var(--color-primary)] mb-1">ابحث في الخريطة</h4>
           <p className="text-[12px] text-[var(--color-secondary)]">اختر الموقع مباشرة</p>

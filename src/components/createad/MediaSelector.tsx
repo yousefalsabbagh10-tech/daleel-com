@@ -9,8 +9,8 @@ interface MediaSelectorProps {
   setImageUrl: (url: string) => void;
   imageUrls: string[];
   setImageUrls: Dispatch<SetStateAction<string[]>>;
-  videoUrl: string;
-  setVideoUrl: (url: string) => void;
+  videoUrls: string[];
+  setVideoUrls: Dispatch<SetStateAction<string[]>>;
   currentMaxImages: number;
   currentMaxVideos: number;
   PRESET_CAR_IMAGES: PresetImage[];
@@ -24,7 +24,7 @@ const readFile = (file: File) => new Promise<string>((resolve) => {
 });
 
 export function MediaSelector({
-  category, imageUrl, setImageUrl, imageUrls, setImageUrls, videoUrl, setVideoUrl,
+  category, imageUrl, setImageUrl, imageUrls, setImageUrls, videoUrls, setVideoUrls,
   currentMaxImages, currentMaxVideos, PRESET_CAR_IMAGES, PRESET_HOME_IMAGES,
 }: MediaSelectorProps) {
   const presets = category === 'cars' ? PRESET_CAR_IMAGES : PRESET_HOME_IMAGES;
@@ -47,13 +47,19 @@ export function MediaSelector({
     event.target.value = '';
   };
 
-  const uploadVideo = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    if (currentMaxVideos <= 0) return alert('ليس لديك صلاحية لإضافة فيديو.');
-    if (!file.type.startsWith('video/')) return alert('الرجاء اختيار ملف فيديو صحيح.');
-    setVideoUrl(await readFile(file));
+  const uploadVideos = async (event: ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []) as File[];
+    for (const file of files) {
+      if (videoUrls.length >= currentMaxVideos) return alert(`الحد الأقصى ${currentMaxVideos} فيديو.`);
+      if (!file.type.startsWith('video/')) continue;
+      const dataUrl = await readFile(file);
+      setVideoUrls(prev => prev.includes(dataUrl) ? prev : [...prev, dataUrl]);
+    }
     event.target.value = '';
+  };
+  
+  const removeVideo = (index: number) => {
+    setVideoUrls(prev => prev.filter((_, idx) => idx !== index));
   };
 
   const removeImage = (index: number) => {
@@ -119,14 +125,21 @@ export function MediaSelector({
           <Video size={14} className="text-red-500" /> فيديو اختياري من ملفات الجهاز
         </label>
         <div className="border border-dashed border-gray-300 rounded-2xl p-5 text-center relative hover:border-rose-500">
-          <input type="file" accept="video/*" onChange={uploadVideo} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-          <p className="text-xs font-black text-slate-800">اضغط لاختيار ملف فيديو</p>
-          <p className="text-[10px] text-slate-400 font-semibold">سيتم رفعه وحفظه مع الإعلان، بدون روابط خارجية.</p>
+          <input type="file" accept="video/*" multiple onChange={uploadVideos} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+          <p className="text-xs font-black text-slate-800">اضغط لاختيار ملفات فيديو</p>
+          <p className="text-[10px] text-slate-400 font-semibold">سيتم رفعها وحفظها مع الإعلان، بدون روابط خارجية.</p>
         </div>
-        {videoUrl && (
-          <div className="space-y-2">
-            <video src={videoUrl} controls className="w-full max-h-56 rounded-2xl bg-black" />
-            <button type="button" onClick={() => setVideoUrl('')} className="bg-rose-50 text-rose-600 rounded-xl px-3 py-2 text-xs font-bold">حذف الفيديو</button>
+        {videoUrls.length > 0 && (
+          <div className="space-y-4 mt-4">
+            <span className="text-xs font-bold text-gray-650 block">الفيديوهات المرفقة ({videoUrls.length}/{currentMaxVideos}):</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {videoUrls.map((url, index) => (
+                <div key={index} className="space-y-2">
+                  <video src={url} controls className="w-full max-h-56 rounded-2xl bg-black" />
+                  <button type="button" onClick={() => removeVideo(index)} className="w-full bg-rose-50 text-rose-600 rounded-xl px-3 py-2 text-xs font-bold hover:bg-rose-100 transition-colors">حذف الفيديو</button>
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>

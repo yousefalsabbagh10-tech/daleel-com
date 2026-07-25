@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #025be9;
+  --color-secondary: #6f7c91;
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F5F5F7;
+  --font-sans: "SF Pro Text", "Inter", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+  --animate-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-standard: 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-gray-900;
+    background-color: var(--color-bg-secondary);
+  }
+}
+
+@layer utilities {
+  .apple-btn {
+    @apply h-[44px] rounded-[10px] px-6 font-semibold inline-flex items-center justify-center transition-all duration-[180ms] ease-out;
+  }
+  .apple-input {
+    @apply h-[44px] rounded-[10px] px-4 border border-gray-200 bg-gray-50 focus:bg-white focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20 transition-all duration-[180ms] outline-none;
+  }
+  .apple-card {
+    @apply rounded-[16px] bg-[var(--color-bg-primary)] shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-gray-100 overflow-hidden;
+  }
+}

@@ -14,6 +14,7 @@ export interface AdItem {
   imageUrls?: string[];
   videoUrl?: string;
   ownerPhone?: string;
+  whatsappPhone?: string;
   description?: string;
   // Structured classification fields for perfect filtering
   subCategory?: string;

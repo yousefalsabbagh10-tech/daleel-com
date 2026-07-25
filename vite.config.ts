@@ -11,8 +11,7 @@ export default defineConfig(() => ({
     },
   },
   server: {
-    hmr: false,
-    watch: null,
+    port: 3001,
   },
   build: {
     rollupOptions: {

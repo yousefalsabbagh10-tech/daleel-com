@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: daleel-com-api
+    runtime: docker
+    plan: free
+    rootDir: laravel-api
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        value: https://daleel-com-api.onrender.com
+      - key: CORS_ALLOWED_ORIGINS
+        value: "*"
