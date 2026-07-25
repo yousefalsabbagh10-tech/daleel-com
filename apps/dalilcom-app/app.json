@@ -2,7 +2,7 @@
   "expo": {
     "name": "دليل كوم",
     "slug": "dalilcom-app",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "automatic",
@@ -24,7 +24,7 @@
         "backgroundColor": "#0D3B46"
       },
       "package": "com.dalilcom.app",
-      "versionCode": 8,
+      "versionCode": 9,
       "permissions": []
     },
     "plugins": [

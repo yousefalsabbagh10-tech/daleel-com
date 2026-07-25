@@ -19,6 +19,20 @@
 }
 
 @layer utilities {
+  header div:has(> img[alt="Dalilcom Logo"]) {
+    margin-right: 0 !important;
+  }
+
+  header div:has(> img[alt="Dalilcom Logo"]) img {
+    width: 9.75rem !important;
+    height: 3.25rem !important;
+    object-fit: contain !important;
+  }
+
+  header div:has(> img[alt="Dalilcom Logo"]) + div {
+    display: none !important;
+  }
+
   .apple-btn {
     @apply h-[44px] rounded-[10px] px-6 font-semibold inline-flex items-center justify-center transition-all duration-[180ms] ease-out;
   }
