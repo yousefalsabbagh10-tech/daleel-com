@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class AdController extends Controller
 {
     private array $adFields = ['id','owner_user_id','category','title','description','price','currency','location','subcategory','purpose','cover_image_url','is_featured','published_on','owner_phone','whatsapp_phone'];
+    private array $columnCache = [];
 
     public function index(Request $request)
     {
@@ -31,7 +32,7 @@ class AdController extends Controller
     {
         try { DB::connection()->getPdo(); } catch (\Exception $e) { DB::reconnect(); }
         
-        $data = $request->only($this->adFields);
+        $data = $this->onlyExistingColumns('ads', $request->only($this->adFields));
         $data['id'] ??= ($data['category'] ?? 'ad').'-'.now()->timestamp;
         
         if (!empty($data['cover_image_url'])) {
@@ -41,14 +42,14 @@ class AdController extends Controller
         DB::reconnect(); 
         DB::transaction(function () use ($request, $data) {
             DB::table('ads')->insert($data);
-            $this->syncChildren($data['id'], $request);
+            $this->syncChildren($data['id'], $request, $data['cover_image_url'] ?? null);
         });
         return $this->show($data['id']);
     }
 
     public function update(Request $request, string $id)
     {
-        $data = $request->only(array_diff($this->adFields, ['id']));
+        $data = $this->onlyExistingColumns('ads', $request->only(array_diff($this->adFields, ['id'])));
         
         if (!empty($data['cover_image_url'])) {
             $data['cover_image_url'] = $this->saveBase64Image($data['cover_image_url'], $id, '_cover');
@@ -56,7 +57,7 @@ class AdController extends Controller
 
         DB::transaction(function () use ($request, $id, $data) {
             if ($data) DB::table('ads')->where('id', $id)->update($data);
-            $this->syncChildren($id, $request);
+            $this->syncChildren($id, $request, $data['cover_image_url'] ?? null);
         });
         return $this->show($id);
     }
@@ -128,14 +129,14 @@ class AdController extends Controller
         return url('/videos/ads/'.$fileName);
     }
 
-    private function syncChildren(string $id, Request $request): void
+    private function syncChildren(string $id, Request $request, ?string $coverImageUrl = null): void
     {
         if ($request->has('images')) {
             DB::table('ad_images')->where('ad_id', $id)->delete();
             foreach ($request->input('images', []) as $i => $url) {
-                $savedUrl = $this->saveBase64Image($url, $id, '_img'.$i);
+                $savedUrl = ($i === 0 && $coverImageUrl) ? $coverImageUrl : $this->saveBase64Image($url, $id, '_img'.$i);
                 if ($savedUrl) {
-                    DB::table('ad_images')->insert(['ad_id' => $id, 'image_url' => $savedUrl, 'sort_order' => $i, 'is_cover' => $i === 0]);
+                    DB::table('ad_images')->insert($this->withChildId('ad_images', ['ad_id' => $id, 'image_url' => $savedUrl, 'sort_order' => $i, 'is_cover' => $i === 0]));
                 }
             }
         }
@@ -143,13 +144,13 @@ class AdController extends Controller
             DB::table('ad_videos')->where('ad_id', $id)->delete();
             foreach ($request->input('videos', []) as $i => $url) {
                 $savedUrl = $this->saveBase64Video($url, $id, '_video'.$i);
-                if ($savedUrl) DB::table('ad_videos')->insert(['ad_id' => $id, 'video_url' => $savedUrl]);
+                if ($savedUrl) DB::table('ad_videos')->insert($this->withChildId('ad_videos', ['ad_id' => $id, 'video_url' => $savedUrl, 'sort_order' => $i]));
             }
         }
         if ($request->has('details') || $request->has('specs')) {
             DB::table('ad_details')->where('ad_id', $id)->delete();
             $details = $this->mergedDetails($request);
-            foreach ($details as $i => $text) DB::table('ad_details')->insert(['ad_id' => $id, 'detail_text' => $text, 'sort_order' => $i]);
+            foreach ($details as $i => $text) DB::table('ad_details')->insert($this->withChildId('ad_details', ['ad_id' => $id, 'detail_text' => $text, 'sort_order' => $i]));
         }
         if ($request->has('specs')) {
             $specs = $request->input('specs', []);
@@ -215,5 +216,30 @@ class AdController extends Controller
             isset($specs['projectUnitsCount']) ? $specs['projectUnitsCount'].' وحدة' : null,
         ];
         return array_values(array_unique(array_filter(array_map('strval', array_merge($details, $generated)))));
+    }
+
+    private function onlyExistingColumns(string $table, array $data): array
+    {
+        $columns = $this->columns($table);
+        return array_intersect_key($data, array_flip($columns));
+    }
+
+    private function withChildId(string $table, array $data): array
+    {
+        if (!in_array('id', $this->columns($table), true) || array_key_exists('id', $data)) {
+            return $data;
+        }
+
+        $data['id'] = ((int) DB::table($table)->max('id')) + 1;
+        return $data;
+    }
+
+    private function columns(string $table): array
+    {
+        if (!isset($this->columnCache[$table])) {
+            $this->columnCache[$table] = \Illuminate\Support\Facades\Schema::getColumnListing($table);
+        }
+
+        return $this->columnCache[$table];
     }
 }
