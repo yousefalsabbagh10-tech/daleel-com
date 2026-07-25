@@ -15,7 +15,7 @@ export function HeaderNav({ filteredCount }: HeaderNavProps) {
   const titleParam = searchParams.get('title');
 
   return (
-    <div className="bg-[#1e3c5a] text-white sticky top-0 z-30 shadow-md">
+    <div className="bg-[#0D3B46] text-white sticky top-0 z-30 shadow-md">
       <div className="flex items-center justify-between px-4 h-16 max-w-7xl mx-auto w-full">
         <button 
           onClick={() => navigate(-1)}
@@ -33,14 +33,14 @@ export function HeaderNav({ filteredCount }: HeaderNavProps) {
           onClick={() => setIsFilterPanelOpen(!isFilterPanelOpen)}
           className={`p-2 rounded-full transition-all flex items-center justify-center gap-1.5 px-3 py-1.5 border cursor-pointer ${
             isFilterPanelOpen 
-              ? 'bg-[#fcca03] text-black border-[#fcca03] font-bold shadow' 
+              ? 'bg-[#C9A15A] text-black border-[#C9A15A] font-bold shadow' 
               : 'hover:bg-white/10 border-white/20 text-white'
           }`}
         >
           <SlidersHorizontal size={18} />
           <span className="text-xs font-semibold hidden md:inline">الفلاتر المتقدمة</span>
           {filteredCount !== 0 && (
-            <span className="bg-red-500 text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold leading-none">
+            <span className="bg-[#C9A15A] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold leading-none">
               {filteredCount}
             </span>
           )}

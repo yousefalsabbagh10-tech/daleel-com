@@ -20,7 +20,7 @@ export function HotelAptFilters() {
 
   return (
     <div className="space-y-4 pt-1">
-      <span className="text-[10px] font-bold text-indigo-750 bg-indigo-100 px-2.5 py-0.5 rounded-full block w-fit">فلاتر الشقق المفروشة والفندقية السياحية 🛋️</span>
+      <span className="text-[10px] font-bold text-[#0D3B46] bg-[#C9A15A]/20 px-2.5 py-0.5 rounded-full block w-fit">فلاتر الشقق المفروشة والفندقية السياحية 🛋️</span>
       
       {/* Rent Period */}
       <div className="space-y-1.5">
@@ -39,7 +39,7 @@ export function HotelAptFilters() {
               onClick={() => updateFilter('minRentPeriod', opt.value)}
               className={`py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer text-center ${
                 filters.minRentPeriod === opt.value
-                  ? 'bg-purple-600 text-white font-black shadow-sm'
+                  ? 'bg-[#0D3B46] text-white font-black shadow-sm'
                   : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
               }`}
             >
@@ -60,7 +60,7 @@ export function HotelAptFilters() {
               onClick={() => updateFilter('bedsCount', opt)}
               className={`py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                 filters.bedsCount === opt
-                  ? 'bg-purple-600 text-white font-black shadow-sm'
+                  ? 'bg-[#0D3B46] text-white font-black shadow-sm'
                   : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
               }`}
             >
@@ -73,7 +73,7 @@ export function HotelAptFilters() {
       {/* Amenities */}
       <div className="space-y-2">
         <label className="text-xs font-bold text-gray-700 block text-right">✨ وسائل الراحة والخدمات المتوفرة بالشقة</label>
-        <div className="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto p-1.5 bg-white/50 rounded-lg border border-purple-100">
+        <div className="grid grid-cols-2 gap-1.5 max-h-48 overflow-y-auto p-1.5 bg-white/50 rounded-lg border border-[#C9A15A]/25">
           {hotelAmenitiesList.map((amenity) => {
             const isSelected = filters.hotelAmenities.includes(amenity);
             return (
@@ -89,12 +89,12 @@ export function HotelAptFilters() {
                 }}
                 className={`p-1.5 text-[10px] text-right font-semibold rounded-lg border flex items-center justify-between transition-all cursor-pointer ${
                   isSelected
-                    ? 'bg-purple-100 border-purple-500 text-purple-950 font-extrabold shadow-sm'
+                    ? 'bg-[#C9A15A]/20 border-[#C9A15A] text-[#0D3B46] font-extrabold shadow-sm'
                     : 'bg-white border-gray-150 text-gray-650 hover:border-gray-300'
                 }`}
               >
                 <span>{amenity}</span>
-                <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center border shrink-0 mr-1 text-[8px] ${isSelected ? 'bg-purple-600 border-purple-600 text-white' : 'border-gray-300'}`}>
+                <span className={`w-3.5 h-3.5 rounded-full flex items-center justify-center border shrink-0 mr-1 text-[8px] ${isSelected ? 'bg-[#0D3B46] border-[#C9A15A] text-white' : 'border-gray-300'}`}>
                   {isSelected && '✓'}
                 </span>
               </button>

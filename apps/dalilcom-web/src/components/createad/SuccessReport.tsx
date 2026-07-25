@@ -31,7 +31,7 @@ export function SuccessReport({
 
       <div className="bg-slate-50 p-4 rounded-2xl max-w-md mx-auto text-right text-xs space-y-2 border border-gray-150">
         <div className="flex justify-between font-bold text-slate-700">
-          <span className="font-mono text-rose-500">{Number(price).toLocaleString()} {currency}</span>
+          <span className="font-mono text-[#C9A15A]">{Number(price).toLocaleString()} {currency}</span>
           <span>سعر المنتج الأصلي المعتمد:</span>
         </div>
         <div className="flex justify-between font-bold text-slate-700">

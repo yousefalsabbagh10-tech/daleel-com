@@ -88,7 +88,7 @@ export function PriceIndexerPage() {
 
       {/* Header section */}
       <div className="flex items-center gap-3 border-b border-gray-100 pb-5 text-right">
-        <div className="bg-rose-50 p-2.5 rounded-2xl text-rose-500">
+        <div className="bg-[#C9A15A]/10 p-2.5 rounded-2xl text-[#C9A15A]">
           <TrendingUp size={24} className="stroke-[2.5]" />
         </div>
         <div>
@@ -111,7 +111,7 @@ export function PriceIndexerPage() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex-1 min-w-[140px] py-3 px-4 rounded-xl font-extrabold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer ${
                 isTabActive 
-                  ? 'bg-[#1e3c5a] text-white shadow-md' 
+                  ? 'bg-[#0D3B46] text-white shadow-md' 
                   : 'text-slate-500 hover:text-slate-900 hover:bg-slate-200'
               }`}
             >

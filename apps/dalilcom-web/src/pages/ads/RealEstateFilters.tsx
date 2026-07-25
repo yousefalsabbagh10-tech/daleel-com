@@ -24,8 +24,8 @@ export function RealEstateFilters() {
   return (
     <div className="space-y-5 animate-in fade-in duration-300">
       <div className="border-b border-gray-100 pb-2">
-        <h4 className="font-extrabold text-xs text-purple-950 tracking-wider mb-1 flex items-center gap-1.5">
-          <SlidersHorizontal size={14} className="text-purple-600 animate-bounce" />
+        <h4 className="font-extrabold text-xs text-[#0D3B46] tracking-wider mb-1 flex items-center gap-1.5">
+          <SlidersHorizontal size={14} className="text-[#0D3B46] animate-bounce" />
           تفاصيل العقار المخصصة فئوياً ⚡
         </h4>
         <p className="text-[11px] text-slate-500 leading-tight">اختر نوع التصنيف لتفعيل فلاتر ذكية ملائمة تماماً لطبيعة العقار</p>
@@ -42,7 +42,7 @@ export function RealEstateFilters() {
               type="button"
               className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
                 filters.rePurpose === purp
-                  ? 'bg-white text-purple-700 shadow-sm font-extrabold'
+                  ? 'bg-white text-[#0D3B46] shadow-sm font-extrabold'
                   : 'text-gray-550 hover:text-gray-950'
               }`}
             >
@@ -66,11 +66,11 @@ export function RealEstateFilters() {
                 onClick={() => updateFilter('propType', item.value)}
                 className={`flex flex-col items-center justify-center p-2.5 rounded-xl border text-center transition-all cursor-pointer gap-1 ${
                   active
-                    ? 'bg-purple-50 text-purple-900 border-purple-500 font-extrabold shadow-sm scale-[1.02]'
+                    ? 'bg-[#C9A15A]/10 text-[#0D3B46] border-[#C9A15A] font-extrabold shadow-sm scale-[1.02]'
                     : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
                 }`}
               >
-                <IconComp size={16} className={active ? 'text-purple-600' : 'text-gray-400'} />
+                <IconComp size={16} className={active ? 'text-[#0D3B46]' : 'text-gray-400'} />
                 <span className="text-[11px] font-bold">{item.ar}</span>
               </button>
             );
@@ -90,14 +90,14 @@ export function RealEstateFilters() {
             placeholder="أقصى م²"
             value={filters.maxArea}
             onChange={(e) => updateFilter('maxArea', e.target.value === '' ? '' : Number(e.target.value))}
-            className="w-full h-11 pl-1 pr-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-purple-500 font-medium"
+            className="w-full h-11 pl-1 pr-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#C9A15A] font-medium"
           />
           <input
             type="number"
             placeholder="أدنى م²"
             value={filters.minArea}
             onChange={(e) => updateFilter('minArea', e.target.value === '' ? '' : Number(e.target.value))}
-            className="w-full h-11 pl-1 pr-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-purple-500 font-medium"
+            className="w-full h-11 pl-1 pr-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#C9A15A] font-medium"
           />
         </div>
       </div>

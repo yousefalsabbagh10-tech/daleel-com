@@ -16,7 +16,7 @@ export function FavoritesPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-gray-150">
         <div className="text-right">
-          <div className="flex items-center gap-2 text-rose-500 mb-1">
+          <div className="flex items-center gap-2 text-[#C9A15A] mb-1">
             <Heart className="fill-current" size={20} />
             <span className="text-xs font-bold uppercase tracking-wider">قائمتي المفضلة</span>
           </div>
@@ -36,7 +36,7 @@ export function FavoritesPage() {
       {favoritedItems.length === 0 ? (
         /* Empty State with Apple elegance */
         <div className="bg-white border border-gray-150 rounded-2xl p-10 sm:p-16 text-center max-w-lg mx-auto shadow-sm space-y-6">
-          <div className="w-16 h-16 bg-rose-50 rounded-full flex items-center justify-center text-rose-500 mx-auto">
+          <div className="w-16 h-16 bg-[#C9A15A]/10 rounded-full flex items-center justify-center text-[#C9A15A] mx-auto">
             <FolderHeart size={32} />
           </div>
           <div className="space-y-2">
@@ -48,7 +48,7 @@ export function FavoritesPage() {
           <div className="pt-2">
             <button 
               onClick={() => navigate('/ads')}
-              className="px-6 py-3 bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold rounded-xl shadow-md cursor-pointer transition-all active:scale-[0.98]"
+              className="px-6 py-3 bg-[#C9A15A] hover:bg-[#0D3B46] text-white text-xs font-bold rounded-xl shadow-md cursor-pointer transition-all active:scale-[0.98]"
             >
               استكشف كافة الإعلانات الآن
             </button>
@@ -65,7 +65,7 @@ export function FavoritesPage() {
                   favorites.forEach(id => toggleFavorite(id));
                 }
               }}
-              className="text-xs font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1 cursor-pointer"
+              className="text-xs font-semibold text-[#C9A15A] hover:text-[#0D3B46] flex items-center gap-1 cursor-pointer"
             >
               <Trash2 size={13} />
               إزالة الكل

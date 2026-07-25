@@ -23,7 +23,7 @@ export function StepPrice({
 }: StepPriceProps) {
   return (
     <div className="bg-white p-6 rounded-3xl border border-gray-150 space-y-4 text-right animate-fadeIn" dir="rtl">
-      <label className="text-xs font-black text-[#1e3c5a] block">تحديد سعر البيع أو الإيجار المتوقع</label>
+      <label className="text-xs font-black text-[#0D3B46] block">تحديد سعر البيع أو الإيجار المتوقع</label>
       
       <div className="grid grid-cols-3 gap-3">
         <div className="space-y-1 text-right">

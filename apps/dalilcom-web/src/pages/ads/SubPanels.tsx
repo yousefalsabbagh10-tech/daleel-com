@@ -22,10 +22,10 @@ export function SubPanels() {
           <div 
             key={opt.id}
             onClick={() => { updateFilter('sortBy', opt.id); setActiveSubPanel(null); }}
-            className="flex items-center justify-between p-3.5 border border-gray-150 rounded-xl hover:border-[#1e3c5a] cursor-pointer"
+            className="flex items-center justify-between p-3.5 border border-gray-150 rounded-xl hover:border-[#0D3B46] cursor-pointer"
           >
-            <span className={`text-[14px] font-bold ${filters.sortBy === opt.id ? 'text-[#1e3c5a]' : 'text-gray-750'}`}>{opt.label}</span>
-            {filters.sortBy === opt.id && <Check size={18} className="text-[#1e3c5a]" />}
+            <span className={`text-[14px] font-bold ${filters.sortBy === opt.id ? 'text-[#0D3B46]' : 'text-gray-750'}`}>{opt.label}</span>
+            {filters.sortBy === opt.id && <Check size={18} className="text-[#0D3B46]" />}
           </div>
         ))}
       </div>
@@ -42,7 +42,7 @@ export function SubPanels() {
             <input
               type="text"
               placeholder="ابحث عن مدينة..."
-              className="w-full h-11 pr-10 pl-4 text-xs bg-gray-50 rounded-xl border border-gray-200 focus:outline-[#1e3c5a] focus:bg-white text-right font-medium"
+              className="w-full h-11 pr-10 pl-4 text-xs bg-gray-50 rounded-xl border border-gray-200 focus:outline-[#0D3B46] focus:bg-white text-right font-medium"
               onChange={(e) => setLocQuery(e.target.value)}
               value={locQuery}
             />
@@ -54,10 +54,10 @@ export function SubPanels() {
             <div 
               key={loc}
               onClick={() => { updateFilter('location', loc); setActiveSubPanel(null); }}
-              className="flex items-center justify-between p-3.5 border border-gray-150 rounded-xl hover:border-[#1e3c5a] cursor-pointer"
+              className="flex items-center justify-between p-3.5 border border-gray-150 rounded-xl hover:border-[#0D3B46] cursor-pointer"
             >
-              <span className={`text-[14px] font-bold ${filters.location === loc ? 'text-[#1e3c5a]' : 'text-gray-750'}`}>{loc}</span>
-              {filters.location === loc && <Check size={18} className="text-[#1e3c5a]" />}
+              <span className={`text-[14px] font-bold ${filters.location === loc ? 'text-[#0D3B46]' : 'text-gray-750'}`}>{loc}</span>
+              {filters.location === loc && <Check size={18} className="text-[#0D3B46]" />}
             </div>
           ))}
         </div>
@@ -85,7 +85,7 @@ export function SubPanels() {
                   updateFilter('selectedBrand', b.ar);
                   updateFilter('selectedModel', 'الكل');
                 }}
-                className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedBrand === b.ar ? 'bg-[#1e3c5a]/10 text-[#1e3c5a]' : 'hover:bg-gray-50 text-gray-700'}`}
+                className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedBrand === b.ar ? 'bg-[#0D3B46]/10 text-[#0D3B46]' : 'hover:bg-gray-50 text-gray-700'}`}
               >
                 {b.ar}
               </button>
@@ -105,7 +105,7 @@ export function SubPanels() {
                     updateFilter('selectedModel', m.ar);
                     setActiveSubPanel(null);
                   }}
-                  className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedModel === m.ar ? 'bg-[#1e3c5a]/10 text-[#1e3c5a]' : 'hover:bg-gray-50 text-gray-700'}`}
+                  className={`py-2 text-right px-2 rounded-lg text-xs font-semibold ${filters.selectedModel === m.ar ? 'bg-[#0D3B46]/10 text-[#0D3B46]' : 'hover:bg-gray-50 text-gray-700'}`}
                 >
                   {m.ar}
                 </button>

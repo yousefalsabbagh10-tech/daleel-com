@@ -25,8 +25,8 @@ export function HomeSidebarWidgets() {
           onClick={() => navigate('/featured')}
           className="apple-card p-4 flex flex-col items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-[var(--color-primary)] h-24 cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
-            <Sparkles size={18} className="fill-current text-blue-600" />
+          <div className="w-8 h-8 rounded-full bg-[#C9A15A]/10 flex items-center justify-center">
+            <Sparkles size={18} className="fill-current text-[#0D3B46]" />
           </div>
           <span className="text-[13px] font-bold text-gray-800">الإعلانات المميزة</span>
         </button>
@@ -35,8 +35,8 @@ export function HomeSidebarWidgets() {
           onClick={() => navigate('/create-ad')}
           className="apple-card p-4 flex flex-col items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-[var(--color-primary)] h-24 cursor-pointer"
         >
-          <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center">
-            <PlusCircle size={18} className="text-blue-600" />
+          <div className="w-8 h-8 rounded-full bg-[#C9A15A]/10 flex items-center justify-center">
+            <PlusCircle size={18} className="text-[#0D3B46]" />
           </div>
           <span className="text-[13px] font-bold text-gray-800">أضف إعلانك</span>
         </button>
@@ -44,7 +44,7 @@ export function HomeSidebarWidgets() {
 
       <button
         onClick={() => navigate('/map')}
-        className="apple-card bg-blue-50 border-blue-100 p-4 flex items-center justify-between hover:bg-blue-100/80 transition-colors group text-right cursor-pointer"
+        className="apple-card bg-[#C9A15A]/10 border-[#C9A15A]/30 p-4 flex items-center justify-between hover:bg-[#C9A15A]/20 transition-colors group text-right cursor-pointer"
       >
         <div>
           <h4 className="font-bold text-[15px] text-[var(--color-primary)] mb-1">ابحث في الخريطة</h4>

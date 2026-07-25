@@ -208,7 +208,7 @@ function xt() {
           R &&
             o("div", {
               className:
-                "bg-rose-50 text-rose-800 border-r-4 border-rose-500 p-4 rounded-xl flex items-center gap-2 justify-between animate-pulse",
+                "bg-[#C9A15A]/10 text-[#0D3B46] border-r-4 border-[#C9A15A] p-4 rounded-xl flex items-center gap-2 justify-between animate-pulse",
               children: [
                 t("span", { className: "text-xs font-bold", children: R }),
                 t("button", {
@@ -459,7 +459,7 @@ function xt() {
                   type: "button",
                   onClick: ke,
                   className:
-                    "px-6 py-2.5 rounded-xl bg-[#1e3c5a] text-[#fff] hover:bg-[#122538] text-xs font-black transition-all cursor-pointer flex items-center gap-1.5",
+                    "px-6 py-2.5 rounded-xl bg-[#0D3B46] text-[#fff] hover:bg-[#122538] text-xs font-black transition-all cursor-pointer flex items-center gap-1.5",
                   children: [
                     t(Q, { size: 13 }),
                     t("span", {

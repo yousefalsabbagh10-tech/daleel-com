@@ -66,7 +66,7 @@ export function MediaSelector({
   return (
     <div className="space-y-6 text-right" dir="rtl">
       <div>
-        <h3 className="font-extrabold text-[#1e3c5a] text-sm sm:text-md">إضافة الوسائط</h3>
+        <h3 className="font-extrabold text-[#0D3B46] text-sm sm:text-md">إضافة الوسائط</h3>
         <p className="text-xs text-gray-500 mt-1">
           مسموح لك بإضافة {currentMaxImages} صور و {currentMaxVideos} فيديو.
         </p>
@@ -79,7 +79,7 @@ export function MediaSelector({
             const selected = imageUrls.includes(item.url);
             return (
               <button key={item.url} type="button" onClick={() => addImage(item.url)}
-                className={`relative rounded-xl overflow-hidden aspect-video border group transition-all cursor-pointer ${selected ? 'border-indigo-600 scale-95 ring-2 ring-indigo-500/20' : 'border-gray-200 hover:scale-[1.02]'}`}>
+                className={`relative rounded-xl overflow-hidden aspect-video border group transition-all cursor-pointer ${selected ? 'border-[#0D3B46] scale-95 ring-2 ring-[#C9A15A]/20' : 'border-gray-200 hover:scale-[1.02]'}`}>
                 <img src={item.url} alt={item.label} className="w-full h-full object-cover" />
                 <div className="absolute inset-x-0 bottom-0 bg-black/60 py-1 text-[9.5px] text-white font-bold text-center">{item.label}</div>
                 {selected && <div className="absolute top-1 right-1 bg-green-500 text-white rounded-full w-4 h-4 text-[8px] font-black">✓</div>}
@@ -89,10 +89,10 @@ export function MediaSelector({
         </div>
       </div>
 
-      <div className="bg-white border border-dashed border-gray-300 p-6 rounded-3xl text-center space-y-3 hover:border-indigo-500 relative cursor-pointer group">
+      <div className="bg-white border border-dashed border-gray-300 p-6 rounded-3xl text-center space-y-3 hover:border-[#C9A15A] relative cursor-pointer group">
         <input type="file" accept="image/*" multiple onChange={uploadImages} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
         <div className="flex flex-col items-center justify-center space-y-2">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center"><Upload size={22} /></div>
+          <div className="w-12 h-12 rounded-2xl bg-[#C9A15A]/10 text-[#0D3B46] flex items-center justify-center"><Upload size={22} /></div>
           <p className="text-xs font-black text-slate-800">اضغط هنا لرفع الصور من جهازك</p>
           <p className="text-[10px] font-bold text-gray-550">اختر الصور وسيتم إرفاقها بالإعلان تلقائياً.</p>
         </div>
@@ -105,8 +105,8 @@ export function MediaSelector({
             {imageUrls.map((url, index) => (
               <div key={index} className="relative aspect-square border border-gray-200 rounded-xl overflow-hidden group">
                 <img src={url} alt="Attached" className="w-full h-full object-cover" />
-                <button type="button" onClick={() => removeImage(index)} className="absolute top-1 left-1 bg-red-500 text-white rounded-full p-1" title="حذف الصورة"><Trash2 size={11} /></button>
-                {imageUrl === url ? <div className="absolute inset-x-0 bottom-0 bg-indigo-600 text-white text-[8.5px] font-black text-center py-0.5">غلاف</div>
+                <button type="button" onClick={() => removeImage(index)} className="absolute top-1 left-1 bg-[#C9A15A] text-white rounded-full p-1" title="حذف الصورة"><Trash2 size={11} /></button>
+                {imageUrl === url ? <div className="absolute inset-x-0 bottom-0 bg-[#0D3B46] text-white text-[8.5px] font-black text-center py-0.5">غلاف</div>
                   : <button type="button" onClick={() => setImageUrl(url)} className="absolute inset-x-0 bottom-0 bg-black/70 text-white text-[8px] font-bold py-0.5 opacity-0 group-hover:opacity-100">تحديد كغلاف</button>}
               </div>
             ))}
@@ -116,9 +116,9 @@ export function MediaSelector({
 
       <div className="bg-white border border-gray-150 p-4 rounded-3xl space-y-3">
         <label className="text-xs font-bold text-gray-600 flex items-center gap-1">
-          <Video size={14} className="text-red-500" /> فيديو اختياري من ملفات الجهاز
+          <Video size={14} className="text-[#C9A15A]" /> فيديو اختياري من ملفات الجهاز
         </label>
-        <div className="border border-dashed border-gray-300 rounded-2xl p-5 text-center relative hover:border-rose-500">
+        <div className="border border-dashed border-gray-300 rounded-2xl p-5 text-center relative hover:border-[#C9A15A]">
           <input type="file" accept="video/*" onChange={uploadVideo} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
           <p className="text-xs font-black text-slate-800">اضغط لاختيار ملف فيديو</p>
           <p className="text-[10px] text-slate-400 font-semibold">سيتم رفعه وحفظه مع الإعلان، بدون روابط خارجية.</p>
@@ -126,7 +126,7 @@ export function MediaSelector({
         {videoUrl && (
           <div className="space-y-2">
             <video src={videoUrl} controls className="w-full max-h-56 rounded-2xl bg-black" />
-            <button type="button" onClick={() => setVideoUrl('')} className="bg-rose-50 text-rose-600 rounded-xl px-3 py-2 text-xs font-bold">حذف الفيديو</button>
+            <button type="button" onClick={() => setVideoUrl('')} className="bg-[#C9A15A]/10 text-[#C9A15A] rounded-xl px-3 py-2 text-xs font-bold">حذف الفيديو</button>
           </div>
         )}
       </div>

@@ -13,7 +13,7 @@ export function StepperHeader({ currentStep, steps }: StepperHeaderProps) {
   return (
     <>
       {/* Header Bar */}
-      <div className="bg-[#1e3c5a] text-white" dir="rtl">
+      <div className="bg-[#0D3B46] text-white" dir="rtl">
         <div className="flex items-center px-4 h-16 max-w-7xl mx-auto w-full">
           <button 
             onClick={() => navigate('/')}
@@ -37,7 +37,7 @@ export function StepperHeader({ currentStep, steps }: StepperHeaderProps) {
                 <div className={cn(
                   "w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all",
                   st.id === currentStep 
-                    ? "bg-[#1e3c5a] text-white ring-4 ring-[#1e3c5a]/10" 
+                    ? "bg-[#0D3B46] text-white ring-4 ring-[#0D3B46]/10" 
                     : st.id < currentStep 
                       ? "bg-green-500 text-white" 
                       : "bg-gray-200 text-gray-500"

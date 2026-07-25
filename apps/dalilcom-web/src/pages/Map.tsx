@@ -12,7 +12,7 @@ export function MapPage() {
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500" dir="rtl">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+        <div className="w-12 h-12 rounded-full bg-[#C9A15A]/10 text-[#0D3B46] flex items-center justify-center">
           <MapPinned size={26} />
         </div>
         <div>
@@ -32,7 +32,7 @@ export function MapPage() {
                   const url = ad.mapUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ad.location)}`;
                   window.open(url, '_blank');
                 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md transition-colors"
+                className="bg-[#0D3B46] hover:bg-[#0D3B46] text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md transition-colors"
               >
                 فتح على الخريطة
               </button>

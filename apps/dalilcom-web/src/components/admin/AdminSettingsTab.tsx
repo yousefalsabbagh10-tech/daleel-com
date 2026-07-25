@@ -15,7 +15,7 @@ export function AdminSettingsTab() {
         <div className="p-5 bg-slate-50 border border-gray-150 rounded-2xl space-y-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-[#C9A15A]/10 text-[#C9A15A] flex items-center justify-center">
                 <CarFront size={20} />
               </div>
               <div>
@@ -25,20 +25,20 @@ export function AdminSettingsTab() {
                 </p>
               </div>
             </div>
-            <span className="text-emerald-600 font-black text-xs">مفعل دائماً</span>
+            <span className="text-[#0D3B46] font-black text-xs">مفعل دائماً</span>
           </div>
         </div>
 
-        <div className="p-5 bg-emerald-50 border border-emerald-100 rounded-2xl flex items-start gap-3">
-          <CheckCircle2 size={18} className="text-emerald-600 shrink-0 mt-0.5" />
-          <p className="text-xs font-bold text-emerald-800 leading-6">
+        <div className="p-5 bg-[#C9A15A]/10 border border-[#C9A15A]/25 rounded-2xl flex items-start gap-3">
+          <CheckCircle2 size={18} className="text-[#0D3B46] shrink-0 mt-0.5" />
+          <p className="text-xs font-bold text-[#0D3B46] leading-6">
             تم إلغاء زر إخفاء السيارات من لوحة التحكم. بيانات السيارات تبقى ظاهرة وقابلة للإضافة والتصفح.
           </p>
         </div>
 
-        <div className="p-5 bg-blue-50 border border-blue-100 rounded-2xl flex items-start gap-3 md:col-span-2">
-          <Settings size={18} className="text-blue-600 shrink-0 mt-0.5" />
-          <p className="text-xs font-bold text-blue-800 leading-6">
+        <div className="p-5 bg-[#C9A15A]/10 border border-[#C9A15A]/30 rounded-2xl flex items-start gap-3 md:col-span-2">
+          <Settings size={18} className="text-[#0D3B46] shrink-0 mt-0.5" />
+          <p className="text-xs font-bold text-[#0D3B46] leading-6">
             أي إعدادات أخرى للمنصة يمكن إضافتها هنا بدون التأثير على ظهور قسم السيارات.
           </p>
         </div>

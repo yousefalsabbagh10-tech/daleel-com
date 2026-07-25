@@ -50,11 +50,11 @@ export function AdDetailModal({ item, onClose }: AdDetailModalProps) {
               onClick={() => toggleFavorite(item.id)}
               className={cn(
                 'w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer border',
-                fav ? 'bg-rose-50 border-rose-100 text-rose-500' : 'bg-slate-50 border-gray-200 text-slate-600 hover:bg-slate-100',
+                fav ? 'bg-[#C9A15A]/10 border-[#C9A15A]/25 text-[#C9A15A]' : 'bg-slate-50 border-gray-200 text-slate-600 hover:bg-slate-100',
               )}
               title={fav ? 'حذف من المفضلة' : 'إضافة للمفضلة'}
             >
-              <Heart size={18} className={cn(fav && 'fill-rose-500')} />
+              <Heart size={18} className={cn(fav && 'fill-[#C9A15A]')} />
             </button>
             <button onClick={onClose} className="w-10 h-10 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-500 cursor-pointer">
               <X size={20} />

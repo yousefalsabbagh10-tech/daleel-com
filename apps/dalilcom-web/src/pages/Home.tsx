@@ -44,7 +44,7 @@ export function HomePage() {
             <CategoryButton
               active={visibleCategory === 'real-estate'}
               icon={<Building2 size={24} />}
-              color="bg-purple-600"
+              color="bg-[#0D3B46]"
               title="العقارات"
               desc="شقق، فلل، تجاري، أراضي للبيع أو الإيجار"
               count={realEstateCount}
@@ -63,7 +63,7 @@ export function HomePage() {
                 <CategoryButton
                   active={category === 'cars'}
                   icon={<CarFront size={24} />}
-                  color="bg-rose-500"
+                  color="bg-[#C9A15A]"
                   title="المركبات"
                   desc="سيارات، دراجات، شاحنات للبيع أو الإيجار"
                   count={carsCount}

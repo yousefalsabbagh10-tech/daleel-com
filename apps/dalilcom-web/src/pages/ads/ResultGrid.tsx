@@ -37,9 +37,9 @@ export function ResultGrid({ filteredAds }: ResultGridProps) {
       {/* Result top metadata bar */}
       <div className="flex items-center justify-between bg-white px-5 py-3 rounded-xl border border-gray-100 shadow-sm" dir="rtl">
         <div className="flex items-center gap-2">
-          <Compass className="text-blue-500 animate-spin-slow" size={20} />
+          <Compass className="text-[#F6F2E8]/850 animate-spin-slow" size={20} />
           <span className="text-[14px] text-gray-500 font-medium font-sans">النتائج المطابقة:</span>
-          <span className="bg-[#1e3c5a]/10 text-[#1e3c5a] text-xs font-extrabold px-2.5 py-1 rounded-full leading-none">
+          <span className="bg-[#0D3B46]/10 text-[#0D3B46] text-xs font-extrabold px-2.5 py-1 rounded-full leading-none">
             {filteredAds.length} إعلانات
           </span>
         </div>
@@ -62,7 +62,7 @@ export function ResultGrid({ filteredAds }: ResultGridProps) {
                   }
                 }}
                 title="حذف الإعلان"
-                className="absolute top-3 left-3 z-30 bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition-colors shadow shadow-red-600/30"
+                className="absolute top-3 left-3 z-30 bg-[#0D3B46] text-white p-2 rounded-full hover:bg-[#0D3B46] transition-colors shadow shadow-[#C9A15A]/30"
               >
                 <Trash2 size={16} />
               </button>
@@ -75,7 +75,7 @@ export function ResultGrid({ filteredAds }: ResultGridProps) {
       {/* Custom Empty states */}
       {filteredAds.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 bg-white border border-gray-100 rounded-3xl p-8 shadow-sm" dir="rtl">
-          <div className="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center mb-4 text-blue-500">
+          <div className="w-16 h-16 rounded-full bg-[#C9A15A]/10 flex items-center justify-center mb-4 text-[#F6F2E8]/850">
             <AlertCircle size={32} />
           </div>
           <h3 className="text-lg font-extrabold text-gray-900 mb-2">لا توجد نتائج مطابقة تماماً للمواصفات</h3>
@@ -84,7 +84,7 @@ export function ResultGrid({ filteredAds }: ResultGridProps) {
           </p>
           <button
             onClick={resetFilters}
-            className="apple-btn bg-blue-50 text-[#1e3c5a] border border-blue-200/60 hover:bg-blue-100 transition-colors cursor-pointer"
+            className="apple-btn bg-[#C9A15A]/10 text-[#0D3B46] border border-[#C9A15A]/40/60 hover:bg-[#C9A15A]/20 transition-colors cursor-pointer"
           >
             تحديث وتصفير خيارات البحث
           </button>

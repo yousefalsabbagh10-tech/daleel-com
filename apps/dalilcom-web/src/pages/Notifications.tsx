@@ -37,7 +37,7 @@ export function NotificationsPage() {
 
       <div className="flex items-center justify-between border-b border-gray-100 pb-4">
         <div className="flex items-center gap-3">
-          <div className="bg-rose-50 p-2.5 rounded-2xl text-rose-500">
+          <div className="bg-[#C9A15A]/10 p-2.5 rounded-2xl text-[#C9A15A]">
             <Bell size={24} />
           </div>
           <div>
@@ -45,7 +45,7 @@ export function NotificationsPage() {
             <p className="text-[12px] text-slate-500 font-semibold mt-0.5">البيانات محفوظة في قاعدة البيانات</p>
           </div>
         </div>
-        <span className="bg-rose-50 text-rose-600 text-xs font-extrabold px-3 py-1.5 rounded-full">
+        <span className="bg-[#C9A15A]/10 text-[#C9A15A] text-xs font-extrabold px-3 py-1.5 rounded-full">
           {unreadNotificationsCount} غير مقروء
         </span>
       </div>
@@ -54,20 +54,20 @@ export function NotificationsPage() {
         <button onClick={() => { markAllNotificationsRead(); showToast('تم تعليم الإشعارات كمقروءة'); }} className="text-xs font-black text-slate-500 flex items-center gap-1.5">
           <Check size={14} /> تعيين الكل كمقروء
         </button>
-        <button onClick={() => { clearAllNotifications(); showToast('تم حذف الإشعارات من قاعدة البيانات'); }} className="text-xs font-black text-rose-500 flex items-center gap-1.5">
+        <button onClick={() => { clearAllNotifications(); showToast('تم حذف الإشعارات من قاعدة البيانات'); }} className="text-xs font-black text-[#C9A15A] flex items-center gap-1.5">
           <Trash2 size={14} /> حذف الكل
         </button>
       </div>
 
-      <button onClick={createSystemNotification} className="w-full h-11 rounded-xl bg-[#1e3c5a] text-white text-xs font-black">
+      <button onClick={createSystemNotification} className="w-full h-11 rounded-xl bg-[#0D3B46] text-white text-xs font-black">
         إنشاء إشعار وحفظه في قاعدة البيانات
       </button>
 
       <div className="space-y-3.5">
         {notifications.map(item => (
-          <div key={item.id} className={`p-4 sm:p-5 rounded-[20px] border relative ${item.isRead ? 'bg-white border-slate-100' : 'bg-blue-50/40 border-blue-100'}`}>
+          <div key={item.id} className={`p-4 sm:p-5 rounded-[20px] border relative ${item.isRead ? 'bg-white border-slate-100' : 'bg-[#C9A15A]/10 border-[#C9A15A]/30'}`}>
             <div className="flex gap-3 sm:gap-4 items-start">
-              <div className={`p-2 rounded-xl shrink-0 ${item.isRead ? 'bg-slate-100 text-slate-400' : 'bg-blue-100 text-[#0d6efd]'}`}>
+              <div className={`p-2 rounded-xl shrink-0 ${item.isRead ? 'bg-slate-100 text-slate-400' : 'bg-[#C9A15A]/20 text-[#0D3B46]'}`}>
                 <Bell size={18} />
               </div>
               <div className="flex-1 min-w-0">
@@ -77,7 +77,7 @@ export function NotificationsPage() {
                 </div>
                 <p className="text-xs sm:text-[13px] leading-relaxed text-slate-600">{item.body}</p>
               </div>
-              <button onClick={() => deleteNotification(item.id)} className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-rose-500">
+              <button onClick={() => deleteNotification(item.id)} className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-[#C9A15A]">
                 <Trash2 size={13} />
               </button>
             </div>

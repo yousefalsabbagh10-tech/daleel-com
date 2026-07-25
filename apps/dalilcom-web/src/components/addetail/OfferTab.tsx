@@ -78,8 +78,8 @@ export function OfferTab({ item }: OfferTabProps) {
       {/* Header Info */}
       <div className="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0">
         <div className="flex items-center gap-2">
-          <Flame size={18} className="text-rose-500 animate-pulse" />
-          <span className="text-xs font-black text-rose-500">مفاوض الأسعار الذكي سوريازيل</span>
+          <Flame size={18} className="text-[#C9A15A] animate-pulse" />
+          <span className="text-xs font-black text-[#C9A15A]">مفاوض الأسعار الذكي سوريازيل</span>
         </div>
         <span className="text-[10px] text-slate-500 font-semibold hidden sm:inline">نظام ذكي للتفاوض الآلي نيابة عن البائعين</span>
       </div>
@@ -95,8 +95,8 @@ export function OfferTab({ item }: OfferTabProps) {
             >
               <div className={`p-3.5 rounded-2xl text-xs font-semibold leading-relaxed ${
                 isAgent 
-                  ? 'bg-slate-900 text-slate-100 pr-4 rounded-tr-none border-r-4 border-rose-500' 
-                  : 'bg-rose-500 text-white pl-4 rounded-tl-none'
+                  ? 'bg-slate-900 text-slate-100 pr-4 rounded-tr-none border-r-4 border-[#C9A15A]' 
+                  : 'bg-[#C9A15A] text-white pl-4 rounded-tl-none'
               }`}>
                 {msg.text}
               </div>
@@ -136,7 +136,7 @@ export function OfferTab({ item }: OfferTabProps) {
           <button 
             onClick={handleSendOffer}
             disabled={isTyping}
-            className="flex-1 sm:flex-none h-9 bg-rose-500 hover:bg-rose-600 disabled:bg-slate-800 text-white rounded-lg px-4 font-extrabold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+            className="flex-1 sm:flex-none h-9 bg-[#C9A15A] hover:bg-[#0D3B46] disabled:bg-slate-800 text-white rounded-lg px-4 font-extrabold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
           >
             <Send size={13} />
             أرسل عرضك
@@ -146,7 +146,7 @@ export function OfferTab({ item }: OfferTabProps) {
             href={whatsappUrl}
             target="_blank"
             referrerPolicy="no-referrer"
-            className="h-9 w-9 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg flex items-center justify-center shrink-0"
+            className="h-9 w-9 bg-[#0D3B46] hover:bg-[#0D3B46] text-white rounded-lg flex items-center justify-center shrink-0"
             title="مراسلة عبر واتساب فوراً بالطلب"
           >
             <Phone size={14} />

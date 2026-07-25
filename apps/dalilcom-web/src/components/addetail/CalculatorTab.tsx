@@ -44,7 +44,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
       {/* Pickers Form */}
       <div className="bg-white border border-gray-150 p-6 rounded-2xl space-y-6 shadow-sm">
         <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
-          <Calculator size={20} className="text-rose-500" />
+          <Calculator size={20} className="text-[#C9A15A]" />
           <div className="text-right">
             <h4 className="font-black text-xs sm:text-sm text-slate-800">حاسبة الأقساط الشهرية والتكاليف</h4>
             <span className="text-[10px] text-slate-400 font-semibold">تخطيط مالي مرن وبسيط لحساب تمويل المشتريات</span>
@@ -55,7 +55,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
         <div className="space-y-2">
           <div className="flex justify-between text-xs font-bold text-slate-700">
             <span>الدفعة الأولى المقدمة ({downPaymentPct}%)</span>
-            <span className="text-rose-600 font-black">{formatValue(downPaymentAmount)}</span>
+            <span className="text-[#C9A15A] font-black">{formatValue(downPaymentAmount)}</span>
           </div>
           <input 
             type="range" 
@@ -63,7 +63,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
             max={80} 
             value={downPaymentPct}
             onChange={(e) => setDownPaymentPct(Number(e.target.value))}
-            className="w-full accent-rose-500 bg-gray-100 h-2 rounded-lg cursor-pointer"
+            className="w-full accent-[#C9A15A] bg-gray-100 h-2 rounded-lg cursor-pointer"
           />
           <div className="flex justify-between text-[10px] text-slate-400 font-medium">
             <span>الحد الأدنى المقترح (10%)</span>
@@ -75,7 +75,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
         <div className="space-y-2">
           <div className="flex justify-between text-xs font-bold text-slate-700">
             <span>مدة القرض والتمويل المستهدف</span>
-            <span className="text-rose-600 font-black">{tenureYears} سنة ({totalMonths} شهر)</span>
+            <span className="text-[#C9A15A] font-black">{tenureYears} سنة ({totalMonths} شهر)</span>
           </div>
           <input 
             type="range" 
@@ -83,7 +83,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
             max={isCar ? 7 : 30} 
             value={tenureYears}
             onChange={(e) => setTenureYears(Number(e.target.value))}
-            className="w-full accent-rose-500 bg-gray-100 h-2 rounded-lg cursor-pointer"
+            className="w-full accent-[#C9A15A] bg-gray-100 h-2 rounded-lg cursor-pointer"
           />
           <div className="flex justify-between text-[10px] text-slate-400 font-medium">
             <span>سنة واحدة</span>
@@ -95,7 +95,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
         <div className="space-y-2">
           <div className="flex justify-between text-xs font-bold text-slate-700">
             <span>معدل الفائدة السنوي المتوقع</span>
-            <span className="text-rose-600 font-black">{interestRate}%</span>
+            <span className="text-[#C9A15A] font-black">{interestRate}%</span>
           </div>
           <input 
             type="range" 
@@ -104,15 +104,15 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
             step={0.1}
             value={interestRate}
             onChange={(e) => setInterestRate(Number(e.target.value))}
-            className="w-full accent-rose-500 bg-gray-100 h-2 rounded-lg cursor-pointer"
+            className="w-full accent-[#C9A15A] bg-gray-100 h-2 rounded-lg cursor-pointer"
           />
         </div>
 
         {/* Apply check */}
         <div className="pt-2">
           {eligibleStatus === 'success' ? (
-            <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-xl flex items-center gap-3 text-xs text-emerald-800 font-bold">
-              <CheckCircle2 size={18} className="text-emerald-600 shrink-0" />
+            <div className="bg-[#C9A15A]/10 border border-[#C9A15A]/25 p-4 rounded-xl flex items-center gap-3 text-xs text-[#0D3B46] font-bold">
+              <CheckCircle2 size={18} className="text-[#0D3B46] shrink-0" />
               <div>
                 <span>تهانينا! تم توليد تقرير دراسية التأهيل المبدئ السريع لدعم معاملتك.</span>
               </div>
@@ -133,8 +133,8 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
       <div className="space-y-6">
         <div className="bg-white border border-gray-150 p-6 rounded-2xl shadow-sm text-center space-y-4">
           <span className="text-[11px] font-bold text-slate-400 block uppercase tracking-widest">القسط الشهري المتوقع</span>
-          <div className="inline-block py-3 px-6 bg-rose-500/5 rounded-3xl border border-rose-100">
-            <h3 className="text-3xl sm:text-4xl font-extrabold text-rose-600">
+          <div className="inline-block py-3 px-6 bg-[#C9A15A]/5 rounded-3xl border border-[#C9A15A]/25">
+            <h3 className="text-3xl sm:text-4xl font-extrabold text-[#C9A15A]">
               {Math.round(monthlyInstallment).toLocaleString('en-US')}{' '}
               <span className="text-sm font-semibold">{currency} / شهر</span>
             </h3>
@@ -145,7 +145,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
         </div>
 
         <div className="bg-slate-900 text-white p-6 rounded-2xl space-y-4 shadow-xl border border-slate-800">
-          <h4 className="font-extrabold text-xs text-rose-500 pb-3 border-b border-slate-800">تفاصيل وهيكلية تكاليف التمويل:</h4>
+          <h4 className="font-extrabold text-xs text-[#C9A15A] pb-3 border-b border-slate-800">تفاصيل وهيكلية تكاليف التمويل:</h4>
           <div className="space-y-3.5 text-xs font-semibold" dir="rtl">
             <div className="flex justify-between pb-1">
               <span className="text-slate-400">سعر الإعلان الإجمالي</span>
@@ -157,7 +157,7 @@ export function CalculatorTab({ item }: CalculatorTabProps) {
             </div>
             <div className="flex justify-between pb-1">
               <span className="text-slate-400">قيمة أصل القرض المستحق</span>
-              <span className="text-rose-450 font-bold">{formatValue(loanPrincipal)}</span>
+              <span className="text-[#C9A15A] font-bold">{formatValue(loanPrincipal)}</span>
             </div>
             <div className="flex justify-between pb-1 border-b border-slate-800/80 pb-3">
               <span className="text-slate-400">إجمالي الأرباح / الفوائد المقدرة</span>

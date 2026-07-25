@@ -54,7 +54,7 @@ export function BrandModelsPage() {
   return (
     <div className="absolute inset-0 z-50 bg-[var(--color-bg-secondary)] flex flex-col animate-in fade-in slide-in-from-right-8 duration-300">
       {/* Header */}
-      <div className="bg-[#30587b] text-white flex items-center justify-center py-3 relative shadow-sm shrink-0">
+      <div className="bg-[#0D3B46] text-white flex items-center justify-center py-3 relative shadow-sm shrink-0">
         <button 
           onClick={() => navigate(-1)}
           className="absolute right-4 text-white hover:bg-white/10 p-1 rounded-full transition-colors"
@@ -87,7 +87,7 @@ export function BrandModelsPage() {
                     </div>
                     <div className="flex flex-col items-start">
                       <span 
-                        className={`text-[15px] ${idx === 0 ? 'font-bold text-[#30587b]' : 'font-semibold text-gray-800'}`}
+                        className={`text-[15px] ${idx === 0 ? 'font-bold text-[#0D3B46]' : 'font-semibold text-gray-800'}`}
                       >
                         {model.ar}
                       </span>
@@ -99,7 +99,7 @@ export function BrandModelsPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-gray-400 group-hover:text-gray-600 transition-colors">
-                    <span className={`text-[13px] font-medium px-2 py-0.5 rounded-full ${idx === 0 ? 'bg-blue-50 text-[#30587b]' : 'bg-gray-100 text-gray-500'}`} dir="ltr">{model.count} إعلان</span>
+                    <span className={`text-[13px] font-medium px-2 py-0.5 rounded-full ${idx === 0 ? 'bg-[#C9A15A]/10 text-[#0D3B46]' : 'bg-gray-100 text-gray-500'}`} dir="ltr">{model.count} إعلان</span>
                     <ChevronLeft size={16} className="opacity-60" />
                   </div>
                 </button>

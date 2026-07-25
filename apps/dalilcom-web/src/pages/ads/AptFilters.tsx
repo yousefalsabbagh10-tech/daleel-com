@@ -7,16 +7,16 @@ export function AptFilters() {
   const { filters, updateFilter } = useAdsFilter();
 
   return (
-    <div className="p-4 bg-purple-50/40 rounded-xl space-y-4 border border-purple-100/65 animate-in slide-in-from-top-2 duration-300">
+    <div className="p-4 bg-[#C9A15A]/10 rounded-xl space-y-4 border border-[#C9A15A]/30 animate-in slide-in-from-top-2 duration-300">
       {/* Toggle Apt Type */}
-      <div className="flex bg-white/80 p-1 rounded-xl border border-purple-100/60 gap-1 shadow-xs">
+      <div className="flex bg-white/80 p-1 rounded-xl border border-[#C9A15A]/25/60 gap-1 shadow-xs">
         <button
           type="button"
           onClick={() => updateFilter('isHotelApt', false)}
           className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer text-center ${
             !filters.isHotelApt 
-              ? 'bg-purple-600 text-white shadow-sm font-extrabold' 
-              : 'text-gray-550 hover:bg-purple-50/50'
+              ? 'bg-[#0D3B46] text-white shadow-sm font-extrabold' 
+              : 'text-gray-550 hover:bg-[#C9A15A]/10/50'
           }`}
         >
           🏢 شقة سكنية عادية
@@ -29,8 +29,8 @@ export function AptFilters() {
           }}
           className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer text-center ${
             filters.isHotelApt 
-              ? 'bg-purple-600 text-white shadow-sm font-extrabold' 
-              : 'text-gray-550 hover:bg-purple-50/50'
+              ? 'bg-[#0D3B46] text-white shadow-sm font-extrabold' 
+              : 'text-gray-550 hover:bg-[#C9A15A]/10/50'
           }`}
         >
           🛋️ شقق مفروشة فندقية للإيجار
@@ -39,7 +39,7 @@ export function AptFilters() {
 
       {!filters.isHotelApt ? (
         <>
-          <span className="text-[10px] font-bold text-purple-750 bg-purple-100 px-2.5 py-0.5 rounded-full block w-fit">تفاصيل وتصنيفات الشقة المتقدمة 🏢</span>
+          <span className="text-[10px] font-bold text-[#0D3B46] bg-[#C9A15A]/20 px-2.5 py-0.5 rounded-full block w-fit">تفاصيل وتصنيفات الشقة المتقدمة 🏢</span>
           
           {/* Rooms */}
           <div className="space-y-1.5">
@@ -52,7 +52,7 @@ export function AptFilters() {
                   type="button"
                   className={`py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     filters.rooms === opt 
-                      ? 'bg-purple-600 text-white font-black shadow-sm' 
+                      ? 'bg-[#0D3B46] text-white font-black shadow-sm' 
                       : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
                   }`}
                 >
@@ -73,7 +73,7 @@ export function AptFilters() {
                   type="button"
                   className={`py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     filters.bathrooms === opt 
-                      ? 'bg-purple-600 text-white font-black shadow-sm' 
+                      ? 'bg-[#0D3B46] text-white font-black shadow-sm' 
                       : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
                   }`}
                 >
@@ -134,7 +134,7 @@ export function AptFilters() {
                   type="button"
                   className={`flex-1 py-1 text-[11px] font-bold rounded-md transition-all cursor-pointer ${
                     filters.aptFurnished === fur
-                      ? 'bg-purple-100 text-purple-900 font-extrabold'
+                      ? 'bg-[#C9A15A]/20 text-[#0D3B46] font-extrabold'
                       : 'text-gray-550 hover:text-gray-850'
                   }`}
                 >

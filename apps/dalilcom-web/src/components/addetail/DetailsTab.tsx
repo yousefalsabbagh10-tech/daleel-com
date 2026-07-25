@@ -61,7 +61,7 @@ export function DetailsTab({ item }: DetailsTabProps) {
               onClick={() => setViewingVideo(prev => !prev)}
               className={cn(
                 'px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-1.5 flex-row-reverse',
-                viewingVideo ? 'bg-rose-600 text-white border-rose-600' : 'bg-rose-50 text-rose-700 border-rose-100',
+                viewingVideo ? 'bg-[#0D3B46] text-white border-[#C9A15A]' : 'bg-[#C9A15A]/10 text-[#0D3B46] border-[#C9A15A]/25',
               )}
             >
               <Video size={13} />
@@ -73,7 +73,7 @@ export function DetailsTab({ item }: DetailsTabProps) {
               key={idx}
               type="button"
               onClick={() => setCurrentSlideIdx(idx)}
-              className={cn('w-12 h-12 rounded-xl overflow-hidden border-2 shrink-0', idx === currentSlideIdx ? 'border-rose-500' : 'border-gray-200 opacity-70')}
+              className={cn('w-12 h-12 rounded-xl overflow-hidden border-2 shrink-0', idx === currentSlideIdx ? 'border-[#C9A15A]' : 'border-gray-200 opacity-70')}
             >
               <img src={img} className="w-full h-full object-cover" alt={`صورة ${idx + 1}`} />
             </button>
@@ -94,15 +94,15 @@ export function DetailsTab({ item }: DetailsTabProps) {
         <div className="space-y-2">
           <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight">{item.title}</h3>
           <div className="flex items-center gap-2 text-slate-500 font-semibold text-xs mt-1">
-            <MapPin size={15} className="text-rose-500 shrink-0" />
+            <MapPin size={15} className="text-[#C9A15A] shrink-0" />
             <span>{item.location}</span>
           </div>
         </div>
 
-        <div className="p-5 bg-rose-50/50 rounded-2xl border border-rose-100 flex items-center justify-between">
+        <div className="p-5 bg-[#C9A15A]/10 rounded-2xl border border-[#C9A15A]/25 flex items-center justify-between">
           <div className="flex flex-col">
             <span className="text-[11px] text-slate-400 font-bold mb-1">السعر المطلوب</span>
-            <span className="text-2xl font-black text-rose-600">{price}</span>
+            <span className="text-2xl font-black text-[#C9A15A]">{price}</span>
           </div>
           {item.isFeatured && (
             <span className="bg-amber-100 text-amber-700 border border-amber-200 rounded-full px-3 py-1 text-[11px] font-bold">
@@ -123,7 +123,7 @@ export function DetailsTab({ item }: DetailsTabProps) {
           <div className="grid grid-cols-2 gap-3">
             {item.details.map((detail, index) => (
               <div key={index} className="p-3 bg-white border border-gray-200 rounded-xl flex items-center gap-2.5 shadow-sm">
-                <CheckCircle size={14} className="text-rose-500 shrink-0" />
+                <CheckCircle size={14} className="text-[#C9A15A] shrink-0" />
                 <span className="text-xs font-bold text-slate-800">{detail}</span>
               </div>
             ))}
@@ -143,7 +143,7 @@ export function DetailsTab({ item }: DetailsTabProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <a
             href={callPhone ? `tel:${callPhone}` : undefined}
-            className={cn('h-12 rounded-xl font-bold text-xs flex items-center justify-center gap-2', callPhone ? 'bg-blue-600 hover:bg-blue-700 text-white' : 'bg-slate-100 text-slate-400 pointer-events-none')}
+            className={cn('h-12 rounded-xl font-bold text-xs flex items-center justify-center gap-2', callPhone ? 'bg-[#0D3B46] hover:bg-[#0D3B46] text-white' : 'bg-slate-100 text-slate-400 pointer-events-none')}
           >
             <Phone size={16} />
             اتصال
@@ -152,7 +152,7 @@ export function DetailsTab({ item }: DetailsTabProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noreferrer"
-            className={cn('h-12 rounded-xl font-bold text-xs flex items-center justify-center gap-2', whatsappUrl ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-slate-100 text-slate-400 pointer-events-none')}
+            className={cn('h-12 rounded-xl font-bold text-xs flex items-center justify-center gap-2', whatsappUrl ? 'bg-[#0D3B46] hover:bg-[#0D3B46] text-white' : 'bg-slate-100 text-slate-400 pointer-events-none')}
           >
             <MessageCircle size={16} />
             تواصل واتساب

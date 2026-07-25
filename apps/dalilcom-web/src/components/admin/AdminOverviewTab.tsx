@@ -30,10 +30,10 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
       {/* Stats cards container */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { title: 'إجمالي الإعلانات', value: totalCountAds, desc: 'إعلانات مدرجة نشطة', color: 'text-blue-600', bg: 'bg-blue-500/5', icon: FileText },
-          { title: 'الإعلانات المميزة', value: totalFeaturedAds, desc: 'ترويج في الصفحة الأولى', color: 'text-rose-600', bg: 'bg-rose-500/5', icon: Sparkles },
-          { title: 'ماركات السيارات النشطة', value: uniqueCarBrandsCount, desc: 'علامة تجارية مدرجة', color: 'text-emerald-600', bg: 'bg-emerald-500/5', icon: CarFront },
-          { title: 'الفئات العقارية الأساسية', value: uniqueRealEstateCats, desc: 'تقسيمات ثنائية المستوى', color: 'text-indigo-600', bg: 'bg-indigo-50/5', icon: Building2 },
+          { title: 'إجمالي الإعلانات', value: totalCountAds, desc: 'إعلانات مدرجة نشطة', color: 'text-[#0D3B46]', bg: 'bg-[#C9A15A]/5', icon: FileText },
+          { title: 'الإعلانات المميزة', value: totalFeaturedAds, desc: 'ترويج في الصفحة الأولى', color: 'text-[#C9A15A]', bg: 'bg-[#C9A15A]/5', icon: Sparkles },
+          { title: 'ماركات السيارات النشطة', value: uniqueCarBrandsCount, desc: 'علامة تجارية مدرجة', color: 'text-[#0D3B46]', bg: 'bg-[#C9A15A]/5', icon: CarFront },
+          { title: 'الفئات العقارية الأساسية', value: uniqueRealEstateCats, desc: 'تقسيمات ثنائية المستوى', color: 'text-[#0D3B46]', bg: 'bg-[#C9A15A]/10/5', icon: Building2 },
         ].map((s, idx) => (
           <div key={idx} className="bg-white border border-gray-150 p-6 rounded-2xl flex items-center justify-between shadow-sm hover:border-slate-300 transition-all">
             <div className="space-y-1">
@@ -57,9 +57,9 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
             <div className="flex items-center justify-between pb-5 border-b border-gray-100 mb-4">
               <div className="text-right">
                 <h4 className="font-extrabold text-sm text-slate-800">توزيع الإعلانات جغرافياً حسب المحافظات السورية 🇸🇾</h4>
-                <span className="text-[10px] bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full font-bold">الإحصائيات فورية وتفاعلية</span>
+                <span className="text-[10px] bg-[#C9A15A]/10 text-[#0D3B46] px-3 py-1 rounded-full font-bold">الإحصائيات فورية وتفاعلية</span>
               </div>
-              <BarChart3 size={18} className="text-indigo-600" />
+              <BarChart3 size={18} className="text-[#0D3B46]" />
             </div>
           </div>
 
@@ -73,13 +73,13 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
                 <YAxis tick={{ fontSize: 11, fill: '#475569' }} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#1e293b', borderRadius: '12px', border: 'none', color: '#fff', fontSize: '11px', fontWeight: 'bold', direction: 'rtl' }}
-                  itemStyle={{ color: '#fb7185' }}
+                  itemStyle={{ color: '#C9A15A' }}
                 />
-                <Bar dataKey="الإعلانات" fill="#ef4444" radius={[8, 8, 0, 0]}>
+                <Bar dataKey="الإعلانات" fill="#C9A15A" radius={[8, 8, 0, 0]}>
                   {syrCities.map((_, index) => (
                     <Cell 
                       key={`cell-${index}`} 
-                      fill={index % 2 === 0 ? '#ef4444' : '#6366f1'} 
+                      fill={index % 2 === 0 ? '#C9A15A' : '#0D3B46'} 
                     />
                   ))}
                 </Bar>
@@ -96,7 +96,7 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
                 <h4 className="font-extrabold text-sm text-slate-800">مزيج التصنيفات النشطة</h4>
                 <span className="text-[10px] text-slate-400 font-bold">مقارنة بين العقارات والسيارات</span>
               </div>
-              <Activity size={18} className="text-rose-500" />
+              <Activity size={18} className="text-[#C9A15A]" />
             </div>
           </div>
 
@@ -113,19 +113,19 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#0f172a', borderRadius: '8px', border: 'none', color: '#fff', fontSize: '10px' }}
                 />
-                <Area type="monotone" dataKey="السيارات" stroke="#ef4444" fill="#fee2e2" strokeWidth={3} />
-                <Area type="monotone" dataKey="العقارات" stroke="#6366f1" fill="#e0e7ff" strokeWidth={3} />
+                <Area type="monotone" dataKey="السيارات" stroke="#C9A15A" fill="#fee2e2" strokeWidth={3} />
+                <Area type="monotone" dataKey="العقارات" stroke="#0D3B46" fill="#e0e7ff" strokeWidth={3} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
 
           <div className="mt-4 pt-4 border-t border-slate-50 flex justify-around text-xs font-bold text-slate-700">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-rose-500" />
+              <div className="w-3 h-3 rounded-full bg-[#C9A15A]" />
               <span>سيارات ({ads.filter(a => a.category === 'cars').length})</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-indigo-500" />
+              <div className="w-3 h-3 rounded-full bg-[#C9A15A]" />
               <span>عقارات ({ads.filter(a => a.category === 'real-estate').length})</span>
             </div>
           </div>
@@ -142,13 +142,13 @@ export function AdminOverviewTab({ ads }: AdminOverviewTabProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 text-xs font-semibold text-slate-600">
           <div className="p-3 bg-slate-50 border border-gray-100 rounded-xl flex items-center justify-between">
             <span>إجمالي القيمة التقديرية لكافة الإعلانات النشطة:</span>
-            <span className="text-rose-600 font-extrabold">
+            <span className="text-[#C9A15A] font-extrabold">
               {ads.reduce((sum, a) => sum + a.price, 0).toLocaleString('en-US')} ل.س / دولار
             </span>
           </div>
           <div className="p-3 bg-slate-50 border border-gray-100 rounded-xl flex items-center justify-between">
             <span>حالة الاتصال والخدمات السحابية:</span>
-            <span className="text-emerald-600 font-extrabold">عمليات نشطة ومؤمنة بالكامل</span>
+            <span className="text-[#0D3B46] font-extrabold">عمليات نشطة ومؤمنة بالكامل</span>
           </div>
         </div>
       </div>

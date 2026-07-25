@@ -25,7 +25,7 @@ export function FilterDrawer() {
 
       <div className="absolute inset-y-0 left-0 right-0 md:left-auto md:right-0 w-full md:max-w-md bg-white shadow-2xl flex flex-col h-full overflow-hidden">
         {/* Sliding Panel Header */}
-        <div className="p-4 bg-[#1e3c5a] text-white flex items-center justify-between shrink-0">
+        <div className="p-4 bg-[#0D3B46] text-white flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2">
             {activeSubPanel ? (
               <button 
@@ -50,7 +50,7 @@ export function FilterDrawer() {
           {!activeSubPanel && (
             <button 
               onClick={resetFilters}
-              className="text-xs font-bold text-yellow-300 hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
+              className="text-xs font-bold text-[#C9A15A] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
             >
               <RefreshCw size={13} />
               إعادة تهيئة
@@ -70,8 +70,8 @@ export function FilterDrawer() {
                 <div className="grid grid-cols-3 gap-1.5 p-1 bg-gray-100 rounded-xl">
                   {[
                     { id: 'all', title: 'الكل' },
-                    { id: 'real-estate', title: 'عقارات', color: 'text-purple-700' },
-                    { id: 'cars', title: 'سيارات', color: 'text-red-600' }
+                    { id: 'real-estate', title: 'عقارات', color: 'text-[#0D3B46]' },
+                    { id: 'cars', title: 'سيارات', color: 'text-[#C9A15A]' }
                   ].map(cat => (
                     <button
                       key={cat.id}
@@ -97,7 +97,7 @@ export function FilterDrawer() {
                     value={filters.query}
                     onChange={(e) => updateFilter('query', e.target.value)}
                     placeholder="مثال: شقة دوبلكس، النترا..."
-                    className="w-full h-11 pr-10 pl-4 text-xs bg-white rounded-xl border border-gray-200 outline-none focus:border-[#1e3c5a] focus:ring-1 focus:ring-[#1e3c5a]/20 transition-all text-right font-medium"
+                    className="w-full h-11 pr-10 pl-4 text-xs bg-white rounded-xl border border-gray-200 outline-none focus:border-[#0D3B46] focus:ring-1 focus:ring-[#0D3B46]/20 transition-all text-right font-medium"
                   />
                   <Search size={14} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
                 </div>
@@ -111,14 +111,14 @@ export function FilterDrawer() {
                     type="number"
                     value={filters.maxPrice}
                     onChange={(e) => updateFilter('maxPrice', e.target.value === '' ? '' : Number(e.target.value))}
-                    className="w-full h-11 pl-2 text-xs rounded-xl border border-gray-200 text-center outline-none bg-white focus:border-[#1e3c5a] font-semibold"
+                    className="w-full h-11 pl-2 text-xs rounded-xl border border-gray-200 text-center outline-none bg-white focus:border-[#0D3B46] font-semibold"
                     placeholder="أقصى"
                   />
                   <input 
                     type="number"
                     value={filters.minPrice}
                     onChange={(e) => updateFilter('minPrice', e.target.value === '' ? '' : Number(e.target.value))}
-                    className="w-full h-11 pl-2 text-xs rounded-xl border border-gray-200 text-center outline-none bg-white focus:border-[#1e3c5a] font-semibold"
+                    className="w-full h-11 pl-2 text-xs rounded-xl border border-gray-200 text-center outline-none bg-white focus:border-[#0D3B46] font-semibold"
                     placeholder="أدنى"
                   />
                 </div>
@@ -130,10 +130,10 @@ export function FilterDrawer() {
                 <button
                   type="button"
                   onClick={() => setActiveSubPanel('location')}
-                  className="w-full h-11 px-3 py-2 flex items-center justify-between text-right text-[14px] bg-white text-gray-850 rounded-xl border border-gray-200 shadow-sm hover:border-[#1e3c5a]/50 transition-all cursor-pointer font-semibold"
+                  className="w-full h-11 px-3 py-2 flex items-center justify-between text-right text-[14px] bg-white text-gray-850 rounded-xl border border-gray-200 shadow-sm hover:border-[#0D3B46]/50 transition-all cursor-pointer font-semibold"
                 >
                   <span className="truncate">{filters.location || 'الكل / جميع المدن الإدارية'}</span>
-                  <MapPin size={16} className="text-[#1e3c5a]" />
+                  <MapPin size={16} className="text-[#0D3B46]" />
                 </button>
               </div>
 
@@ -148,7 +148,7 @@ export function FilterDrawer() {
         <div className="p-4 bg-white border-t border-gray-100 flex items-center gap-3 shrink-0">
           <button 
             onClick={() => setIsFilterPanelOpen(false)}
-            className="flex-1 py-3 bg-[#1e3c5a] hover:bg-opacity-95 text-white rounded-xl text-center font-bold text-xs shadow-md cursor-pointer"
+            className="flex-1 py-3 bg-[#0D3B46] hover:bg-opacity-95 text-white rounded-xl text-center font-bold text-xs shadow-md cursor-pointer"
           >
             تحديث وتطبيق التصفية
           </button>

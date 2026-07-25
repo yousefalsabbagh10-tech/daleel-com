@@ -78,10 +78,10 @@ export function SearchableSelect({
       <button
         type="button"
         onClick={toggleDropdown}
-        className="w-full h-11 px-3 py-2 flex items-center justify-between text-right text-[14px] bg-white text-gray-800 rounded-xl border border-gray-200 shadow-sm hover:border-[#1e3c5a]/50 focus:outline-none focus:ring-2 focus:ring-[#1e3c5a]/20 focus:border-[#1e3c5a] transition-all cursor-pointer font-sans"
+        className="w-full h-11 px-3 py-2 flex items-center justify-between text-right text-[14px] bg-white text-gray-800 rounded-xl border border-gray-200 shadow-sm hover:border-[#0D3B46]/50 focus:outline-none focus:ring-2 focus:ring-[#0D3B46]/20 focus:border-[#0D3B46] transition-all cursor-pointer font-sans"
       >
         <span className="truncate font-semibold text-gray-800">{displayLabel}</span>
-        <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#1e3c5a]' : ''}`} />
+        <ChevronDown size={18} className={`text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#0D3B46]' : ''}`} />
       </button>
 
       {/* Dropdown Menu */}
@@ -96,9 +96,9 @@ export function SearchableSelect({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="ابحث..."
-                className="w-full h-9 pr-8 pl-3 text-xs bg-white rounded-lg border border-gray-200 focus:outline-none focus:border-[#1e3c5a] focus:ring-1 focus:ring-[#1e3c5a] transition-all text-right font-medium"
+                className="w-full h-9 pr-8 pl-3 text-xs bg-white rounded-lg border border-gray-200 focus:outline-none focus:border-[#0D3B46] focus:ring-1 focus:ring-[#0D3B46] transition-all text-right font-medium"
               />
-              <Search size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#1e3c5a]" />
+              <Search size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#0D3B46]" />
             </div>
           </div>
 
@@ -114,12 +114,12 @@ export function SearchableSelect({
                     onClick={() => handleSelect(opt.value)}
                     className={`w-full px-3 py-2.5 text-right text-xs font-semibold flex items-center justify-between transition-colors cursor-pointer ${
                       isSelected
-                        ? 'bg-[#1e3c5a]/10 text-[#1e3c5a]'
+                        ? 'bg-[#0D3B46]/10 text-[#0D3B46]'
                         : 'text-gray-700 hover:bg-gray-50'
                     }`}
                   >
                     <span>{opt.label}</span>
-                    {isSelected && <Check size={14} className="text-[#1e3c5a]" />}
+                    {isSelected && <Check size={14} className="text-[#0D3B46]" />}
                   </button>
                 );
               })

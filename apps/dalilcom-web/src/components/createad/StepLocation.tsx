@@ -27,7 +27,7 @@ export function StepLocation({
 
   return (
     <div className="bg-white p-6 rounded-3xl border border-gray-150 space-y-4 text-right animate-fadeIn" dir="rtl">
-      <span className="text-xs font-bold text-[#1e3c5a] block">تأكيد المنطقة الجغرافية (سوريا)</span>
+      <span className="text-xs font-bold text-[#0D3B46] block">تأكيد المنطقة الجغرافية (سوريا)</span>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div className="space-y-1">
@@ -70,7 +70,7 @@ export function StepLocation({
           <button
             type="button"
             onClick={openMap}
-            className="w-full sm:w-auto px-6 py-2.5 bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-2.5 bg-[#C9A15A]/10 text-[#0D3B46] hover:bg-[#C9A15A]/20 border border-[#C9A15A]/40 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center justify-center gap-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>

@@ -41,7 +41,7 @@ export function ReportsTab({ reports, onDeleteReport, currencySymbol = 'ل.س' }
               <div>
                 <div className="flex justify-between items-start mb-2 pr-6">
                   <span className={`text-[9px] font-black px-2.5 py-0.5 rounded-full ${
-                    rep.type === 'cars' ? 'bg-rose-50 text-rose-600' : 'bg-indigo-50 text-indigo-600'
+                    rep.type === 'cars' ? 'bg-[#C9A15A]/10 text-[#C9A15A]' : 'bg-[#C9A15A]/10 text-[#0D3B46]'
                   }`}>
                     {rep.type === 'cars' ? 'تقييم مركبة' : 'تقييم عقاري'}
                   </span>
@@ -55,7 +55,7 @@ export function ReportsTab({ reports, onDeleteReport, currencySymbol = 'ل.س' }
                 <span className="text-[10px] text-slate-400 font-bold">{rep.date}</span>
                 <div className="text-xs font-black text-slate-800 flex items-center gap-1">
                   <span>متوسط التخمين:</span>
-                  <span className="text-rose-500 font-bold font-mono">
+                  <span className="text-[#C9A15A] font-bold font-mono">
                     {rep.estimatedPrice.toLocaleString()} {currencySymbol}
                   </span>
                 </div>
@@ -64,7 +64,7 @@ export function ReportsTab({ reports, onDeleteReport, currencySymbol = 'ل.س' }
               {/* Delete trigger */}
               <button
                 onClick={(e) => onDeleteReport(rep.id, e)}
-                className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 p-1.5 bg-rose-50 hover:bg-rose-100 rounded-lg text-rose-500 transition-opacity"
+                className="absolute top-3 left-3 opacity-0 group-hover:opacity-100 p-1.5 bg-[#C9A15A]/10 hover:bg-[#C9A15A]/20 rounded-lg text-[#C9A15A] transition-opacity"
                 title="حذف التقرير"
               >
                 <Trash2 size={13} />

@@ -34,7 +34,7 @@ export function AdminAdsTab({
             placeholder="ابحث برقم الإعلان أو العنوان والمدينة..." 
             value={adQuery}
             onChange={(e) => setAdQuery(e.target.value)}
-            className="w-full h-11 pr-11 pl-4 bg-slate-50 border border-gray-200 rounded-xl outline-none focus:bg-white focus:border-rose-500 transition-all text-xs text-slate-800"
+            className="w-full h-11 pr-11 pl-4 bg-slate-50 border border-gray-200 rounded-xl outline-none focus:bg-white focus:border-[#C9A15A] transition-all text-xs text-slate-800"
           />
           <Search className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
         </div>
@@ -70,7 +70,7 @@ export function AdminAdsTab({
                     <div className="space-y-1">
                       <h4 className="font-bold text-slate-900 line-clamp-1">{ad.title}</h4>
                       <span className={`inline-block text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${
-                        ad.category === 'cars' ? 'bg-rose-50 text-rose-600 border border-rose-100' : 'bg-indigo-50 text-indigo-600 border border-indigo-100'
+                        ad.category === 'cars' ? 'bg-[#C9A15A]/10 text-[#C9A15A] border border-[#C9A15A]/25' : 'bg-[#C9A15A]/10 text-[#0D3B46] border border-[#C9A15A]/25'
                       }`}>
                         {ad.category === 'cars' ? 'السيارات' : 'العقارات'}
                       </span>
@@ -79,7 +79,7 @@ export function AdminAdsTab({
                 </td>
                 <td className="p-4">
                   <div className="space-y-1">
-                    <span className="font-black text-rose-600 text-[14px]">
+                    <span className="font-black text-[#C9A15A] text-[14px]">
                       {ad.price.toLocaleString()} {ad.currency}
                     </span>
                     <p className="text-slate-500 text-[10px] font-semibold">{ad.location}</p>
@@ -104,7 +104,7 @@ export function AdminAdsTab({
                 <td className="p-4 pl-6 text-center">
                   <button 
                     onClick={() => onDeleteAd(ad.id, ad.title)}
-                    className="w-8 h-8 rounded-lg bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 flex items-center justify-center outline-none transition-colors inline-flex cursor-pointer"
+                    className="w-8 h-8 rounded-lg bg-[#C9A15A]/10 hover:bg-[#C9A15A]/20 text-[#C9A15A] border border-[#C9A15A]/30 flex items-center justify-center outline-none transition-colors inline-flex cursor-pointer"
                     title="حذف الإعلان نهائياً"
                   >
                     <Trash2 size={15} />

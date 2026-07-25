@@ -39,7 +39,7 @@ export function AffordabilityCalculator() {
         {/* Left Input Pillar */}
         <div className="lg:col-span-7 bg-white border border-gray-200 rounded-3xl p-5 sm:p-6 shadow-sm space-y-5">
           <div className="flex items-center justify-between border-b border-gray-100 pb-3">
-            <span className="font-extrabold text-xs text-indigo-700 flex items-center gap-1 bg-indigo-50 px-2.5 py-1 rounded-lg">
+            <span className="font-extrabold text-xs text-[#0D3B46] flex items-center gap-1 bg-[#C9A15A]/10 px-2.5 py-1 rounded-lg">
               <Settings2 size={13} />
               معايير القدرة والشروط المالية
             </span>
@@ -48,7 +48,7 @@ export function AffordabilityCalculator() {
                 <button
                   key={unit}
                   onClick={() => setCurrency(unit as any)}
-                  className={`px-3 py-1 text-xs font-black rounded-md ${currency === unit ? 'bg-indigo-600 text-white' : 'text-slate-600'}`}
+                  className={`px-3 py-1 text-xs font-black rounded-md ${currency === unit ? 'bg-[#0D3B46] text-white' : 'text-slate-600'}`}
                 >
                   {unit}
                 </button>
@@ -70,7 +70,7 @@ export function AffordabilityCalculator() {
                 step={currency === '$' ? 100 : 500000}
                 value={monthlySalary}
                 onChange={(e) => setMonthlySalary(Number(e.target.value))}
-                className="w-full accent-indigo-600"
+                className="w-full accent-[#0D3B46]"
               />
             </div>
 
@@ -87,7 +87,7 @@ export function AffordabilityCalculator() {
                 step={currency === '$' ? 50 : 250000}
                 value={otherMonthlyDebts}
                 onChange={(e) => setOtherMonthlyDebts(Number(e.target.value))}
-                className="w-full accent-indigo-600"
+                className="w-full accent-[#0D3B46]"
               />
             </div>
 
@@ -104,7 +104,7 @@ export function AffordabilityCalculator() {
                 step={currency === '$' ? 1000 : 5000000}
                 value={cashDownpayment}
                 onChange={(e) => setCashDownpayment(Number(e.target.value))}
-                className="w-full accent-indigo-600"
+                className="w-full accent-[#0D3B46]"
               />
             </div>
 
@@ -117,7 +117,7 @@ export function AffordabilityCalculator() {
                   step="0.1"
                   value={affordabilityInterestRate}
                   onChange={(e) => setAffordabilityInterestRate(Number(e.target.value))}
-                  className="h-10 w-full px-3 text-xs border border-gray-200 bg-slate-50 rounded-xl font-bold font-mono text-center outline-none focus:border-indigo-500"
+                  className="h-10 w-full px-3 text-xs border border-gray-200 bg-slate-50 rounded-xl font-bold font-mono text-center outline-none focus:border-[#C9A15A]"
                 />
               </div>
 
@@ -128,7 +128,7 @@ export function AffordabilityCalculator() {
                   type="number"
                   value={affordabilityTermYears}
                   onChange={(e) => setAffordabilityTermYears(Number(e.target.value))}
-                  className="h-10 w-full px-3 text-xs border border-gray-200 bg-slate-50 rounded-xl font-bold font-mono text-center outline-none focus:border-indigo-500"
+                  className="h-10 w-full px-3 text-xs border border-gray-200 bg-slate-50 rounded-xl font-bold font-mono text-center outline-none focus:border-[#C9A15A]"
                 />
               </div>
             </div>
@@ -140,7 +140,7 @@ export function AffordabilityCalculator() {
           <div className="bg-slate-900 border border-slate-800 text-white rounded-3xl p-5 sm:p-6 shadow-xl space-y-4">
             <span className="text-[10px] text-slate-400 font-extrabold block">القدرة الشرائية القصوى المقدرة لك</span>
             <div className="space-y-1">
-              <h2 className="text-3xl font-black text-emerald-400 font-mono tracking-tight leading-none">
+              <h2 className="text-3xl font-black text-[#C9A15A] font-mono tracking-tight leading-none">
                 {maxHomePurchaseValue.toLocaleString()} {currency}
               </h2>
               <span className="text-[10px] text-slate-400 block font-semibold">مجموع قيمة العقار أو السيارة الممكن شراؤها بالكامل</span>
@@ -157,15 +157,15 @@ export function AffordabilityCalculator() {
               </div>
               <div className="h-px bg-white/10" />
               <div className="flex justify-between items-center text-slate-300">
-                <span className="font-mono text-emerald-300">{maxTotalAllowableInstallment.toLocaleString()} {currency}/شهر</span>
+                <span className="font-mono text-[#C9A15A]">{maxTotalAllowableInstallment.toLocaleString()} {currency}/شهر</span>
                 <span className="text-[10px] text-slate-400">القسط الشهري الأقصى المسموح:</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-4 space-y-2">
-            <span className="font-extrabold text-emerald-800 text-xs flex items-center gap-1">
-              <ShieldCheck size={14} className="text-emerald-600" />
+          <div className="bg-[#C9A15A]/10 border border-[#C9A15A]/25 rounded-3xl p-4 space-y-2">
+            <span className="font-extrabold text-[#0D3B46] text-xs flex items-center gap-1">
+              <ShieldCheck size={14} className="text-[#0D3B46]" />
               الضوابط والتحليلات المالية
             </span>
             <p className="text-[11px] text-slate-600 leading-relaxed font-semibold">

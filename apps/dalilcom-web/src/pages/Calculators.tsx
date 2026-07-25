@@ -16,7 +16,7 @@ export function CalculatorsPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-gray-100 pb-5 gap-3">
         <div className="flex items-center gap-3 text-right">
-          <div className="bg-indigo-50 p-2.5 rounded-2xl text-indigo-600">
+          <div className="bg-[#C9A15A]/10 p-2.5 rounded-2xl text-[#0D3B46]">
             <Calculator size={24} className="stroke-[2.5]" />
           </div>
           <div>

@@ -20,7 +20,7 @@ export function CarFilters() {
 
   return (
     <div className="space-y-4 animate-in fade-in duration-300">
-      <h4 className="font-bold text-xs text-red-500 tracking-wider">مواصفات المركبات (دوبيزل)</h4>
+      <h4 className="font-bold text-xs text-[#C9A15A] tracking-wider">مواصفات المركبات (دوبيزل)</h4>
       
       {/* Brand */}
       <div className="space-y-1.5">
@@ -85,14 +85,14 @@ export function CarFilters() {
             placeholder="أقصى كم"
             value={filters.maxMileage}
             onChange={(e) => updateFilter('maxMileage', e.target.value === '' ? '' : Number(e.target.value))}
-            className="w-full h-11 pl-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#1e3c5a] font-medium"
+            className="w-full h-11 pl-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#0D3B46] font-medium"
           />
           <input
             type="number"
             placeholder="أدنى كم"
             value={filters.minMileage}
             onChange={(e) => updateFilter('minMileage', e.target.value === '' ? '' : Number(e.target.value))}
-            className="w-full h-11 pl-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#1e3c5a] font-medium"
+            className="w-full h-11 pl-2 text-xs rounded-lg border border-gray-200 text-center outline-none bg-gray-50 focus:bg-white focus:border-[#0D3B46] font-medium"
           />
         </div>
       </div>
@@ -108,7 +108,7 @@ export function CarFilters() {
               type="button"
               className={`flex-1 py-1.5 text-xs font-semibold rounded-md border text-center transition-all cursor-pointer ${
                 filters.transmission === gear 
-                  ? 'bg-red-50 border-red-500 text-red-700 font-bold' 
+                  ? 'bg-[#C9A15A]/10 border-[#C9A15A] text-[#0D3B46] font-bold' 
                   : 'border-gray-200 text-gray-600 bg-white hover:bg-gray-50'
               }`}
             >
@@ -129,7 +129,7 @@ export function CarFilters() {
               type="button"
               className={`px-2.5 py-1 text-xs font-medium rounded-full border transition-all cursor-pointer ${
                 filters.fuelType === fuel 
-                  ? 'bg-red-50 border-red-500 text-red-700 font-bold' 
+                  ? 'bg-[#C9A15A]/10 border-[#C9A15A] text-[#0D3B46] font-bold' 
                   : 'border-gray-200 text-gray-500 bg-white hover:bg-gray-50'
               }`}
             >

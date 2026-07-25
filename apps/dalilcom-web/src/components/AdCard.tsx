@@ -26,7 +26,7 @@ export function AdCard({ item }: AdCardProps) {
         className="apple-card flex flex-col h-full relative group p-0 cursor-pointer active:scale-[0.98] transition-all select-none overflow-hidden rounded-[20px] sm:rounded-3xl border border-gray-100/80 bg-white shadow-sm hover:shadow-md"
       >
         {item.isFeatured && (
-          <span className="absolute top-2.5 right-2.5 bg-rose-500 text-white text-[9px] sm:text-[12px] font-extrabold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full flex items-center gap-1 z-10 shadow-sm">
+          <span className="absolute top-2.5 right-2.5 bg-[#C9A15A] text-white text-[9px] sm:text-[12px] font-extrabold px-2 py-0.5 sm:px-3 sm:py-1 rounded-full flex items-center gap-1 z-10 shadow-sm">
             <Sparkles size={11} className="fill-current animate-pulse text-white" />
             مميز
           </span>
@@ -38,10 +38,10 @@ export function AdCard({ item }: AdCardProps) {
             e.stopPropagation();
             toggleFavorite(item.id);
           }}
-          className="absolute top-2.5 left-2.5 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white text-slate-700 hover:text-rose-500 flex items-center justify-center shadow z-20 border border-gray-150 transition-all hover:scale-110 active:scale-95 cursor-pointer"
+          className="absolute top-2.5 left-2.5 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-white/90 backdrop-blur-sm hover:bg-white text-slate-700 hover:text-[#C9A15A] flex items-center justify-center shadow z-20 border border-gray-150 transition-all hover:scale-110 active:scale-95 cursor-pointer"
           title="حفظ للمفضلة"
         >
-          <Heart size={13} className={cn(fav ? "fill-rose-500 text-rose-500" : "text-slate-600")} />
+          <Heart size={13} className={cn(fav ? "fill-[#C9A15A] text-[#C9A15A]" : "text-slate-600")} />
         </button>
         
         <div className="h-28 xs:h-36 sm:h-48 w-full relative bg-slate-50 overflow-hidden rounded-t-[20px] sm:rounded-t-3xl">
@@ -54,16 +54,16 @@ export function AdCard({ item }: AdCardProps) {
 
         <div className="p-2.5 xs:p-3.5 sm:p-5 flex flex-col flex-1">
           <div className="flex flex-col mb-1.5">
-            <h3 className="font-bold text-[12px] xs:text-[13px] sm:text-base md:text-lg leading-snug tracking-tight text-slate-900 group-hover:text-rose-600 transition-colors line-clamp-2 min-h-[32px] sm:min-h-[44px]">
+            <h3 className="font-bold text-[12px] xs:text-[13px] sm:text-base md:text-lg leading-snug tracking-tight text-slate-900 group-hover:text-[#C9A15A] transition-colors line-clamp-2 min-h-[32px] sm:min-h-[44px]">
               {item.title}
             </h3>
-            <span className="font-extrabold text-rose-600 whitespace-nowrap text-[12px] xs:text-[13px] sm:text-base mt-1 text-right">
+            <span className="font-extrabold text-[#C9A15A] whitespace-nowrap text-[12px] xs:text-[13px] sm:text-base mt-1 text-right">
               {item.price.toLocaleString()} {item.currency}
             </span>
           </div>
           
           <div className="flex items-center text-[10px] xs:text-[11px] sm:text-[13px] text-slate-400 mb-2 sm:mb-4 font-semibold line-clamp-1">
-            <MapPin size={12} className="ml-1 inline-block text-rose-500 shrink-0" />
+            <MapPin size={12} className="ml-1 inline-block text-[#C9A15A] shrink-0" />
             <span className="truncate">{item.location}</span>
           </div>
 
