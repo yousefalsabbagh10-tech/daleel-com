@@ -28,4 +28,4 @@ ENV APP_NAME="DaleelComApi" \
     SESSION_DRIVER=file \
     QUEUE_CONNECTION=sync
 
-CMD ["sh", "-c", "php artisan package:discover --ansi && php artisan config:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
+CMD ["sh", "-c", "rm -f bootstrap/cache/*.php && php artisan config:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-10000}"]
