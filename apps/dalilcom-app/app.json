@@ -23,7 +23,10 @@
         "foregroundImage": "./assets/images/logo-mark.png",
         "backgroundColor": "#0d6efd"
       },
-      "package": "com.dalilcom.app"
+      "package": "com.dalilcom.app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       "expo-asset",
@@ -33,6 +36,12 @@
           "photosPermission": "The app accesses your photos to let you share them."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "d4e35eb0-f5a0-41e9-b09d-554cc458aa76"
+      }
+    },
+    "owner": "yousef2006alsabbagh"
   }
 }

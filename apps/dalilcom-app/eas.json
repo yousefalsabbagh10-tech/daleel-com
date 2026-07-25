@@ -6,12 +6,18 @@
   "build": {
     "preview": {
       "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://daleel-com-api.onrender.com/api"
+      },
       "android": {
         "buildType": "apk"
       }
     },
     "production": {
       "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://daleel-com-api.onrender.com/api"
+      },
       "android": {
         "buildType": "app-bundle"
       }
