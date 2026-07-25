@@ -2,10 +2,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #025be9;
-  --color-secondary: #6f7c91;
-  --color-bg-primary: #FFFFFF;
-  --color-bg-secondary: #F5F5F7;
+  --color-primary: #0D3B46;
+  --color-secondary: #C9A15A;
+  --color-bg-primary: #F6F2E8;
+  --color-bg-secondary: #F6F2E8;
   --font-sans: "SF Pro Text", "Inter", "Tajawal", ui-sans-serif, system-ui, sans-serif;
   --animate-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
   --animate-standard: 180ms cubic-bezier(0.4, 0, 0.2, 1);

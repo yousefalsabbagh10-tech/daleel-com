@@ -12,6 +12,8 @@ type Paginated<T> = { data: T[] };
 const envBaseUrl = process.env.EXPO_PUBLIC_API_URL || 'https://daleel-com-api.onrender.com/api';
 const baseUrl = envBaseUrl.replace(/\/$/, '');
 
+export const apiBaseUrl = baseUrl;
+
 export function normalizeAssetUrl(url?: string) {
   if (!url) return '';
   const origin = baseUrl.replace(/\/api\/?$/, '');
@@ -46,7 +48,10 @@ async function request<T>(
     body: isFormData ? body : body ? JSON.stringify(body) : undefined,
   });
 
-  const json = await res.json();
+  const json = await res.json().catch(() => null);
+  if (!json) {
+    throw { message: `تعذر قراءة استجابة الخادم (${res.status})`, details: { url, status: res.status } } satisfies ApiError;
+  }
   if (!res.ok || json.success === false) {
     const error: ApiError = { message: json.message || 'فشل الاتصال بالخادم', details: json };
     throw error;
