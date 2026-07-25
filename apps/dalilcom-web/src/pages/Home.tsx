@@ -14,6 +14,29 @@ function isRental(ad: any) {
     .some(word => text.includes(word));
 }
 
+function realEstateCategoryIdForAd(ad: any) {
+  const text = [
+    ad.subCategory,
+    ad.propType,
+    ad.title,
+    ad.description,
+    ad.location,
+    ...(ad.details || []),
+  ].filter(Boolean).join(' ');
+
+  const rules = [
+    { id: 'projects', words: ['مشاريع', 'مشروع', 'قيد التنفيذ', 'قيد الإنشاء', 'قيد الانشاء'] },
+    { id: 'villas', words: ['فلل', 'فيلا', 'مزارع', 'مزرعة', 'نزهة'] },
+    { id: 'lands', words: ['أراضي', 'أرض', 'اراضي', 'ارض'] },
+    { id: 'shops', words: ['محلات', 'محل', 'تجاري', 'تجارية', 'مكتب', 'مكاتب'] },
+    { id: 'buildings', words: ['أبنية', 'أبنيه', 'بناء', 'بناية', 'عمارة', 'مبنى'] },
+    { id: 'arabic', words: ['بيوت عربية', 'بيت عربي', 'عربية'] },
+    { id: 'apartments', words: ['شقق', 'شقة', 'سكنية', 'سكني'] },
+  ];
+
+  return rules.find(rule => rule.words.some(word => text.includes(word)))?.id || 'apartments';
+}
+
 export function HomePage() {
   const { ads, realEstateCats } = useAds();
   const { settings } = useAppSettings();
@@ -54,7 +77,7 @@ export function HomePage() {
             <SubList open={open === 'real-estate'}>
               <SubRow title="كل إعلانات العقارات" count={realEstateCount} onClick={() => navigate('/ads?category=real-estate')} />
               {realEstateCats.map(cat => (
-                <SubRow key={cat.id} title={cat.ar} count={ads.filter(ad => ad.category === 'real-estate' && (ad.subCategory || '').includes(cat.ar)).length} onClick={() => navigate(`/real-estate/${cat.id}`)} />
+                <SubRow key={cat.id} title={cat.ar} count={ads.filter(ad => ad.category === 'real-estate' && realEstateCategoryIdForAd(ad) === cat.id).length} onClick={() => navigate(`/real-estate/${cat.id}`)} />
               ))}
             </SubList>
 
