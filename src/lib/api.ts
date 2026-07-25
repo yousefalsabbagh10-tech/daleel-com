@@ -1,4 +1,4 @@
-const API_BASE = ((import.meta as any).env?.VITE_API_URL || 'http://127.0.0.1:7000/api');
+const API_BASE = ((import.meta as any).env?.VITE_API_URL || 'https://daleel-com-api.onrender.com/api');
 
 type ApiResponse<T> = { success: boolean; data: T };
 type Paginated<T> = { data: T[] };
