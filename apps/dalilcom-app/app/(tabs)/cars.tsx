@@ -3,6 +3,7 @@ import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import { useRouter } from 'expo-router';
 import { NativeIcon } from '../../components/common/NativeIcon';
 import { AppHeaderLogo } from '../../components/common/AppHeader';
+import { applyCarFilters, CarFiltersSheet, initialCarFilters } from '../../components/automotive/CarFiltersSheet';
 import { useApp } from '../../context/AppContext';
 import { listApi } from '../../services/api';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constants/theme';
@@ -60,7 +61,10 @@ export default function CarsTab() {
   const { getFilteredAds, refresh } = useApp();
   const [brands, setBrands] = useState<Brand[]>([]);
   const [query, setQuery] = useState('');
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filters, setFilters] = useState(initialCarFilters);
   const cars = getFilteredAds({ category: 'cars' });
+  const filteredCars = useMemo(() => applyCarFilters(cars, { ...filters, query }), [cars, filters, query]);
 
   useEffect(() => {
     listApi<Brand>('/car-brands', { per_page: '200' }).then(setBrands).catch(() => setBrands([]));
@@ -73,7 +77,9 @@ export default function CarsTab() {
     return brands.filter(brand => `${brand.ar_name} ${brand.en_name}`.toLowerCase().includes(key));
   }, [brands, query]);
 
-  const brandCount = (brand: Brand) => cars.filter(ad =>
+  const brandNames = useMemo(() => brands.map(brand => brand.ar_name).filter(Boolean), [brands]);
+
+  const brandCount = (brand: Brand) => filteredCars.filter(ad =>
     ad.carBrand === brand.ar_name ||
     ad.carBrand === brand.en_name ||
     ad.title.includes(brand.ar_name)
@@ -86,17 +92,30 @@ export default function CarsTab() {
   return (
     <View style={styles.container}>
       <AppHeaderLogo />
+      <CarFiltersSheet
+        visible={filterOpen}
+        filters={filters}
+        brands={brandNames}
+        setFilters={setFilters}
+        onClose={() => setFilterOpen(false)}
+      />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.searchBox}>
           <NativeIcon name="search" size={21} color={COLORS.gray400} />
           <TextInput
             value={query}
             onChangeText={setQuery}
-            placeholder="ابحث عن تصنيف..."
+            placeholder="ابحث عن ماركة أو موديل..."
             placeholderTextColor={COLORS.gray400}
             style={styles.searchInput}
           />
         </View>
+
+        <TouchableOpacity activeOpacity={0.86} style={styles.filterButton} onPress={() => setFilterOpen(true)}>
+          <NativeIcon name="options-outline" size={20} color={COLORS.white} />
+          <Text style={styles.filterButtonText}>فلتر السيارات</Text>
+          <Text style={styles.filterCount}>{filteredCars.length.toLocaleString('ar-SY')}</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           activeOpacity={0.86}
@@ -104,7 +123,7 @@ export default function CarsTab() {
           onPress={() => open({ id: 'all', title: 'كل إعلانات السيارات' })}
         >
           <NativeIcon name="chevron-back" size={20} color={COLORS.gray400} />
-          <Text style={styles.allCount}>({cars.length.toLocaleString('ar-SY')})</Text>
+          <Text style={styles.allCount}>({filteredCars.length.toLocaleString('ar-SY')})</Text>
           <Text style={styles.allTitle}>كل إعلانات السيارات</Text>
         </TouchableOpacity>
 
@@ -130,6 +149,9 @@ const styles = StyleSheet.create({
   content: { padding: SPACING.lg, paddingBottom: 112 },
   searchBox: { height: 58, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, paddingHorizontal: SPACING.md, marginBottom: SPACING.md, flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: COLORS.gray100, ...shadow },
   searchInput: { flex: 1, textAlign: 'right', fontSize: FONT_SIZES.md, color: COLORS.gray900, paddingVertical: 0 },
+  filterButton: { height: 52, backgroundColor: '#0D3B46', borderRadius: BORDER_RADIUS.lg, paddingHorizontal: SPACING.md, marginBottom: SPACING.md, flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'center', gap: SPACING.sm, ...shadow },
+  filterButtonText: { color: COLORS.white, fontSize: FONT_SIZES.md, fontWeight: '900' },
+  filterCount: { minWidth: 32, textAlign: 'center', color: '#0D3B46', backgroundColor: '#C9A15A', borderRadius: BORDER_RADIUS.full, paddingHorizontal: 8, paddingVertical: 2, fontWeight: '900' },
   allRow: { minHeight: 72, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, padding: SPACING.md, marginBottom: SPACING.lg, flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: COLORS.gray100, ...shadow },
   allCount: { color: COLORS.gray500, fontSize: FONT_SIZES.md, fontWeight: '900', marginHorizontal: SPACING.sm },
   allTitle: { flex: 1, textAlign: 'right', fontSize: 18, fontWeight: '900', color: COLORS.gray900 },
@@ -141,4 +163,3 @@ const styles = StyleSheet.create({
   brandEn: { maxWidth: '100%', textAlign: 'center', color: COLORS.gray500, fontSize: FONT_SIZES.xs, marginTop: 3 },
   count: { color: COLORS.gray500, fontSize: FONT_SIZES.xs, fontWeight: '900', marginTop: 7 },
 });
-
