@@ -42,6 +42,11 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
   const [isFilterPanelOpen, setIsFilterPanelOpen] = useState(false);
   const [isAdvancedFiltersOpen, setIsAdvancedFiltersOpen] = useState(false);
 
+  useEffect(() => {
+    setFilters(getInitialFilters(searchParams));
+    setActiveSubPanel(null);
+  }, [searchParams]);
+
   // Sync isFilterPanelOpen with query parameters initially
   useEffect(() => {
     const catSearch = searchParams.get('category');

@@ -1,11 +1,13 @@
 import { AdsFilterState } from './types';
 
 export function getInitialFilters(searchParams: URLSearchParams): AdsFilterState {
+  const allValue = 'الكل';
   const catParam = searchParams.get('category') || 'all';
-  const brandParam = searchParams.get('brand') || 'الكل';
-  const modelParam = searchParams.get('model') || 'الكل';
-  const propParam = searchParams.get('propType') || 'الكل';
-  const locParam = searchParams.get('location') || 'الكل';
+  const brandParam = searchParams.get('brand') || allValue;
+  const modelParam = searchParams.get('carModel') || searchParams.get('model') || allValue;
+  const propParam = searchParams.get('propType') || allValue;
+  const locParam = searchParams.get('location') || allValue;
+  const purposeParam = searchParams.get('purpose') || allValue;
   const titleP = searchParams.get('title') || '';
 
   const isHotelAptDetermined = 
@@ -23,7 +25,7 @@ export function getInitialFilters(searchParams: URLSearchParams): AdsFilterState
     maxPrice: '',
     location: locParam,
     // Car Specs
-    carPurpose: 'الكل',
+    carPurpose: purposeParam,
     selectedBrand: brandParam,
     selectedModel: modelParam,
     minYear: 'الكل',
@@ -42,7 +44,7 @@ export function getInitialFilters(searchParams: URLSearchParams): AdsFilterState
     carAdvertiser: 'الكل',
     adDateRange: 'الكل',
     // Real Estate Specs
-    rePurpose: 'الكل',
+    rePurpose: purposeParam,
     propType: propParam,
     isHotelApt: isHotelAptDetermined,
     aptFurnished: 'الكل',
