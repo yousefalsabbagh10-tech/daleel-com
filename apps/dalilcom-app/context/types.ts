@@ -21,6 +21,13 @@ export interface AdItem {
   carBrand?: string;
   carModel?: string;
   carYear?: string;
+  carGear?: string;
+  carFuel?: string;
+  carMileage?: number;
+  carBodyType?: string;
+  carCondition?: string;
+  carType?: string;
+  carColor?: string;
 }
 
 export interface AppState {

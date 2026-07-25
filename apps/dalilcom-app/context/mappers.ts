@@ -29,5 +29,12 @@ export function mapAdFromApi(row: any): AdItem {
     carBrand: specs.brand_name || ad.car_brand || '',
     carModel: specs.model_name || ad.car_model || '',
     carYear: specs.model_year || ad.car_year || '',
+    carGear: specs.transmission || ad.car_gear || '',
+    carFuel: specs.fuel_type || ad.car_fuel || '',
+    carMileage: specs.mileage ? Number(specs.mileage) : undefined,
+    carBodyType: specs.body_type || ad.car_body_type || '',
+    carCondition: specs.car_condition || ad.car_condition || '',
+    carType: specs.car_type || ad.car_type || ad.purpose || '',
+    carColor: specs.color || ad.car_color || '',
   };
 }

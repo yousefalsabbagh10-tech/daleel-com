@@ -19,6 +19,12 @@ type Brand = {
   logo_url?: string;
 };
 
+type CarModel = {
+  brand_id: number | string;
+  ar_name: string;
+  en_name: string;
+};
+
 const logoName = (name: string) => name.toLowerCase().replace(/[\s_.]/g, '-').replace(/-+/g, '-');
 const datasetLogo = (brand: Brand) =>
   `https://cdn.jsdelivr.net/gh/filippofg/car-logos-dataset@master/logos/optimized/${logoName(brand.en_name)}.png`;
@@ -60,24 +66,38 @@ export default function CarsTab() {
   const router = useRouter();
   const { getFilteredAds, refresh } = useApp();
   const [brands, setBrands] = useState<Brand[]>([]);
+  const [carModelsMap, setCarModelsMap] = useState<Record<string, { ar: string; en: string }[]>>({});
   const [query, setQuery] = useState('');
   const [filterOpen, setFilterOpen] = useState(false);
   const [filters, setFilters] = useState(initialCarFilters);
   const cars = getFilteredAds({ category: 'cars' });
-  const filteredCars = useMemo(() => applyCarFilters(cars, { ...filters, query }), [cars, filters, query]);
 
   useEffect(() => {
-    listApi<Brand>('/car-brands', { per_page: '200' }).then(setBrands).catch(() => setBrands([]));
+    async function loadCarsData() {
+      const [brandRows, modelRows] = await Promise.all([
+        listApi<Brand>('/car-brands', { per_page: '200' }).catch(() => []),
+        listApi<CarModel>('/car-models', { per_page: '1000' }).catch(() => []),
+      ]);
+      setBrands(brandRows);
+      const models = modelRows.reduce<Record<string, { ar: string; en: string }[]>>((acc, row) => {
+        const brand = brandRows.find(item => String(item.id) === String(row.brand_id));
+        if (brand) acc[brand.en_name] = [...(acc[brand.en_name] || []), { ar: row.ar_name, en: row.en_name }];
+        return acc;
+      }, {});
+      setCarModelsMap(models);
+    }
+    loadCarsData();
     refresh();
   }, [refresh]);
+
+  const brandOptions = useMemo(() => brands.map(brand => ({ ar: brand.ar_name, en: brand.en_name })), [brands]);
+  const filteredCars = useMemo(() => applyCarFilters(cars, { ...filters, query }, brandOptions, carModelsMap), [cars, filters, query, brandOptions, carModelsMap]);
 
   const filteredBrands = useMemo(() => {
     const key = query.trim().toLowerCase();
     if (!key) return brands;
     return brands.filter(brand => `${brand.ar_name} ${brand.en_name}`.toLowerCase().includes(key));
   }, [brands, query]);
-
-  const brandNames = useMemo(() => brands.map(brand => brand.ar_name).filter(Boolean), [brands]);
 
   const brandCount = (brand: Brand) => filteredCars.filter(ad =>
     ad.carBrand === brand.ar_name ||
@@ -95,7 +115,8 @@ export default function CarsTab() {
       <CarFiltersSheet
         visible={filterOpen}
         filters={filters}
-        brands={brandNames}
+        brands={brandOptions}
+        carModelsMap={carModelsMap}
         setFilters={setFilters}
         onClose={() => setFilterOpen(false)}
       />
