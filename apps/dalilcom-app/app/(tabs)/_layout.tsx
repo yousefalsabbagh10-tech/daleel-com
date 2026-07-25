@@ -2,7 +2,6 @@ import { Tabs } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { COLORS } from '../../constants/theme';
-import { AppProvider } from '../../context/AppContext';
 
 const Icon = MaterialCommunityIcons as any;
 
@@ -34,27 +33,25 @@ function TabIcon({ route, color, focused }: { route: string; color: string; focu
 
 export default function TabLayout() {
   return (
-    <AppProvider>
-      <Tabs
-        initialRouteName="index"
-        screenOptions={{
-          tabBarActiveTintColor: COLORS.primary,
-          tabBarInactiveTintColor: COLORS.gray500,
-          tabBarStyle: styles.bar,
-          tabBarLabelStyle: styles.label,
-          headerShown: false,
-        }}
-      >
-        <Tabs.Screen name="favorites" options={{ title: 'المفضلة', tabBarIcon: p => <TabIcon route="favorites" {...p} /> }} />
-        <Tabs.Screen name="notifications" options={{ title: 'الإشعارات', tabBarIcon: p => <TabIcon route="notifications" {...p} /> }} />
-        <Tabs.Screen name="create" options={{ title: '', tabBarIcon: p => <TabIcon route="create" {...p} /> }} />
-        <Tabs.Screen name="featured" options={{ title: 'المميزة', tabBarIcon: p => <TabIcon route="featured" {...p} /> }} />
-        <Tabs.Screen name="index" options={{ title: 'الرئيسية', tabBarIcon: p => <TabIcon route="index" {...p} /> }} />
-        <Tabs.Screen name="cars" options={{ href: null }} />
-        <Tabs.Screen name="real-estate" options={{ href: null }} />
-        <Tabs.Screen name="profile" options={{ href: null }} />
-      </Tabs>
-    </AppProvider>
+    <Tabs
+      initialRouteName="index"
+      screenOptions={{
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.gray500,
+        tabBarStyle: styles.bar,
+        tabBarLabelStyle: styles.label,
+        headerShown: false,
+      }}
+    >
+      <Tabs.Screen name="favorites" options={{ title: 'المفضلة', tabBarIcon: p => <TabIcon route="favorites" {...p} /> }} />
+      <Tabs.Screen name="notifications" options={{ title: 'الإشعارات', tabBarIcon: p => <TabIcon route="notifications" {...p} /> }} />
+      <Tabs.Screen name="create" options={{ title: '', tabBarIcon: p => <TabIcon route="create" {...p} /> }} />
+      <Tabs.Screen name="featured" options={{ title: 'المميزة', tabBarIcon: p => <TabIcon route="featured" {...p} /> }} />
+      <Tabs.Screen name="index" options={{ title: 'الرئيسية', tabBarIcon: p => <TabIcon route="index" {...p} /> }} />
+      <Tabs.Screen name="cars" options={{ href: null }} />
+      <Tabs.Screen name="real-estate" options={{ href: null }} />
+      <Tabs.Screen name="profile" options={{ href: null }} />
+    </Tabs>
   );
 }
 

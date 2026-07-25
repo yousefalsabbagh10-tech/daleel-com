@@ -3,7 +3,7 @@ import { Image, ImageBackground, RefreshControl, ScrollView, StyleSheet, Text, T
 import { useRouter } from 'expo-router';
 import { NativeIcon } from '../../components/common/NativeIcon';
 import { useApp } from '../../context/AppContext';
-import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constants/theme';
+import { COLORS, SPACING, BORDER_RADIUS } from '../../constants/theme';
 
 const heroImage = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=900';
 const logoImage = require('../../assets/images/logo-mark.png');
@@ -14,18 +14,26 @@ function LogoCard() {
       <Image source={logoImage} style={styles.logoImage} resizeMode="contain" />
       <View style={styles.logoTextBox}>
         <Text style={styles.logoTitle}>دليل كوم</Text>
-        <Text style={styles.logoSub}>عقارات . فرص أكثر</Text>
+        <Text style={styles.logoSub}>عقارات وسيارات في سوريا</Text>
       </View>
     </View>
   );
 }
 
 function CategoryCard({ title, subtitle, count, icon, color, active, onPress }: {
-  title: string; subtitle: string; count: number; icon: string; color: string; active?: boolean; onPress: () => void;
+  title: string;
+  subtitle: string;
+  count: number;
+  icon: string;
+  color: string;
+  active?: boolean;
+  onPress: () => void;
 }) {
   return (
     <TouchableOpacity activeOpacity={0.85} style={[styles.categoryCard, active && styles.categoryActive]} onPress={onPress}>
-      <View style={[styles.categoryIcon, { backgroundColor: color }]}><NativeIcon name={icon} size={29} color={COLORS.white} /></View>
+      <View style={[styles.categoryIcon, { backgroundColor: color }]}>
+        <NativeIcon name={icon} size={29} color={COLORS.white} />
+      </View>
       <View style={styles.categoryText}>
         <Text style={styles.categoryTitle}>{title}</Text>
         <Text style={styles.categorySub}>{subtitle}</Text>
@@ -41,7 +49,9 @@ function CategoryCard({ title, subtitle, count, icon, color, active, onPress }: 
 function QuickCard({ icon, title, onPress }: { icon: string; title: string; onPress: () => void }) {
   return (
     <TouchableOpacity activeOpacity={0.82} style={styles.quickCard} onPress={onPress}>
-      <View style={styles.quickIcon}><NativeIcon name={icon} size={24} color={COLORS.primary} /></View>
+      <View style={styles.quickIcon}>
+        <NativeIcon name={icon} size={24} color={COLORS.primary} />
+      </View>
       <Text style={styles.quickTitle}>{title}</Text>
     </TouchableOpacity>
   );
@@ -52,6 +62,7 @@ export default function HomeTab() {
   const { state, refresh, getFilteredAds } = useApp();
   const realEstate = getFilteredAds({ category: 'real-estate' });
   const cars = getFilteredAds({ category: 'cars' });
+  const latestAds = state.ads.slice(0, 6);
 
   return (
     <View style={styles.container}>
@@ -65,15 +76,15 @@ export default function HomeTab() {
         <CategoryCard
           active
           title="العقارات"
-          subtitle="شقق، فلل، تجاري، أراضي للبيع أو الإيجار"
+          subtitle="شقق، فلل، محلات وأراضي للبيع أو الإيجار"
           count={realEstate.length}
           icon="business"
           color="#9417f4"
           onPress={() => router.push('/real-estate' as any)}
         />
         <CategoryCard
-          title="المركبات"
-          subtitle="سيارات، دراجات، شاحنات للبيع أو الإيجار"
+          title="السيارات"
+          subtitle="سيارات ومركبات للبيع أو الإيجار"
           count={cars.length}
           icon="car"
           color="#ff2f68"
@@ -99,6 +110,34 @@ export default function HomeTab() {
             <Text style={styles.mapSub}>اختر الموقع مباشرة</Text>
           </View>
         </TouchableOpacity>
+
+        <View style={styles.latestHeader}>
+          <TouchableOpacity onPress={refresh} style={styles.refreshButton}>
+            <NativeIcon name="refresh" size={18} color={COLORS.white} />
+          </TouchableOpacity>
+          <Text style={styles.latestTitle}>آخر الإعلانات ({state.ads.length})</Text>
+        </View>
+
+        {state.error ? <Text style={styles.errorText}>{state.error}</Text> : null}
+        {!state.error && latestAds.length === 0 ? (
+          <Text style={styles.emptyText}>{state.loading ? 'جاري تحميل الإعلانات...' : 'لا توجد إعلانات حالياً'}</Text>
+        ) : null}
+
+        {latestAds.map(ad => (
+          <TouchableOpacity
+            key={ad.id}
+            activeOpacity={0.86}
+            style={styles.adRow}
+            onPress={() => router.push(ad.category === 'cars' ? `/details/car/${ad.id}` as any : `/details/property/${ad.id}` as any)}
+          >
+            {ad.imageUrl ? <Image source={{ uri: ad.imageUrl }} style={styles.adImage} /> : <View style={styles.adImageFallback} />}
+            <View style={styles.adInfo}>
+              <Text style={styles.adTitle} numberOfLines={2}>{ad.title}</Text>
+              <Text style={styles.adLocation} numberOfLines={1}>{ad.location}</Text>
+              <Text style={styles.adPrice}>{ad.price.toLocaleString('ar-SY')} {ad.currency}</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   );
@@ -136,4 +175,16 @@ const styles = StyleSheet.create({
   mapCard: { marginTop: 20, borderRadius: BORDER_RADIUS.xl, backgroundColor: COLORS.white, minHeight: 90, padding: SPACING.lg, flexDirection: 'row-reverse', alignItems: 'center', gap: SPACING.lg, ...shadow },
   mapTitle: { color: COLORS.primary, fontSize: 17, fontWeight: '900', textAlign: 'right' },
   mapSub: { color: COLORS.gray500, fontSize: 13, marginTop: 4, textAlign: 'right' },
+  latestHeader: { marginTop: 24, marginBottom: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  latestTitle: { color: COLORS.gray900, fontSize: 20, fontWeight: '900', textAlign: 'right' },
+  refreshButton: { width: 36, height: 36, borderRadius: 18, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center' },
+  errorText: { color: '#b91c1c', backgroundColor: '#fee2e2', borderRadius: 10, padding: SPACING.md, textAlign: 'right', fontWeight: '800' },
+  emptyText: { color: COLORS.gray500, backgroundColor: COLORS.white, borderRadius: 10, padding: SPACING.md, textAlign: 'right', fontWeight: '800' },
+  adRow: { minHeight: 108, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, marginBottom: SPACING.md, padding: SPACING.sm, flexDirection: 'row-reverse', alignItems: 'center', gap: SPACING.md, ...shadow },
+  adImage: { width: 92, height: 78, borderRadius: BORDER_RADIUS.md, backgroundColor: COLORS.gray100 },
+  adImageFallback: { width: 92, height: 78, borderRadius: BORDER_RADIUS.md, backgroundColor: COLORS.gray100 },
+  adInfo: { flex: 1, alignItems: 'flex-end' },
+  adTitle: { color: COLORS.gray900, fontSize: 15, fontWeight: '900', textAlign: 'right' },
+  adLocation: { color: COLORS.gray500, fontSize: 12, marginTop: 5, textAlign: 'right' },
+  adPrice: { color: COLORS.primary, fontSize: 14, fontWeight: '900', marginTop: 6, textAlign: 'right' },
 });
