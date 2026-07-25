@@ -64,6 +64,20 @@ function xt() {
     [O, Pe] = e("\u0639\u0644\u0649 \u0627\u0644\u0639\u0636\u0645"),
     [f, Fe] = e(""),
     [C, Me] = e(""),
+    [engineSizeState, setEngineSizeState] = e(""),
+    [enginePowerState, setEnginePowerState] = e(""),
+    [carDriveState, setCarDriveState] = e(""),
+    [carWarrantyState, setCarWarrantyState] = e(""),
+    [carAdvertiserState, setCarAdvertiserState] = e(""),
+    [buildingTotalFloorsState, setBuildingTotalFloorsState] = e(""),
+    [heatingTypeState, setHeatingTypeState] = e(""),
+    [hasElevatorState, setHasElevatorState] = e(""),
+    [hasParkingState, setHasParkingState] = e(""),
+    [titleDeedTypeState, setTitleDeedTypeState] = e(""),
+    [propertyDirectionState, setPropertyDirectionState] = e(""),
+    [advertiserTypeState, setAdvertiserTypeState] = e(""),
+    [projectTypeState, setProjectTypeState] = e(""),
+    [paymentPlanState, setPaymentPlanState] = e(""),
     [x, Te] = e("\u062F\u0645\u0634\u0642"),
     [m, Be] = e(""),
     [mapUrlState, setMapUrlState] = e(""),
@@ -72,8 +86,8 @@ function xt() {
     [K, Ue] = e([]),
     [l, Ee] = e(""),
     [S, Ie] = e("\u0644.\u0633"),
-    [ownerPhone, setOwnerPhone] = e(N),
-    [whatsappPhone, setWhatsappPhone] = e(""),
+    [ownerPhoneState, setOwnerPhoneState] = e(""),
+    [whatsappPhoneState, setWhatsappPhoneState] = e(""),
     ke = async () => {
       if ((a(null), r === 1)) {
         if (!i) {
@@ -138,10 +152,10 @@ function xt() {
             subCategory: i,
             image: $ || y[0] || "",
             mapUrl: mapUrlState || "",
-            ownerPhone,
-            whatsappPhone,
             images: y,
             videoUrls: K.length > 0 ? K : void 0,
+            ownerPhone: ownerPhoneState,
+            whatsappPhone: whatsappPhoneState,
             specs:
               s === "cars"
                 ? {
@@ -155,6 +169,11 @@ function xt() {
                     carCondition: E,
                     carType: k,
                     carColor: I,
+                    engineSize: engineSizeState,
+                    enginePower: enginePowerState,
+                    carDrive: carDriveState,
+                    carWarranty: carWarrantyState,
+                    carAdvertiser: carAdvertiserState,
                   }
                 : i ===
                     "\u0645\u0634\u0627\u0631\u064A\u0639 \u0639\u0642\u0627\u0631\u064A\u0629 \u0642\u064A\u062F \u0627\u0644\u062A\u0646\u0641\u064A\u0630"
@@ -163,9 +182,12 @@ function xt() {
                       projectStatus: z,
                       deliveryYear: D,
                       projectFloors: b !== "" ? Number(b) : void 0,
+                      projectType: projectTypeState,
+                      paymentPlan: paymentPlanState,
                       projectFinishing: O,
                       projectLandArea: f !== "" ? Number(f) : void 0,
                       projectUnitsCount: C !== "" ? Number(C) : void 0,
+                      advertiserType: advertiserTypeState,
                     }
                   : {
                       propType:
@@ -180,9 +202,16 @@ function xt() {
                       reBaths: L,
                       reArea: G,
                       reFloor: _,
+                      buildingTotalFloors: buildingTotalFloorsState,
                       reFurnished: V,
                       reBuildingAge: H,
                       reType: Y,
+                      heatingType: heatingTypeState,
+                      titleDeedType: titleDeedTypeState,
+                      propertyDirection: propertyDirectionState,
+                      hasElevator: hasElevatorState,
+                      hasParking: hasParkingState,
+                      advertiserType: advertiserTypeState,
                     },
           });
           n(6);
@@ -197,7 +226,7 @@ function xt() {
       (a(null), r > 1 && n(r - 1));
     };
   return o("div", {
-    className: "min-h-screen bg-[#F6F2E8] flex flex-col font-sans select-none",
+    className: "min-h-screen bg-gray-50 flex flex-col font-sans select-none",
     dir: "rtl",
     children: [
       t(Qe, { currentStep: r, steps: We }),
@@ -208,7 +237,7 @@ function xt() {
           R &&
             o("div", {
               className:
-                "bg-[#C9A15A]/10 text-[#0D3B46] border-r-4 border-[#C9A15A] p-4 rounded-xl flex items-center gap-2 justify-between animate-pulse",
+                "bg-rose-50 text-rose-800 border-r-4 border-rose-500 p-4 rounded-xl flex items-center gap-2 justify-between animate-pulse",
               children: [
                 t("span", { className: "text-xs font-bold", children: R }),
                 t("button", {
@@ -248,13 +277,13 @@ function xt() {
                     children: [
                       o("div", {
                         className:
-                          "bg-white p-5 rounded-3xl border border-[#F6F2E8] space-y-4",
+                          "bg-white p-5 rounded-3xl border border-gray-150 space-y-4",
                         children: [
                           o("div", {
                             className: "space-y-1",
                             children: [
                               t("label", {
-                                className: "text-xs font-bold text-[#2B2B2B]",
+                                className: "text-xs font-bold text-gray-750",
                                 children:
                                   "\u0639\u0646\u0648\u0627\u0646 \u0627\u0644\u0625\u0639\u0644\u0627\u0646 \u0627\u0644\u0623\u0633\u0627\u0633\u064A *",
                               }),
@@ -265,7 +294,7 @@ function xt() {
                                 placeholder:
                                   "\u0645\u062B\u0627\u0644: \u0634\u0642\u0629 \u0633\u0648\u0628\u0631 \u062F\u064A\u0644\u0648\u0643\u0633 \u0645\u0641\u0631\u0648\u0634\u0629 \u0641\u064A \u0645\u0634\u0631\u0648\u0639 \u062F\u0645\u0631",
                                 className:
-                                  "w-full h-11 px-3 border border-[#E3C98D] bg-[#F6F2E8] focus:bg-white rounded-xl text-xs font-bold outline-none",
+                                  "w-full h-11 px-3 border border-gray-200 bg-slate-50 focus:bg-white rounded-xl text-xs font-bold outline-none",
                               }),
                             ],
                           }),
@@ -273,7 +302,7 @@ function xt() {
                             className: "space-y-1",
                             children: [
                               t("label", {
-                                className: "text-xs font-bold text-[#2B2B2B]",
+                                className: "text-xs font-bold text-gray-750",
                                 children:
                                   "\u0648\u0635\u0641 \u0627\u0644\u0633\u0644\u0639\u0629 \u0648\u062A\u0641\u0627\u0635\u064A\u0644 \u0643\u0634\u0641 \u0627\u0644\u062D\u0627\u0644\u0629 *",
                               }),
@@ -283,7 +312,7 @@ function xt() {
                                 placeholder:
                                   "\u0627\u0643\u062A\u0628 \u0623\u062F\u0642 \u062A\u0641\u0627\u0635\u064A\u0644 \u0627\u0644\u0634\u0642\u0629 \u0623\u0648 \u0627\u0644\u0633\u064A\u0627\u0631\u0629 \u0648\u0639\u0645\u0631 \u0627\u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645 \u0644\u0646\u064A\u0644 \u062B\u0642\u0629 \u0627\u0644\u0645\u0634\u062A\u0631\u064A \u0627\u0644\u0641\u0648\u0631\u064A\u0629...",
                                 className:
-                                  "w-full h-24 p-3 border border-[#E3C98D] bg-[#F6F2E8] focus:bg-white rounded-xl text-xs font-bold outline-none resize-none",
+                                  "w-full h-24 p-3 border border-gray-200 bg-slate-50 focus:bg-white rounded-xl text-xs font-bold outline-none resize-none",
                               }),
                             ],
                           }),
@@ -291,7 +320,7 @@ function xt() {
                       }),
                       t("div", {
                         className:
-                          "bg-white p-5 rounded-3xl border border-[#F6F2E8]",
+                          "bg-white p-5 rounded-3xl border border-gray-150",
                         children:
                           s === "cars"
                             ? t(He, {
@@ -315,6 +344,16 @@ function xt() {
                                 setCarColor: ge,
                                 carType: k,
                                 setCarType: be,
+                                engineSize: engineSizeState,
+                                setEngineSize: setEngineSizeState,
+                                enginePower: enginePowerState,
+                                setEnginePower: setEnginePowerState,
+                                carDrive: carDriveState,
+                                setCarDrive: setCarDriveState,
+                                carWarranty: carWarrantyState,
+                                setCarWarranty: setCarWarrantyState,
+                                carAdvertiser: carAdvertiserState,
+                                setCarAdvertiser: setCarAdvertiserState,
                               })
                             : i ===
                                 "\u0645\u0634\u0627\u0631\u064A\u0639 \u0639\u0642\u0627\u0631\u064A\u0629 \u0642\u064A\u062F \u0627\u0644\u062A\u0646\u0641\u064A\u0630"
@@ -325,8 +364,10 @@ function xt() {
                                   setDeliveryYearState: Re,
                                   projectFloorsState: b,
                                   setProjectFloorsState: Ae,
-                                  projectTypeState: "\u0633\u0643\u0646\u064A",
-                                  setProjectTypeState: () => {},
+                                  projectTypeState,
+                                  setProjectTypeState,
+                                  paymentPlanState,
+                                  setPaymentPlanState,
                                   projectFinishingState: O,
                                   setProjectFinishingState: Pe,
                                   projectLandAreaState: f,
@@ -345,10 +386,24 @@ function xt() {
                                   setReType: Se,
                                   reFloor: _,
                                   setReFloor: ve,
+                                  buildingTotalFloors: buildingTotalFloorsState,
+                                  setBuildingTotalFloors: setBuildingTotalFloorsState,
                                   reFurnished: V,
                                   setReFurnished: he,
                                   reBuildingAge: H,
                                   setReBuildingAge: je,
+                                  heatingType: heatingTypeState,
+                                  setHeatingType: setHeatingTypeState,
+                                  hasElevator: hasElevatorState,
+                                  setHasElevator: setHasElevatorState,
+                                  hasParking: hasParkingState,
+                                  setHasParking: setHasParkingState,
+                                  titleDeedType: titleDeedTypeState,
+                                  setTitleDeedType: setTitleDeedTypeState,
+                                  propertyDirection: propertyDirectionState,
+                                  setPropertyDirection: setPropertyDirectionState,
+                                  advertiserType: advertiserTypeState,
+                                  setAdvertiserType: setAdvertiserTypeState,
                                 }),
                       }),
                     ],
@@ -382,7 +437,7 @@ function xt() {
                     exit: { opacity: 0 },
                     children: t("div", {
                       className:
-                        "bg-white p-5 rounded-3xl border border-[#F6F2E8]",
+                        "bg-white p-5 rounded-3xl border border-gray-150",
                       children: t(Oe, {
                         category: s,
                         imageUrl: $,
@@ -412,10 +467,10 @@ function xt() {
                       setCurrency: Ie,
                       price: l,
                       setPrice: Ee,
-                      ownerPhone,
-                      setOwnerPhone,
-                      whatsappPhone,
-                      setWhatsappPhone,
+                      ownerPhone: ownerPhoneState,
+                      setOwnerPhone: setOwnerPhoneState,
+                      whatsappPhone: whatsappPhoneState,
+                      setWhatsappPhone: setWhatsappPhoneState,
                     }),
                   },
                   "step5",
@@ -447,7 +502,7 @@ function xt() {
                   type: "button",
                   onClick: we,
                   className: Ge(
-                    "px-5 py-2.5 rounded-xl border border-[#E3C98D] bg-white hover:bg-[#F6F2E8] text-xs font-black transition-all cursor-pointer flex items-center gap-1",
+                    "px-5 py-2.5 rounded-xl border border-gray-250 bg-white hover:bg-gray-100 text-xs font-black transition-all cursor-pointer flex items-center gap-1",
                     r === 1 && "opacity-0 pointer-events-none",
                   ),
                   children: [
@@ -459,7 +514,7 @@ function xt() {
                   type: "button",
                   onClick: ke,
                   className:
-                    "px-6 py-2.5 rounded-xl bg-[#0D3B46] text-[#fff] hover:bg-[#122538] text-xs font-black transition-all cursor-pointer flex items-center gap-1.5",
+                    "px-6 py-2.5 rounded-xl bg-[#1e3c5a] text-[#fff] hover:bg-[#122538] text-xs font-black transition-all cursor-pointer flex items-center gap-1.5",
                   children: [
                     t(Q, { size: 13 }),
                     t("span", {

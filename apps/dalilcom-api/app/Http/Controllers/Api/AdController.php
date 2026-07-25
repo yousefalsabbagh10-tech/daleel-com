@@ -162,7 +162,7 @@ class AdController extends Controller
                     $brandId = DB::table('car_brands')->where('ar_name', $specs['brand'] ?? '')->value('id');
                     $modelId = DB::table('car_models')->where('ar_name', $specs['model'] ?? '')->value('id');
 
-                    DB::table('car_specs')->insert([
+                    DB::table('car_specs')->insert($this->onlyExistingColumns('car_specs', [
                         'ad_id' => $id,
                         'brand_id' => $brandId,
                         'model_id' => $modelId,
@@ -174,21 +174,37 @@ class AdController extends Controller
                         'car_condition' => $specs['carCondition'] ?? null,
                         'car_type' => $specs['carType'] ?? null,
                         'color' => $specs['carColor'] ?? null,
-                    ]);
+                        'engine_size' => $specs['engineSize'] ?? null,
+                        'engine_power' => $specs['enginePower'] ?? null,
+                        'drive_type' => $specs['carDrive'] ?? null,
+                        'has_warranty' => $specs['carWarranty'] ?? null,
+                        'advertiser_type' => $specs['carAdvertiser'] ?? null,
+                    ]));
                 }
             } else if ($category === 'real-estate') {
                 DB::table('real_estate_specs')->where('ad_id', $id)->delete();
                 if (!empty($specs)) {
-                    DB::table('real_estate_specs')->insert([
+                    DB::table('real_estate_specs')->insert($this->onlyExistingColumns('real_estate_specs', [
                         'ad_id' => $id,
                         'property_type' => $specs['propType'] ?? null,
                         'rooms' => $specs['reRooms'] ?? null,
                         'bathrooms' => $specs['reBaths'] ?? null,
+                        'bedrooms' => $specs['bedsCount'] ?? $specs['reRooms'] ?? null,
+                        'bathrooms_count' => $specs['reBaths'] ?? null,
                         'area_text' => $specs['reArea'] ?? null,
+                        'area_size' => $specs['minArea'] ?? $specs['projectLandArea'] ?? null,
+                        'net_area' => $specs['minNetArea'] ?? null,
                         'floor' => $specs['reFloor'] ?? null,
+                        'total_floors' => $specs['buildingTotalFloors'] ?? $specs['projectFloors'] ?? null,
                         'furnished' => $specs['reFurnished'] ?? null,
                         'building_age' => $specs['reBuildingAge'] ?? null,
-                    ]);
+                        'title_deed_type' => $specs['titleDeedType'] ?? null,
+                        'advertiser_type' => $specs['advertiserType'] ?? null,
+                        'heating_type' => $specs['heatingType'] ?? null,
+                        'property_direction' => $specs['propertyDirection'] ?? null,
+                        'has_elevator' => $specs['hasElevator'] ?? null,
+                        'has_parking' => $specs['hasParking'] ?? null,
+                    ]));
                 }
             }
         }
@@ -205,6 +221,9 @@ class AdController extends Controller
             isset($specs['carMileage']) ? $specs['carMileage'].' كم' : null,
             $specs['carBodyType'] ?? null, $specs['carCondition'] ?? null,
             $specs['carType'] ?? null, $specs['carColor'] ?? null,
+            $specs['engineSize'] ?? null, $specs['enginePower'] ?? null,
+            $specs['carDrive'] ?? null, $specs['carWarranty'] ?? null,
+            $specs['carAdvertiser'] ?? null,
         ] : [
             $specs['propType'] ?? null, $specs['reRooms'] ?? null, $specs['reBaths'] ?? null,
             $specs['reArea'] ?? null, $specs['reFloor'] ?? null, $specs['reFurnished'] ?? null,
@@ -214,6 +233,20 @@ class AdController extends Controller
             $specs['projectFinishing'] ?? null,
             isset($specs['projectLandArea']) ? $specs['projectLandArea'].' م² أرض' : null,
             isset($specs['projectUnitsCount']) ? $specs['projectUnitsCount'].' وحدة' : null,
+            $specs['buildingTotalFloors'] ?? null, $specs['bedsCount'] ?? null,
+            $specs['minNetArea'] ?? null, $specs['maxNetArea'] ?? null,
+            $specs['heatingType'] ?? null, $specs['kitchenType'] ?? null,
+            $specs['balconyCount'] ?? null, $specs['hasElevator'] ?? null,
+            $specs['hasParking'] ?? null, $specs['houseStatus'] ?? null,
+            $specs['inComplex'] ?? null, $specs['titleDeedType'] ?? null,
+            $specs['propertyDirection'] ?? null, $specs['advertiserType'] ?? null,
+            $specs['villaFloors'] ?? null, $specs['landZoning'] ?? null,
+            $specs['landFrontage'] ?? null, $specs['officeFitted'] ?? null,
+            $specs['shopHasLicense'] ?? null, $specs['minArea'] ?? null,
+            $specs['maxArea'] ?? null, $specs['projectType'] ?? null,
+            $specs['paymentPlan'] ?? null,
+            isset($specs['projectFacilities']) && is_array($specs['projectFacilities']) ? implode(', ', $specs['projectFacilities']) : ($specs['projectFacilities'] ?? null),
+            isset($specs['projectAmenities']) && is_array($specs['projectAmenities']) ? implode(', ', $specs['projectAmenities']) : ($specs['projectAmenities'] ?? null),
         ];
         return array_values(array_unique(array_filter(array_map('strval', array_merge($details, $generated)))));
     }

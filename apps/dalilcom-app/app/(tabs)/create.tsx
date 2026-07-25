@@ -108,9 +108,12 @@ function realEstateSpecs(form: CreateAdForm) {
       projectStatus: form.projectStatus,
       deliveryYear: form.deliveryYear,
       projectFloors: form.projectFloors,
+      projectType: form.projectType,
+      paymentPlan: form.paymentPlan,
       projectFinishing: form.projectFinishing,
       projectLandArea: form.projectLandArea,
       projectUnitsCount: form.projectUnitsCount,
+      advertiserType: form.advertiserType,
     };
   }
   return {
@@ -119,9 +122,16 @@ function realEstateSpecs(form: CreateAdForm) {
     reBaths: form.baths,
     reArea: form.area,
     reFloor: form.floor,
+    buildingTotalFloors: form.buildingTotalFloors,
     reFurnished: form.furnished,
     reBuildingAge: form.age,
     reType: form.reType,
+    heatingType: form.heatingType,
+    titleDeedType: form.titleDeedType,
+    propertyDirection: form.propertyDirection,
+    hasElevator: form.hasElevator,
+    hasParking: form.hasParking,
+    advertiserType: form.advertiserType,
   };
 }
 
@@ -137,6 +147,11 @@ function carSpecs(form: CreateAdForm) {
     carCondition: form.carCondition,
     carType: form.carType,
     carColor: form.carColor,
+    engineSize: form.engineSize,
+    enginePower: form.enginePower,
+    carDrive: form.carDrive,
+    carWarranty: form.carWarranty,
+    carAdvertiser: form.carAdvertiser,
   };
 }
 

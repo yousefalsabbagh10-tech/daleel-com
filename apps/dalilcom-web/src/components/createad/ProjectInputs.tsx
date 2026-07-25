@@ -9,6 +9,8 @@ interface ProjectInputsProps {
   setProjectFloorsState: (val: number | '') => void;
   projectTypeState: string;
   setProjectTypeState: (val: string) => void;
+  paymentPlanState?: string;
+  setPaymentPlanState?: (val: string) => void;
   projectFinishingState: string;
   setProjectFinishingState: (val: string) => void;
   projectLandAreaState: number | '';
@@ -22,6 +24,7 @@ export function ProjectInputs({
   deliveryYearState, setDeliveryYearState,
   projectFloorsState, setProjectFloorsState,
   projectTypeState, setProjectTypeState,
+  paymentPlanState = '', setPaymentPlanState,
   projectFinishingState, setProjectFinishingState,
   projectLandAreaState, setProjectLandAreaState,
   projectUnitsCountState, setProjectUnitsCountState
@@ -31,11 +34,11 @@ export function ProjectInputs({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Status */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">مستوى إنجاز المشروع الحركي</label>
+          <label className="text-xs font-bold text-gray-600">مستوى إنجاز المشروع الحركي</label>
           <select
             value={projectStatusState}
             onChange={(e) => setProjectStatusState(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             <option value="تحت الأرض / حفر وتأسيس">تأسيس وحفر الأراضي الأولية</option>
             <option value="هيكل وعضم قيد التشبيك">بناء الهياكل والصب المالي (على العظم)</option>
@@ -46,11 +49,11 @@ export function ProjectInputs({
 
         {/* Delivery year */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">السنة المتوقعة للتسليم النهائي للعميل</label>
+          <label className="text-xs font-bold text-gray-600">السنة المتوقعة للتسليم النهائي للعميل</label>
           <select
             value={deliveryYearState}
             onChange={(e) => setDeliveryYearState(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             {['2025', '2026', '2027', '2028', '2029'].map((y) => (
               <option key={y} value={y}>{y}</option>
@@ -60,23 +63,46 @@ export function ProjectInputs({
 
         {/* Floors count */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">عدد طوابق المشروع بالكامل</label>
+          <label className="text-xs font-bold text-gray-600">عدد طوابق المشروع بالكامل</label>
           <input
             type="number"
             value={projectFloorsState}
             onChange={(e) => setProjectFloorsState(e.target.value === '' ? '' : Number(e.target.value))}
             placeholder="مثال: 5 طوابق"
-            className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs font-bold"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold"
           />
         </div>
 
         {/* Project Finishing */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">حالة تسليم شقق المشروع</label>
+          <label className="text-xs font-bold text-gray-600">نوع المشروع</label>
+          <input
+            type="text"
+            value={projectTypeState}
+            onChange={(event) => setProjectTypeState(event.target.value)}
+            placeholder="سكني / تجاري / سياحي"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">خطة السداد</label>
+          <input
+            type="text"
+            value={paymentPlanState}
+            onChange={(event) => setPaymentPlanState?.(event.target.value)}
+            placeholder="كاش / دفعة أولى + أقساط"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold"
+          />
+        </div>
+
+        {/* Project Finishing */}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">حالة تسليم شقق المشروع</label>
           <select
             value={projectFinishingState}
             onChange={(e) => setProjectFinishingState(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             <option value="على العضم">على العظم بالكامل</option>
             <option value="نصف كسوة">نصف كسوة مخدمة</option>
@@ -86,25 +112,25 @@ export function ProjectInputs({
 
         {/* Land Area */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#2B2B2B]">مساحة أرض المشروع (م²)</label>
+          <label className="text-xs font-bold text-gray-605">مساحة أرض المشروع (م²)</label>
           <input
             type="number"
             value={projectLandAreaState}
             onChange={(e) => setProjectLandAreaState(e.target.value === '' ? '' : Number(e.target.value))}
             placeholder="مثال: 4500"
-            className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs font-bold font-mono"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold font-mono"
           />
         </div>
 
         {/* Units count */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">عدد الوحدات أو الشقق الكلي</label>
+          <label className="text-xs font-bold text-gray-600">عدد الوحدات أو الشقق الكلي</label>
           <input
             type="number"
             value={projectUnitsCountState}
             onChange={(e) => setProjectUnitsCountState(e.target.value === '' ? '' : Number(e.target.value))}
             placeholder="مثال: 40 شقة"
-            className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs font-bold font-mono"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold font-mono"
           />
         </div>
       </div>

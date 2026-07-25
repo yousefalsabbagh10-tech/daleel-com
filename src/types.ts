@@ -15,6 +15,7 @@ export interface AdItem {
   videoUrl?: string;
   ownerPhone?: string;
   whatsappPhone?: string;
+  mapUrl?: string;
   description?: string;
   // Structured classification fields for perfect filtering
   subCategory?: string;
@@ -28,6 +29,11 @@ export interface AdItem {
   carCondition?: string;
   carType?: string;
   carColor?: string;
+  engineSize?: string;
+  enginePower?: string;
+  carDrive?: string;
+  carWarranty?: string;
+  carAdvertiser?: string;
   propType?: string;
   reRooms?: string;
   reBaths?: string;
@@ -37,6 +43,13 @@ export interface AdItem {
   reFloor?: string;
   reFurnished?: string;
   reBuildingAge?: string;
+  buildingTotalFloors?: string | number;
+  heatingType?: string;
+  hasElevator?: string;
+  hasParking?: string;
+  titleDeedType?: string;
+  propertyDirection?: string;
+  advertiserType?: string;
   rooms?: number;
   bathrooms?: number;
   areaSize?: number;

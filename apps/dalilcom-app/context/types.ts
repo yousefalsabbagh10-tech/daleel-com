@@ -28,6 +28,27 @@ export interface AdItem {
   carCondition?: string;
   carType?: string;
   carColor?: string;
+  engineSize?: string;
+  enginePower?: string;
+  carDrive?: string;
+  carWarranty?: string;
+  carAdvertiser?: string;
+  propType?: string;
+  reRooms?: string;
+  reBaths?: string;
+  reArea?: string;
+  reNetArea?: string;
+  reFloor?: string;
+  buildingTotalFloors?: string | number;
+  reFurnished?: string;
+  reBuildingAge?: string;
+  reType?: string;
+  heatingType?: string;
+  titleDeedType?: string;
+  propertyDirection?: string;
+  hasElevator?: string;
+  hasParking?: string;
+  advertiserType?: string;
 }
 
 export interface AppState {

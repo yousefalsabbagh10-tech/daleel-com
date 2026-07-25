@@ -10,15 +10,25 @@ const mapCategory = (row: any): RealEstateCategory => ({ id: row.id, ar: row.ar_
 const mapSub = (row: any): RealEstateSubcategory => ({ ar: row.ar_name, en: row.en_name, count: row.ads_count, image: row.image_url });
 const mapNotif = (row: any): NotificationItem => ({ id: row.id, title: row.title, body: row.body, date: row.display_date || row.created_at, isRead: Boolean(row.is_read) });
 const cleanDetails = (items: any[]) => items.map((detail: any) => detail?.detail_text || detail).filter(Boolean);
-const mapUrlFromDetails = (items: string[]) => items.find(text => String(text).startsWith('map_url:'))?.replace('map_url:', '');
 const specDetails = (ad: any, specs: any = {}, reSpecs: any = {}) => {
   const items = ad.category === 'cars' ? [
     specs.brand_name, specs.model_name, specs.model_year, specs.transmission, specs.fuel_type,
     specs.mileage ? `${specs.mileage} كم` : null, specs.body_type, specs.car_condition,
-    specs.car_type, specs.color,
+    specs.car_type, specs.color, specs.engine_size, specs.engine_power,
+    specs.drive_type, specs.has_warranty, specs.advertiser_type,
   ] : [
     reSpecs.property_type, reSpecs.rooms, reSpecs.bathrooms, reSpecs.area_text,
-    reSpecs.floor, reSpecs.furnished, reSpecs.building_age, reSpecs.re_type,
+    reSpecs.floor, reSpecs.total_floors, reSpecs.furnished, reSpecs.building_age,
+    reSpecs.re_type, reSpecs.net_area, reSpecs.heating_type, reSpecs.title_deed_type,
+    reSpecs.advertiser_type, reSpecs.property_direction, reSpecs.has_elevator, reSpecs.has_parking,
+    specs.buildingTotalFloors, specs.bedsCount, specs.minNetArea, specs.maxNetArea,
+    specs.heatingType, specs.kitchenType, specs.balconyCount, specs.hasElevator,
+    specs.hasParking, specs.houseStatus, specs.inComplex, specs.titleDeedType,
+    specs.propertyDirection, specs.advertiserType, specs.villaFloors, specs.landZoning,
+    specs.landFrontage, specs.officeFitted, specs.shopHasLicense, specs.minArea,
+    specs.maxArea, specs.projectType, specs.paymentPlan,
+    Array.isArray(specs.projectFacilities) ? specs.projectFacilities.join(', ') : specs.projectFacilities,
+    Array.isArray(specs.projectAmenities) ? specs.projectAmenities.join(', ') : specs.projectAmenities,
   ];
   return items.filter(Boolean).map(String);
 };
@@ -26,7 +36,8 @@ const requestDetails = (category: string, specs: any = {}, details: string[] = [
   const fromSpecs = category === 'cars' ? [
     specs.brand, specs.model, specs.year, specs.gear, specs.fuel,
     specs.carMileage ? `${specs.carMileage} كم` : null, specs.carBodyType,
-    specs.carCondition, specs.carType, specs.carColor,
+    specs.carCondition, specs.carType, specs.carColor, specs.engineSize,
+    specs.enginePower, specs.carDrive, specs.carWarranty, specs.carAdvertiser,
   ] : [
     specs.propType, specs.reRooms, specs.reBaths, specs.reArea, specs.reFloor,
     specs.reFurnished, specs.reBuildingAge, specs.reType, specs.projectStatus,
@@ -34,6 +45,14 @@ const requestDetails = (category: string, specs: any = {}, details: string[] = [
     specs.projectFloors ? `${specs.projectFloors} طوابق` : null,
     specs.projectFinishing, specs.projectLandArea ? `${specs.projectLandArea} م² أرض` : null,
     specs.projectUnitsCount ? `${specs.projectUnitsCount} وحدة` : null,
+    specs.buildingTotalFloors, specs.bedsCount, specs.minNetArea, specs.maxNetArea,
+    specs.heatingType, specs.kitchenType, specs.balconyCount, specs.hasElevator,
+    specs.hasParking, specs.houseStatus, specs.inComplex, specs.titleDeedType,
+    specs.propertyDirection, specs.advertiserType, specs.villaFloors, specs.landZoning,
+    specs.landFrontage, specs.officeFitted, specs.shopHasLicense, specs.minArea,
+    specs.maxArea, specs.projectType, specs.paymentPlan,
+    Array.isArray(specs.projectFacilities) ? specs.projectFacilities.join(', ') : specs.projectFacilities,
+    Array.isArray(specs.projectAmenities) ? specs.projectAmenities.join(', ') : specs.projectAmenities,
   ];
   return Array.from(new Set([...details, ...fromSpecs.filter(Boolean).map(String)]));
 };
@@ -45,7 +64,6 @@ const mapAd = (row: any): AdItem => {
   const videos = row.videos || ad.videos || [];
   const details = row.details || ad.details || [];
   const mappedDetails = cleanDetails(details);
-  const visibleDetails = mappedDetails.filter((text: string) => !String(text).startsWith('map_url:'));
   return {
     id: ad.id,
     title: ad.title,
@@ -59,10 +77,7 @@ const mapAd = (row: any): AdItem => {
     videoUrl: videos[0]?.video_url || ad.video_url,
     isFeatured: Boolean(ad.is_featured),
     date: String(ad.published_on || ad.created_at || '').slice(0, 10),
-    details: visibleDetails.length ? visibleDetails : specDetails(ad, specs, reSpecs),
-    mapUrl: ad.map_url || mapUrlFromDetails(mappedDetails),
-    ownerPhone: ad.owner_phone,
-    whatsappPhone: ad.whatsapp_phone,
+    details: mappedDetails.length ? mappedDetails : specDetails(ad, specs, reSpecs),
     subCategory: ad.subcategory,
     purpose: ad.purpose,
     carBrand: specs.brand_name,
@@ -75,14 +90,29 @@ const mapAd = (row: any): AdItem => {
     carCondition: specs.car_condition,
     carType: specs.car_type,
     carColor: specs.color,
+    engineSize: specs.engine_size,
+    enginePower: specs.engine_power,
+    carDrive: specs.drive_type,
+    carWarranty: specs.has_warranty,
+    carAdvertiser: specs.advertiser_type,
     propType: reSpecs.property_type,
     reRooms: reSpecs.rooms,
     reBaths: reSpecs.bathrooms,
     reArea: reSpecs.area_text,
+    reNetArea: reSpecs.net_area,
     reFloor: reSpecs.floor,
+    buildingTotalFloors: reSpecs.total_floors,
     reFurnished: reSpecs.furnished,
     reBuildingAge: reSpecs.building_age,
     reType: reSpecs.re_type,
+    titleDeedType: reSpecs.title_deed_type,
+    advertiserType: reSpecs.advertiser_type,
+    heatingType: reSpecs.heating_type,
+    propertyDirection: reSpecs.property_direction,
+    hasElevator: reSpecs.has_elevator,
+    hasParking: reSpecs.has_parking,
+    ownerPhone: ad.owner_phone || '',
+    whatsappPhone: ad.whatsapp_phone || '',
   };
 };
 export function AdsProvider({ children }: { children: ReactNode }) {
@@ -143,11 +173,11 @@ export function AdsProvider({ children }: { children: ReactNode }) {
       cover_image_url: ad.image || ad.imageUrl,
       published_on: new Date().toISOString().slice(0, 10),
       images: ad.images || ad.imageUrls || [ad.image || ad.imageUrl].filter(Boolean),
-      videos: [ad.video || ad.videoUrl].filter(Boolean),
-      owner_phone: ad.ownerPhone,
-      whatsapp_phone: ad.whatsappPhone,
+      videos: ad.videos || ad.videoUrls || [ad.video || ad.videoUrl].filter(Boolean),
       details: requestDetails(ad.category, ad.specs, ad.details || []),
       specs: ad.specs || {},
+      owner_phone: ad.ownerPhone,
+      whatsapp_phone: ad.whatsappPhone,
     };
     const created = await api.post<any>('/ads', payload);
     setAds(prev => [mapAd(created.ad ? { ...created.ad, images: created.images, videos: created.videos, details: created.details, car_specs: created.car_specs, real_estate_specs: created.real_estate_specs } : created), ...prev]);

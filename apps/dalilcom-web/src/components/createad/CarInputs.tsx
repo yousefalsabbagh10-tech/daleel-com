@@ -23,6 +23,16 @@ interface CarInputsProps {
   setCarColor: (val: string) => void;
   carType: string;
   setCarType: (val: string) => void;
+  engineSize?: string;
+  setEngineSize?: (val: string) => void;
+  enginePower?: string;
+  setEnginePower?: (val: string) => void;
+  carDrive?: string;
+  setCarDrive?: (val: string) => void;
+  carWarranty?: string;
+  setCarWarranty?: (val: string) => void;
+  carAdvertiser?: string;
+  setCarAdvertiser?: (val: string) => void;
 }
 
 export function CarInputs({
@@ -35,7 +45,12 @@ export function CarInputs({
   carBodyType, setCarBodyType,
   carCondition, setCarCondition,
   carColor, setCarColor,
-  carType, setCarType
+  carType, setCarType,
+  engineSize = '', setEngineSize,
+  enginePower = '', setEnginePower,
+  carDrive = '', setCarDrive,
+  carWarranty = '', setCarWarranty,
+  carAdvertiser = '', setCarAdvertiser
 }: CarInputsProps) {
   const { brands, carModelsMap } = useAds();
 
@@ -44,7 +59,7 @@ export function CarInputs({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {/* Brand */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">العلامة التجارية</label>
+          <label className="text-xs font-bold text-gray-600">العلامة التجارية</label>
           <SearchableSelect
             value={carBrand}
             onChange={setCarBrand}
@@ -55,7 +70,7 @@ export function CarInputs({
 
         {/* Model */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">طراز السيارة (الموديل)</label>
+          <label className="text-xs font-bold text-gray-600">طراز السيارة (الموديل)</label>
           {(() => {
             const brandEn = brands.find(b => b.ar === carBrand)?.en;
             const models = brandEn ? carModelsMap[brandEn] : [];
@@ -76,7 +91,7 @@ export function CarInputs({
                 value={carModel}
                 onChange={(e) => setCarModel(e.target.value)}
                 placeholder="مثال: لاندكروزر، كامري، سبورتج"
-                className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+                className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
               />
             );
           })()}
@@ -84,11 +99,11 @@ export function CarInputs({
 
         {/* Year */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">سنة الصنع</label>
+          <label className="text-xs font-bold text-gray-600">سنة الصنع</label>
           <select
             value={carYear}
             onChange={(e) => setCarYear(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             {['2026', '2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2015', '2010'].map(y => (
               <option key={y} value={y}>{y}</option>
@@ -98,22 +113,22 @@ export function CarInputs({
 
         {/* Mileage */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">المسافة المقطوعة (كم)</label>
+          <label className="text-xs font-bold text-gray-600">المسافة المقطوعة (كم)</label>
           <input
             type="number"
             value={carMileage}
             onChange={(e) => setCarMileage(e.target.value)}
-            className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs font-bold font-mono text-left"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold font-mono text-left"
           />
         </div>
 
         {/* Transmission */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">علبة التروس</label>
+          <label className="text-xs font-bold text-gray-600">علبة التروس</label>
           <select
             value={carGear}
             onChange={(e) => setCarGear(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             <option value="أوتوماتيك">أوتوماتيك (Automatic)</option>
             <option value="عادي">عادي (Manual)</option>
@@ -122,11 +137,11 @@ export function CarInputs({
 
         {/* Fuel Type */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">نوع الوقود</label>
+          <label className="text-xs font-bold text-gray-600">نوع الوقود</label>
           <select
             value={carFuel}
             onChange={(e) => setCarFuel(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             <option value="بنزين">بنزين</option>
             <option value="ديزل">ديزل</option>
@@ -137,11 +152,11 @@ export function CarInputs({
 
         {/* Body style */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">هيكل السيارة</label>
+          <label className="text-xs font-bold text-gray-600">هيكل السيارة</label>
           <select
             value={carBodyType}
             onChange={(e) => setCarBodyType(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             <option value="سيدان">سيدان (Sedan)</option>
             <option value="دفع رباعي SUV">دفع رباعي (SUV)</option>
@@ -152,11 +167,11 @@ export function CarInputs({
 
         {/* Condition */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">الحالة الفنية</label>
+          <label className="text-xs font-bold text-gray-600">الحالة الفنية</label>
           <select
             value={carCondition}
             onChange={(e) => setCarCondition(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             <option value="خالية تماماً">خالية تماماً من الداخل بظهر نظيف</option>
             <option value="مستعمل نظيف">مستعمل نظيف</option>
@@ -166,11 +181,11 @@ export function CarInputs({
 
         {/* Vehicle Purpose */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">الغرض من العرض</label>
+          <label className="text-xs font-bold text-gray-600">الغرض من العرض</label>
           <select
             value={carType}
             onChange={(e) => setCarType(e.target.value)}
-            className="w-full h-11 px-3 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           >
             <option value="للبيع">للبيع</option>
             <option value="للإيجار">للإيجار المباشر</option>
@@ -179,14 +194,42 @@ export function CarInputs({
 
         {/* Color */}
         <div className="space-y-1">
-          <label className="text-xs font-bold text-[#0D3B46]">لون الهيكل الخارجي</label>
+          <label className="text-xs font-bold text-gray-600">لون الهيكل الخارجي</label>
           <input
             type="text"
             value={carColor}
             onChange={(e) => setCarColor(e.target.value)}
             placeholder="مثال: أبيض، ميتالك، أسود"
-            className="w-full h-11 px-4 bg-[#F6F2E8] border border-[#E3C98D] rounded-xl outline-none text-xs"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs"
           />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">حجم المحرك</label>
+          <input type="text" value={engineSize} onChange={(event) => setEngineSize?.(event.target.value)} placeholder="مثال: 1600 CC" className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">قوة المحرك</label>
+          <input type="text" value={enginePower} onChange={(event) => setEnginePower?.(event.target.value)} placeholder="مثال: 4 سلندر / اقتصادي" className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">نظام الدفع</label>
+          <input type="text" value={carDrive} onChange={(event) => setCarDrive?.(event.target.value)} placeholder="أمامي / خلفي / رباعي" className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">الضمان</label>
+          <select value={carWarranty} onChange={(event) => setCarWarranty?.(event.target.value)} className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs">
+            <option value="">اختياري</option>
+            <option value="نعم">نعم</option>
+            <option value="لا">لا</option>
+          </select>
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">نوع المعلن</label>
+          <input type="text" value={carAdvertiser} onChange={(event) => setCarAdvertiser?.(event.target.value)} placeholder="المالك / معرض / وسيط" className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
         </div>
       </div>
     </div>

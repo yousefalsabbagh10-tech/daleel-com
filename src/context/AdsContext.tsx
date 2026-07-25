@@ -14,10 +14,21 @@ const specDetails = (ad: any, specs: any = {}, reSpecs: any = {}) => {
   const items = ad.category === 'cars' ? [
     specs.brand_name, specs.model_name, specs.model_year, specs.transmission, specs.fuel_type,
     specs.mileage ? `${specs.mileage} كم` : null, specs.body_type, specs.car_condition,
-    specs.car_type, specs.color,
+    specs.car_type, specs.color, specs.engine_size, specs.engine_power,
+    specs.drive_type, specs.has_warranty, specs.advertiser_type,
   ] : [
     reSpecs.property_type, reSpecs.rooms, reSpecs.bathrooms, reSpecs.area_text,
-    reSpecs.floor, reSpecs.furnished, reSpecs.building_age, reSpecs.re_type,
+    reSpecs.floor, reSpecs.total_floors, reSpecs.furnished, reSpecs.building_age,
+    reSpecs.re_type, reSpecs.net_area, reSpecs.heating_type, reSpecs.title_deed_type,
+    reSpecs.advertiser_type, reSpecs.property_direction, reSpecs.has_elevator, reSpecs.has_parking,
+    specs.buildingTotalFloors, specs.bedsCount, specs.minNetArea, specs.maxNetArea,
+    specs.heatingType, specs.kitchenType, specs.balconyCount, specs.hasElevator,
+    specs.hasParking, specs.houseStatus, specs.inComplex, specs.titleDeedType,
+    specs.propertyDirection, specs.advertiserType, specs.villaFloors, specs.landZoning,
+    specs.landFrontage, specs.officeFitted, specs.shopHasLicense, specs.minArea,
+    specs.maxArea, specs.projectType, specs.paymentPlan,
+    Array.isArray(specs.projectFacilities) ? specs.projectFacilities.join(', ') : specs.projectFacilities,
+    Array.isArray(specs.projectAmenities) ? specs.projectAmenities.join(', ') : specs.projectAmenities,
   ];
   return items.filter(Boolean).map(String);
 };
@@ -25,7 +36,8 @@ const requestDetails = (category: string, specs: any = {}, details: string[] = [
   const fromSpecs = category === 'cars' ? [
     specs.brand, specs.model, specs.year, specs.gear, specs.fuel,
     specs.carMileage ? `${specs.carMileage} كم` : null, specs.carBodyType,
-    specs.carCondition, specs.carType, specs.carColor,
+    specs.carCondition, specs.carType, specs.carColor, specs.engineSize,
+    specs.enginePower, specs.carDrive, specs.carWarranty, specs.carAdvertiser,
   ] : [
     specs.propType, specs.reRooms, specs.reBaths, specs.reArea, specs.reFloor,
     specs.reFurnished, specs.reBuildingAge, specs.reType, specs.projectStatus,
@@ -33,6 +45,14 @@ const requestDetails = (category: string, specs: any = {}, details: string[] = [
     specs.projectFloors ? `${specs.projectFloors} طوابق` : null,
     specs.projectFinishing, specs.projectLandArea ? `${specs.projectLandArea} م² أرض` : null,
     specs.projectUnitsCount ? `${specs.projectUnitsCount} وحدة` : null,
+    specs.buildingTotalFloors, specs.bedsCount, specs.minNetArea, specs.maxNetArea,
+    specs.heatingType, specs.kitchenType, specs.balconyCount, specs.hasElevator,
+    specs.hasParking, specs.houseStatus, specs.inComplex, specs.titleDeedType,
+    specs.propertyDirection, specs.advertiserType, specs.villaFloors, specs.landZoning,
+    specs.landFrontage, specs.officeFitted, specs.shopHasLicense, specs.minArea,
+    specs.maxArea, specs.projectType, specs.paymentPlan,
+    Array.isArray(specs.projectFacilities) ? specs.projectFacilities.join(', ') : specs.projectFacilities,
+    Array.isArray(specs.projectAmenities) ? specs.projectAmenities.join(', ') : specs.projectAmenities,
   ];
   return Array.from(new Set([...details, ...fromSpecs.filter(Boolean).map(String)]));
 };
@@ -70,14 +90,27 @@ const mapAd = (row: any): AdItem => {
     carCondition: specs.car_condition,
     carType: specs.car_type,
     carColor: specs.color,
+    engineSize: specs.engine_size,
+    enginePower: specs.engine_power,
+    carDrive: specs.drive_type,
+    carWarranty: specs.has_warranty,
+    carAdvertiser: specs.advertiser_type,
     propType: reSpecs.property_type,
     reRooms: reSpecs.rooms,
     reBaths: reSpecs.bathrooms,
     reArea: reSpecs.area_text,
+    reNetArea: reSpecs.net_area,
     reFloor: reSpecs.floor,
+    buildingTotalFloors: reSpecs.total_floors,
     reFurnished: reSpecs.furnished,
     reBuildingAge: reSpecs.building_age,
     reType: reSpecs.re_type,
+    titleDeedType: reSpecs.title_deed_type,
+    advertiserType: reSpecs.advertiser_type,
+    heatingType: reSpecs.heating_type,
+    propertyDirection: reSpecs.property_direction,
+    hasElevator: reSpecs.has_elevator,
+    hasParking: reSpecs.has_parking,
     ownerPhone: ad.owner_phone || '',
     whatsappPhone: ad.whatsapp_phone || '',
   };

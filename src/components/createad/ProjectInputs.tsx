@@ -9,6 +9,8 @@ interface ProjectInputsProps {
   setProjectFloorsState: (val: number | '') => void;
   projectTypeState: string;
   setProjectTypeState: (val: string) => void;
+  paymentPlanState?: string;
+  setPaymentPlanState?: (val: string) => void;
   projectFinishingState: string;
   setProjectFinishingState: (val: string) => void;
   projectLandAreaState: number | '';
@@ -22,6 +24,7 @@ export function ProjectInputs({
   deliveryYearState, setDeliveryYearState,
   projectFloorsState, setProjectFloorsState,
   projectTypeState, setProjectTypeState,
+  paymentPlanState = '', setPaymentPlanState,
   projectFinishingState, setProjectFinishingState,
   projectLandAreaState, setProjectLandAreaState,
   projectUnitsCountState, setProjectUnitsCountState
@@ -66,6 +69,29 @@ export function ProjectInputs({
             value={projectFloorsState}
             onChange={(e) => setProjectFloorsState(e.target.value === '' ? '' : Number(e.target.value))}
             placeholder="مثال: 5 طوابق"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold"
+          />
+        </div>
+
+        {/* Project Finishing */}
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">نوع المشروع</label>
+          <input
+            type="text"
+            value={projectTypeState}
+            onChange={(event) => setProjectTypeState(event.target.value)}
+            placeholder="سكني / تجاري / سياحي"
+            className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold"
+          />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">خطة السداد</label>
+          <input
+            type="text"
+            value={paymentPlanState}
+            onChange={(event) => setPaymentPlanState?.(event.target.value)}
+            placeholder="كاش / دفعة أولى + أقساط"
             className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs font-bold"
           />
         </div>

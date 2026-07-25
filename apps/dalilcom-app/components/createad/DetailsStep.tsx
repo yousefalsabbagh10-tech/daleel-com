@@ -34,8 +34,15 @@ function RealEstateFields({ form, setField }: Props) {
       <Field label="عدد الحمامات" value={form.baths} onChangeText={set('baths')} />
       <Field label="المساحة" value={form.area} onChangeText={set('area')} />
       <Field label="الطابق" value={form.floor} onChangeText={set('floor')} />
+      <Field label="عدد طوابق البناء" value={form.buildingTotalFloors} onChangeText={set('buildingTotalFloors')} keyboardType="numeric" />
       <Field label="الفرش" value={form.furnished} onChangeText={set('furnished')} />
       <Field label="عمر البناء" value={form.age} onChangeText={set('age')} />
+      <Field label="نوع التدفئة" value={form.heatingType} onChangeText={set('heatingType')} />
+      <Field label="الطابو / الملكية" value={form.titleDeedType} onChangeText={set('titleDeedType')} />
+      <Field label="الاتجاه / الإطلالة" value={form.propertyDirection} onChangeText={set('propertyDirection')} />
+      <Field label="مصعد" value={form.hasElevator} onChangeText={set('hasElevator')} placeholder="نعم / لا" />
+      <Field label="موقف سيارات" value={form.hasParking} onChangeText={set('hasParking')} placeholder="نعم / لا" />
+      <Field label="نوع المعلن" value={form.advertiserType} onChangeText={set('advertiserType')} placeholder="المالك / وسيط" />
     </View>
   );
 }
@@ -54,6 +61,11 @@ function CarFields({ form, setField }: Props) {
       <Field label="نوع الهيكل" value={form.carBodyType} onChangeText={set('carBodyType')} placeholder="سيدان، SUV، بيك أب" />
       <Field label="الحالة" value={form.carCondition} onChangeText={set('carCondition')} />
       <Field label="اللون" value={form.carColor} onChangeText={set('carColor')} />
+      <Field label="حجم المحرك" value={form.engineSize} onChangeText={set('engineSize')} placeholder="مثال: 1600 CC" />
+      <Field label="قوة المحرك" value={form.enginePower} onChangeText={set('enginePower')} placeholder="مثال: 4 سلندر / اقتصادي" />
+      <Field label="نظام الدفع" value={form.carDrive} onChangeText={set('carDrive')} placeholder="أمامي / خلفي / رباعي" />
+      <Field label="الضمان" value={form.carWarranty} onChangeText={set('carWarranty')} placeholder="نعم / لا" />
+      <Field label="نوع المعلن" value={form.carAdvertiser} onChangeText={set('carAdvertiser')} placeholder="المالك / معرض / وسيط" />
     </View>
   );
 }
@@ -65,6 +77,8 @@ function ProjectFields({ form, setField }: Props) {
       <Field label="حالة المشروع" value={form.projectStatus} onChangeText={set('projectStatus')} />
       <Field label="سنة التسليم" value={form.deliveryYear} onChangeText={set('deliveryYear')} keyboardType="numeric" />
       <Field label="عدد الطوابق" value={form.projectFloors} onChangeText={set('projectFloors')} keyboardType="numeric" />
+      <Field label="نوع المشروع" value={form.projectType} onChangeText={set('projectType')} />
+      <Field label="خطة السداد" value={form.paymentPlan} onChangeText={set('paymentPlan')} />
       <Field label="الإكساء" value={form.projectFinishing} onChangeText={set('projectFinishing')} />
       <Field label="مساحة الأرض" value={form.projectLandArea} onChangeText={set('projectLandArea')} keyboardType="numeric" />
       <Field label="عدد الوحدات" value={form.projectUnitsCount} onChangeText={set('projectUnitsCount')} keyboardType="numeric" />

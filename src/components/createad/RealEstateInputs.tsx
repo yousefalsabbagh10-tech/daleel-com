@@ -15,6 +15,20 @@ interface RealEstateInputsProps {
   setReFurnished: (val: string) => void;
   reBuildingAge: string;
   setReBuildingAge: (val: string) => void;
+  buildingTotalFloors?: string;
+  setBuildingTotalFloors?: (val: string) => void;
+  heatingType?: string;
+  setHeatingType?: (val: string) => void;
+  hasElevator?: string;
+  setHasElevator?: (val: string) => void;
+  hasParking?: string;
+  setHasParking?: (val: string) => void;
+  titleDeedType?: string;
+  setTitleDeedType?: (val: string) => void;
+  propertyDirection?: string;
+  setPropertyDirection?: (val: string) => void;
+  advertiserType?: string;
+  setAdvertiserType?: (val: string) => void;
 }
 
 export function RealEstateInputs({
@@ -24,7 +38,14 @@ export function RealEstateInputs({
   reType, setReType,
   reFloor, setReFloor,
   reFurnished, setReFurnished,
-  reBuildingAge, setReBuildingAge
+  reBuildingAge, setReBuildingAge,
+  buildingTotalFloors = '', setBuildingTotalFloors,
+  heatingType = '', setHeatingType,
+  hasElevator = '', setHasElevator,
+  hasParking = '', setHasParking,
+  titleDeedType = '', setTitleDeedType,
+  propertyDirection = '', setPropertyDirection,
+  advertiserType = '', setAdvertiserType
 }: RealEstateInputsProps) {
   return (
     <div className="space-y-4 text-right" dir="rtl">
@@ -123,6 +144,48 @@ export function RealEstateInputs({
             <option value="5-10 سنوات">بين 5 و10 سنوات</option>
             <option value="قديم مخدم">حوالي عشر سنوات أو أكثر فما فوق</option>
           </select>
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">عدد طوابق البناء</label>
+          <input type="text" value={buildingTotalFloors} onChange={(event) => setBuildingTotalFloors?.(event.target.value)} className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">نوع التدفئة</label>
+          <input type="text" value={heatingType} onChange={(event) => setHeatingType?.(event.target.value)} className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">الطابو / الملكية</label>
+          <input type="text" value={titleDeedType} onChange={(event) => setTitleDeedType?.(event.target.value)} className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">الاتجاه / الإطلالة</label>
+          <input type="text" value={propertyDirection} onChange={(event) => setPropertyDirection?.(event.target.value)} className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">مصعد</label>
+          <select value={hasElevator} onChange={(event) => setHasElevator?.(event.target.value)} className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs">
+            <option value="">اختياري</option>
+            <option value="نعم">نعم</option>
+            <option value="لا">لا</option>
+          </select>
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">موقف سيارات</label>
+          <select value={hasParking} onChange={(event) => setHasParking?.(event.target.value)} className="w-full h-11 px-3 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs">
+            <option value="">اختياري</option>
+            <option value="نعم">نعم</option>
+            <option value="لا">لا</option>
+          </select>
+        </div>
+
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-gray-600">نوع المعلن</label>
+          <input type="text" value={advertiserType} onChange={(event) => setAdvertiserType?.(event.target.value)} placeholder="المالك / وسيط" className="w-full h-11 px-4 bg-gray-50 border border-gray-200 rounded-xl outline-none text-xs" />
         </div>
       </div>
     </div>
