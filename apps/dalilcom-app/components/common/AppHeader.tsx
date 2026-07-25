@@ -11,10 +11,7 @@ export function AppHeaderLogo({ title }: { title?: string }) {
     <View style={styles.header}>
       <View style={styles.logoCard}>
         <Image source={logoImage} style={styles.logoImage} resizeMode="contain" />
-        <View style={styles.logoTextBox}>
-          <Text style={styles.logoTitle}>دليل كوم</Text>
-          <Text style={styles.logoSub}>عقارات . فرص أكثر</Text>
-        </View>
+
       </View>
       {title ? <Text style={styles.pageTitle}>{title}</Text> : null}
     </View>
@@ -44,19 +41,14 @@ const styles = StyleSheet.create({
   logoCard: {
     backgroundColor: COLORS.white,
     borderRadius: 10,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
     alignItems: 'center',
     justifyContent: 'center',
     width: 318,
-    height: 70,
-    flexDirection: 'row-reverse',
-    gap: 12,
+    height: 92,
   },
-  logoImage: { width: 54, height: 54 },
-  logoTextBox: { alignItems: 'flex-end' },
-  logoTitle: { color: '#0D3B46', fontSize: 22, fontWeight: '900', lineHeight: 24 },
-  logoSub: { color: COLORS.primary, fontSize: 12, fontWeight: '700', marginTop: 3 },
+  logoImage: { width: 214, height: 74 },
   pageTitle: { color: COLORS.white, fontSize: FONT_SIZES.lg, fontWeight: '900' },
   bottomWrap: {
     position: 'absolute',

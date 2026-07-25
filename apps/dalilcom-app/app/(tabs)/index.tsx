@@ -12,10 +12,7 @@ function LogoCard() {
   return (
     <View style={styles.logoCard}>
       <Image source={logoImage} style={styles.logoImage} resizeMode="contain" />
-      <View style={styles.logoTextBox}>
-        <Text style={styles.logoTitle}>دليل كوم</Text>
-        <Text style={styles.logoSub}>عقارات وسيارات في سوريا</Text>
-      </View>
+
     </View>
   );
 }
@@ -148,11 +145,8 @@ const shadow = { shadowColor: '#0D3B46', shadowOffset: { width: 0, height: 10 },
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.offWhite },
   header: { backgroundColor: COLORS.primary, paddingTop: 20, paddingBottom: 20, alignItems: 'center' },
-  logoCard: { backgroundColor: COLORS.white, borderRadius: 10, paddingHorizontal: 16, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', width: 300, height: 88, flexDirection: 'row-reverse', gap: 12 },
-  logoImage: { width: 58, height: 58 },
-  logoTextBox: { alignItems: 'flex-end' },
-  logoTitle: { color: '#0D3B46', fontSize: 23, fontWeight: '900', lineHeight: 25 },
-  logoSub: { color: COLORS.primary, fontSize: 12, fontWeight: '800', marginTop: 3 },
+  logoCard: { backgroundColor: COLORS.white, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', width: 318, height: 126 },
+  logoImage: { width: 252, height: 104 },
   content: { padding: SPACING.lg, paddingBottom: 110 },
   sectionTitle: { alignSelf: 'flex-end', fontSize: 22, fontWeight: '900', color: COLORS.gray900, marginBottom: SPACING.lg },
   categoryCard: { backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, minHeight: 92, flexDirection: 'row-reverse', alignItems: 'center', padding: SPACING.md, marginBottom: SPACING.md, borderWidth: 1, borderColor: COLORS.gray200, ...shadow },

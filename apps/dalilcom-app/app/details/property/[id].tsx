@@ -51,10 +51,7 @@ export default function PropertyDetail() {
             </TouchableOpacity>
             <View style={styles.logoCard}>
               <Image source={logoImage} style={styles.logo} resizeMode="contain" />
-              <View style={styles.logoCopy}>
-                <Text style={styles.logoTitle}>دليل كوم</Text>
-                <Text style={styles.logoSub}>عقارات . فرص أكثر</Text>
-              </View>
+
             </View>
             <TouchableOpacity style={styles.iconButton} onPress={() => toggleFavorite(ad.id)}>
               <NativeIcon name={isFav ? 'heart' : 'heart-outline'} size={22} color={isFav ? COLORS.danger : COLORS.gray600} />
@@ -137,11 +134,8 @@ const styles = StyleSheet.create({
   modal: { backgroundColor: COLORS.white, borderRadius: 28, overflow: 'hidden', minHeight: '100%' },
   topBar: { height: 82, paddingHorizontal: SPACING.lg, flexDirection: 'row-reverse', alignItems: 'center', justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: COLORS.gray100 },
   iconButton: { width: 44, height: 44, borderRadius: 22, backgroundColor: '#F6F2E8', borderWidth: 1, borderColor: COLORS.gray200, alignItems: 'center', justifyContent: 'center' },
-  logoCard: { flexDirection: 'row-reverse', alignItems: 'center', gap: 8, backgroundColor: COLORS.white, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 1, borderColor: COLORS.gray100 },
-  logo: { width: 42, height: 42 },
-  logoCopy: { alignItems: 'flex-end' },
-  logoTitle: { color: '#0D3B46', fontSize: 18, fontWeight: '900' },
-  logoSub: { color: COLORS.gray500, fontSize: 10, fontWeight: '800' },
+  logoCard: { alignItems: 'center', justifyContent: 'center', backgroundColor: COLORS.white, borderRadius: 14, paddingHorizontal: 8, paddingVertical: 6, borderWidth: 1, borderColor: COLORS.gray100, width: 132, height: 58 },
+  logo: { width: 112, height: 46 },
   trustPill: { alignSelf: 'flex-end', margin: SPACING.md, flexDirection: 'row-reverse', gap: 5, backgroundColor: 'rgba(201,161,90,0.16)', borderColor: 'rgba(201,161,90,0.34)', borderWidth: 1, borderRadius: 99, paddingHorizontal: 10, paddingVertical: 5 },
   trustText: { color: '#C9A15A', fontSize: FONT_SIZES.xs, fontWeight: '900' },
   gallery: { marginHorizontal: SPACING.lg, borderRadius: 18, overflow: 'hidden', backgroundColor: '#0D3B46' },
