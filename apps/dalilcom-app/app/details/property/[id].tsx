@@ -122,6 +122,11 @@ export default function PropertyDetail() {
               <Text style={styles.actionText}>تواصل واتساب</Text>
             </TouchableOpacity>
           </View>
+
+          <TouchableOpacity style={styles.editBtn} onPress={() => router.push({ pathname: '/(tabs)/create', params: { editId: ad.id } } as any)}>
+            <NativeIcon name="create-outline" size={18} color={COLORS.white} />
+            <Text style={styles.actionText}>تعديل الإعلان</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -160,6 +165,7 @@ const styles = StyleSheet.create({
   actions: { flexDirection: 'row-reverse', gap: SPACING.md, padding: SPACING.lg },
   callBtn: { flex: 1, height: 50, borderRadius: 14, backgroundColor: COLORS.primary, flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 7 },
   whatsappBtn: { flex: 1, height: 50, borderRadius: 14, backgroundColor: '#0D3B46', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 7 },
+  editBtn: { marginHorizontal: SPACING.lg, marginBottom: SPACING.lg, height: 50, borderRadius: 14, backgroundColor: '#C9A15A', flexDirection: 'row-reverse', justifyContent: 'center', alignItems: 'center', gap: 8 },
   actionText: { color: COLORS.white, fontSize: FONT_SIZES.sm, fontWeight: '900' },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: COLORS.offWhite, gap: SPACING.md },
   errorText: { color: COLORS.danger, fontSize: FONT_SIZES.md, fontWeight: '800' },

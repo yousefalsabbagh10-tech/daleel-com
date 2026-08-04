@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constants/theme';
 import { useApp } from '../../context/AppContext';
 import { StepHeader } from '../../components/createad/StepHeader';
@@ -10,14 +10,29 @@ import { LocationStep } from '../../components/createad/LocationStep';
 import { MediaStep } from '../../components/createad/MediaStep';
 import { PriceStep } from '../../components/createad/PriceStep';
 import { CreateAdForm, initialForm, steps } from '../../components/createad/data';
+import { AdItem } from '../../context/types';
 
 export default function CreateTab() {
   const router = useRouter();
-  const { addAd } = useApp();
+  const { editId } = useLocalSearchParams<{ editId?: string }>();
+  const { addAd, updateAd, state } = useApp();
+  const editingAd = editId ? state.ads.find(ad => ad.id === editId) : undefined;
   const [form, setForm] = useState<CreateAdForm>(initialForm);
   const [step, setStep] = useState(0);
   const [saving, setSaving] = useState(false);
   const setField = (key: keyof CreateAdForm, value: any) => setForm(prev => ({ ...prev, [key]: value }));
+
+  useEffect(() => {
+    if (!editId) {
+      setForm(initialForm);
+      setStep(0);
+      return;
+    }
+    if (editingAd) {
+      setForm(formFromAd(editingAd));
+      setStep(0);
+    }
+  }, [editId, editingAd]);
 
   const stepView = useMemo(() => {
     const props = { form, setField };
@@ -48,7 +63,8 @@ export default function CreateTab() {
   const submit = async () => {
     setSaving(true);
     try {
-      const ad = await addAd(buildPayload(form));
+      const payload = buildPayload(form, editingAd?.id);
+      const ad = editingAd ? await updateAd(editingAd.id, payload) : await addAd(payload);
       const path = form.category === 'cars' ? `/details/car/${ad.id}` : `/details/property/${ad.id}`;
       setForm(initialForm);
       setStep(0);
@@ -69,19 +85,19 @@ export default function CreateTab() {
           <Text style={styles.backText}>السابق</Text>
         </TouchableOpacity>
         <TouchableOpacity disabled={saving} style={[styles.next, saving && styles.disabled]} onPress={next}>
-          <Text style={styles.nextText}>{saving ? 'جاري الحفظ...' : step === 4 ? 'نشر الإعلان' : 'المتابع التالي'}</Text>
+          <Text style={styles.nextText}>{saving ? 'جاري الحفظ...' : step === 4 ? (editingAd ? 'حفظ التعديلات' : 'نشر الإعلان') : 'المتابع التالي'}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
 }
 
-function buildPayload(form: CreateAdForm) {
+function buildPayload(form: CreateAdForm, existingId?: string) {
   const price = Number(form.price.replace(/[^\d.]/g, '')) || 0;
   const image = form.imageUrl.trim();
   const specs = form.category === 'cars' ? carSpecs(form) : realEstateSpecs(form);
   return {
-    id: `${form.category}-${Date.now()}`,
+    id: existingId || `${form.category}-${Date.now()}`,
     category: form.category,
     title: form.title.trim(),
     description: form.description.trim(),
@@ -99,6 +115,63 @@ function buildPayload(form: CreateAdForm) {
     details: [...Object.values(specs).filter(Boolean).map(String), form.mapUrl.trim() ? `map_url:${form.mapUrl.trim()}` : ''].filter(Boolean),
     specs,
   };
+}
+
+function formFromAd(ad: AdItem): CreateAdForm {
+  const [city, ...restLocation] = String(ad.location || '').split(/[،,]/).map(part => part.trim());
+  const image = ad.imageUrl || ad.images?.[0] || presetImageFor(ad.category);
+  return {
+    ...initialForm,
+    category: ad.category,
+    subcategory: ad.subcategory || initialForm.subcategory,
+    title: ad.title || '',
+    description: ad.description || '',
+    city: city || initialForm.city,
+    neighborhood: restLocation.join('، ') || '',
+    mapUrl: ad.mapUrl || '',
+    imageUrl: image,
+    images: ad.images?.length ? ad.images : [image],
+    videos: ad.videos || [],
+    price: ad.price ? String(ad.price) : '',
+    currency: ad.currency || initialForm.currency,
+    rooms: ad.reRooms || initialForm.rooms,
+    baths: ad.reBaths || initialForm.baths,
+    area: ad.reArea || initialForm.area,
+    floor: ad.reFloor || initialForm.floor,
+    furnished: ad.reFurnished || initialForm.furnished,
+    age: ad.reBuildingAge || initialForm.age,
+    reType: ad.reType || initialForm.reType,
+    buildingTotalFloors: ad.buildingTotalFloors ? String(ad.buildingTotalFloors) : '',
+    heatingType: ad.heatingType || '',
+    hasElevator: ad.hasElevator || '',
+    hasParking: ad.hasParking || '',
+    titleDeedType: ad.titleDeedType || '',
+    propertyDirection: ad.propertyDirection || '',
+    advertiserType: ad.advertiserType || '',
+    carBrand: ad.carBrand || '',
+    carModel: ad.carModel || '',
+    carYear: ad.carYear || initialForm.carYear,
+    carGear: ad.carGear || initialForm.carGear,
+    carFuel: ad.carFuel || initialForm.carFuel,
+    carMileage: ad.carMileage ? String(ad.carMileage) : '',
+    carBodyType: ad.carBodyType || initialForm.carBodyType,
+    carCondition: ad.carCondition || initialForm.carCondition,
+    carColor: ad.carColor || '',
+    carType: ad.carType || initialForm.carType,
+    engineSize: ad.engineSize || '',
+    enginePower: ad.enginePower || '',
+    carDrive: ad.carDrive || '',
+    carWarranty: ad.carWarranty || '',
+    carAdvertiser: ad.carAdvertiser || '',
+    ownerPhone: ad.ownerPhone || '',
+    whatsappPhone: ad.whatsappPhone || '',
+  };
+}
+
+function presetImageFor(category: CreateAdForm['category']) {
+  return category === 'cars'
+    ? 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900'
+    : 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900';
 }
 
 function realEstateSpecs(form: CreateAdForm) {

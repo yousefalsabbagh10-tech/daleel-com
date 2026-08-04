@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AdItem } from '../types';
-import { X, ShieldCheck, Heart, GitCompare } from 'lucide-react';
+import { X, ShieldCheck, Heart, GitCompare, Pencil, Save } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useAds } from '../context/AdsContext';
 import { cn } from '../lib/utils';
@@ -12,9 +12,44 @@ interface AdDetailModalProps {
 }
 
 export function AdDetailModal({ item, onClose }: AdDetailModalProps) {
-  const { toggleFavorite, isFavorite, toggleComparison, isInComparison } = useAds();
+  const { toggleFavorite, isFavorite, toggleComparison, isInComparison, updateAd } = useAds();
   const fav = isFavorite(item.id);
   const comp = isInComparison(item.id);
+  const [isEditing, setIsEditing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [draft, setDraft] = useState({
+    title: item.title || '',
+    description: item.description || '',
+    price: String(item.price || ''),
+    currency: item.currency || 'ل.س',
+    location: item.location || '',
+    ownerPhone: item.ownerPhone || '',
+    whatsappPhone: item.whatsappPhone || '',
+    imageUrl: item.imageUrl || '',
+  });
+
+  const setDraftField = (key: keyof typeof draft, value: string) => {
+    setDraft(prev => ({ ...prev, [key]: value }));
+  };
+
+  const saveEdit = async () => {
+    setSaving(true);
+    try {
+      await updateAd(item.id, {
+        title: draft.title.trim(),
+        description: draft.description.trim(),
+        price: Number(draft.price.replace(/[^\d.]/g, '')) || 0,
+        currency: draft.currency,
+        location: draft.location.trim(),
+        ownerPhone: draft.ownerPhone.trim(),
+        whatsappPhone: draft.whatsappPhone.trim(),
+        imageUrl: draft.imageUrl.trim(),
+      });
+      setIsEditing(false);
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-[300] bg-[#0D3B46]/75 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6" dir="rtl">
@@ -36,6 +71,24 @@ export function AdDetailModal({ item, onClose }: AdDetailModalProps) {
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => (isEditing ? saveEdit() : setIsEditing(true))}
+              disabled={saving}
+              className="h-10 px-3 rounded-full flex items-center gap-2 transition-all cursor-pointer border bg-[#C9A15A] border-[#C9A15A] text-white disabled:opacity-60"
+              title={isEditing ? 'حفظ التعديلات' : 'تعديل الإعلان'}
+            >
+              {isEditing ? <Save size={17} /> : <Pencil size={17} />}
+              <span className="text-xs font-black hidden sm:inline">{isEditing ? (saving ? 'جاري الحفظ' : 'حفظ') : 'تعديل'}</span>
+            </button>
+            {isEditing && (
+              <button
+                onClick={() => setIsEditing(false)}
+                disabled={saving}
+                className="h-10 px-3 rounded-full border border-[#E3C98D] bg-[#F6F2E8] text-[#0D3B46] text-xs font-black disabled:opacity-60"
+              >
+                إلغاء
+              </button>
+            )}
             <button
               onClick={() => toggleComparison(item.id)}
               className={cn(
@@ -63,7 +116,54 @@ export function AdDetailModal({ item, onClose }: AdDetailModalProps) {
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 sm:p-8 bg-[#F6F2E8] space-y-6">
-          <DetailsTab item={item} />
+          {isEditing ? (
+            <div className="bg-white border border-[#E3C98D] rounded-3xl p-4 sm:p-6 space-y-4">
+              <div className="grid sm:grid-cols-2 gap-4">
+                <label className="space-y-2 text-right">
+                  <span className="text-xs font-black text-[#0D3B46]">عنوان الإعلان</span>
+                  <input value={draft.title} onChange={e => setDraftField('title', e.target.value)} className="w-full h-11 rounded-xl border border-[#E3C98D] px-3 text-sm font-bold outline-none focus:border-[#0D3B46]" />
+                </label>
+                <label className="space-y-2 text-right">
+                  <span className="text-xs font-black text-[#0D3B46]">السعر</span>
+                  <input value={draft.price} onChange={e => setDraftField('price', e.target.value)} className="w-full h-11 rounded-xl border border-[#E3C98D] px-3 text-sm font-bold outline-none focus:border-[#0D3B46]" />
+                </label>
+                <label className="space-y-2 text-right">
+                  <span className="text-xs font-black text-[#0D3B46]">العملة</span>
+                  <select value={draft.currency} onChange={e => setDraftField('currency', e.target.value)} className="w-full h-11 rounded-xl border border-[#E3C98D] px-3 text-sm font-bold outline-none focus:border-[#0D3B46] bg-white">
+                    <option value="ل.س">ل.س</option>
+                    <option value="دولار">دولار</option>
+                    <option value="USD">USD</option>
+                    <option value="SYP">SYP</option>
+                  </select>
+                </label>
+                <label className="space-y-2 text-right">
+                  <span className="text-xs font-black text-[#0D3B46]">الموقع</span>
+                  <input value={draft.location} onChange={e => setDraftField('location', e.target.value)} className="w-full h-11 rounded-xl border border-[#E3C98D] px-3 text-sm font-bold outline-none focus:border-[#0D3B46]" />
+                </label>
+                <label className="space-y-2 text-right">
+                  <span className="text-xs font-black text-[#0D3B46]">رقم الهاتف</span>
+                  <input value={draft.ownerPhone} onChange={e => setDraftField('ownerPhone', e.target.value)} className="w-full h-11 rounded-xl border border-[#E3C98D] px-3 text-sm font-bold outline-none focus:border-[#0D3B46]" />
+                </label>
+                <label className="space-y-2 text-right">
+                  <span className="text-xs font-black text-[#0D3B46]">رقم الواتساب</span>
+                  <input value={draft.whatsappPhone} onChange={e => setDraftField('whatsappPhone', e.target.value)} className="w-full h-11 rounded-xl border border-[#E3C98D] px-3 text-sm font-bold outline-none focus:border-[#0D3B46]" />
+                </label>
+                <label className="space-y-2 text-right sm:col-span-2">
+                  <span className="text-xs font-black text-[#0D3B46]">رابط الصورة الرئيسية</span>
+                  <input value={draft.imageUrl} onChange={e => setDraftField('imageUrl', e.target.value)} className="w-full h-11 rounded-xl border border-[#E3C98D] px-3 text-sm font-bold outline-none focus:border-[#0D3B46]" />
+                </label>
+                <label className="space-y-2 text-right sm:col-span-2">
+                  <span className="text-xs font-black text-[#0D3B46]">الوصف</span>
+                  <textarea value={draft.description} onChange={e => setDraftField('description', e.target.value)} className="w-full min-h-28 rounded-xl border border-[#E3C98D] p-3 text-sm font-bold outline-none focus:border-[#0D3B46] resize-none" />
+                </label>
+              </div>
+              <button onClick={saveEdit} disabled={saving} className="w-full h-12 rounded-xl bg-[#0D3B46] text-white text-sm font-black disabled:opacity-60">
+                {saving ? 'جاري حفظ التعديلات...' : 'حفظ التعديلات'}
+              </button>
+            </div>
+          ) : (
+            <DetailsTab item={item} />
+          )}
         </div>
 
         <div className="px-4 sm:px-6 py-4 bg-[#0D3B46] text-[#F6F2E8]/80 text-[10px] sm:text-[11px] font-bold border-t border-[#C9A15A]/30 shrink-0 space-y-3">

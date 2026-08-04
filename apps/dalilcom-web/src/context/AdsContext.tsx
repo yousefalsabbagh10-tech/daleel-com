@@ -188,6 +188,22 @@ export function AdsProvider({ children }: { children: ReactNode }) {
       payload.is_featured = payload.isFeatured;
       delete payload.isFeatured;
     }
+    if ('imageUrl' in payload) {
+      payload.cover_image_url = payload.imageUrl;
+      delete payload.imageUrl;
+    }
+    if ('subCategory' in payload) {
+      payload.subcategory = payload.subCategory;
+      delete payload.subCategory;
+    }
+    if ('ownerPhone' in payload) {
+      payload.owner_phone = payload.ownerPhone;
+      delete payload.ownerPhone;
+    }
+    if ('whatsappPhone' in payload) {
+      payload.whatsapp_phone = payload.whatsappPhone;
+      delete payload.whatsappPhone;
+    }
     await api.put(`/ads/${id}`, payload);
     await refresh();
   };

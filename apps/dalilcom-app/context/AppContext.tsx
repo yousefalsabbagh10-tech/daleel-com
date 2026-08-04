@@ -10,6 +10,7 @@ type Action =
   | { type: 'SET_LOADING'; payload: boolean }
   | { type: 'SET_ADS'; payload: AdItem[] }
   | { type: 'ADD_AD'; payload: AdItem }
+  | { type: 'UPDATE_AD'; payload: AdItem }
   | { type: 'SET_ERROR'; payload: string | null }
   | { type: 'TOGGLE_FAVORITE'; payload: string }
   | { type: 'SET_FAVORITES'; payload: string[] };
@@ -22,6 +23,13 @@ function reducer(state: AppState, action: Action): AppState {
       return { ...state, ads: action.payload, loading: false, error: null };
     case 'ADD_AD':
       return { ...state, ads: [action.payload, ...state.ads], loading: false, error: null };
+    case 'UPDATE_AD':
+      return {
+        ...state,
+        ads: state.ads.map(ad => (ad.id === action.payload.id ? action.payload : ad)),
+        loading: false,
+        error: null,
+      };
     case 'SET_ERROR':
       return { ...state, error: action.payload, loading: false };
     case 'TOGGLE_FAVORITE': {
@@ -44,6 +52,7 @@ interface AppContextValue {
   state: AppState;
   toggleFavorite: (id: string) => void;
   addAd: (payload: any) => Promise<AdItem>;
+  updateAd: (id: string, payload: any) => Promise<AdItem>;
   getFilteredAds: (params: FilterParams) => AdItem[];
   refresh: () => Promise<void>;
 }
@@ -79,6 +88,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return item;
   }, []);
 
+  const updateAd = useCallback(async (id: string, payload: any) => {
+    const updated = await api.put<any>(`/ads/${encodeURIComponent(id)}`, payload);
+    const item = mapAdFromApi(updated);
+    dispatch({ type: 'UPDATE_AD', payload: item });
+    return item;
+  }, []);
+
   const filtered = useCallback((params: FilterParams) => {
     return getFilteredAds(state.ads, params);
   }, [state.ads]);
@@ -88,7 +104,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [loadAds]);
 
   return (
-    <AppContext.Provider value={{ state, toggleFavorite, addAd, getFilteredAds: filtered, refresh }}>
+    <AppContext.Provider value={{ state, toggleFavorite, addAd, updateAd, getFilteredAds: filtered, refresh }}>
       {children}
     </AppContext.Provider>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Alert, Linking, View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { NativeIcon } from '../../../components/common/NativeIcon';
 import { GlassCard } from '../../../components/common/UI';
 import { useApp, AdItem } from '../../../context/AppContext';
@@ -9,6 +9,7 @@ import { MediaCarousel } from '../../../components/common/MediaCarousel';
 
 export default function CarDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const router = useRouter();
   const { state, toggleFavorite } = useApp();
   const ad = state.ads.find((a: AdItem) => a.id === id);
 
@@ -78,6 +79,13 @@ export default function CarDetail() {
           <NativeIcon name="logo-whatsapp" size={20} color={COLORS.white} />
           <Text style={styles.callText}>تواصل عبر واتساب</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.editBtn}
+          onPress={() => router.push({ pathname: '/(tabs)/create', params: { editId: ad.id } } as any)}
+        >
+          <NativeIcon name="create-outline" size={20} color={COLORS.white} />
+          <Text style={styles.callText}>تعديل الإعلان</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -104,4 +112,5 @@ const styles = StyleSheet.create({
   callBtn: { flex: 1, flexDirection: 'row', height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: COLORS.primary, justifyContent: 'center', alignItems: 'center', gap: SPACING.sm },
   callText: { color: COLORS.white, fontWeight: '700', fontSize: FONT_SIZES.md },
   whatsappBtn: { flexDirection: 'row', height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: '#0D3B46', justifyContent: 'center', alignItems: 'center', gap: SPACING.sm, marginTop: SPACING.sm },
+  editBtn: { flexDirection: 'row', height: 48, borderRadius: BORDER_RADIUS.full, backgroundColor: '#C9A15A', justifyContent: 'center', alignItems: 'center', gap: SPACING.sm, marginTop: SPACING.sm },
 });
