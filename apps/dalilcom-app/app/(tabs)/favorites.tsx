@@ -8,10 +8,14 @@ import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constants/them
 export default function FavoritesTab() {
   const router = useRouter();
   const { state } = useApp();
-  const ads = state.ads.filter(ad => state.favorites.includes(ad.id) && ad.category === 'real-estate');
+  const ads = state.ads.filter(ad => state.favorites.includes(ad.id));
 
   const renderItem = ({ item }: { item: AdItem }) => (
-    <TouchableOpacity style={styles.card} activeOpacity={0.85} onPress={() => router.push(`/details/property/${item.id}` as any)}>
+    <TouchableOpacity
+      style={styles.card}
+      activeOpacity={0.85}
+      onPress={() => router.push(item.category === 'cars' ? `/details/car/${item.id}` as any : `/details/property/${item.id}` as any)}
+    >
       {item.imageUrl ? <Image source={{ uri: item.imageUrl }} style={styles.image} /> : <View style={styles.image} />}
       <View style={styles.body}>
         <Text style={styles.title} numberOfLines={1}>{item.title}</Text>

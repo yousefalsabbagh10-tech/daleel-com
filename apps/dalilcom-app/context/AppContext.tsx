@@ -74,8 +74,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleFavorite = useCallback((id: string) => {
+    const exists = state.favorites.includes(id);
     dispatch({ type: 'TOGGLE_FAVORITE', payload: id });
-  }, []);
+    const request = exists
+      ? api.delete(`/favorites/${encodeURIComponent(id)}`)
+      : api.post('/favorites', { ad_id: id });
+
+    request.catch(() => {
+      dispatch({ type: 'TOGGLE_FAVORITE', payload: id });
+    });
+  }, [state.favorites]);
 
   const refresh = useCallback(async () => {
     await loadAds();
@@ -102,6 +110,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     loadAds();
   }, [loadAds]);
+
+  useEffect(() => {
+    let cancelled = false;
+    async function loadFavorites() {
+      try {
+        const rows = await listApi<any>('/favorites', { per_page: '500' });
+        if (!cancelled) {
+          dispatch({ type: 'SET_FAVORITES', payload: rows.map(row => row.ad_id).filter(Boolean) });
+        }
+      } catch {
+        if (!cancelled) {
+          dispatch({ type: 'SET_FAVORITES', payload: [] });
+        }
+      }
+    }
+    loadFavorites();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <AppContext.Provider value={{ state, toggleFavorite, addAd, updateAd, getFilteredAds: filtered, refresh }}>
