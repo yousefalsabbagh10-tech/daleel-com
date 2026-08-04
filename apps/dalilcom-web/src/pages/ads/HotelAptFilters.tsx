@@ -20,7 +20,7 @@ export function HotelAptFilters() {
 
   return (
     <div className="space-y-4 pt-1">
-      <span className="text-[10px] font-bold text-[#0D3B46] bg-[#C9A15A]/20 px-2.5 py-0.5 rounded-full block w-fit">فلاتر الشقق المفروشة والفندقية السياحية 🛋️</span>
+      <span className="text-[10px] font-bold text-[#0D3B46] bg-[#C9A15A]/20 px-2.5 py-0.5 rounded-full block w-fit">بحث متقدم للشقق المفروشة والفندقية السياحية 🛋️</span>
       
       {/* Rent Period */}
       <div className="space-y-1.5">

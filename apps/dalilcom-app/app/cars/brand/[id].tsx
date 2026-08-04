@@ -94,7 +94,7 @@ export default function CarResultsPage() {
           <View>
             <TouchableOpacity activeOpacity={0.86} style={styles.filterButton} onPress={() => setFilterOpen(true)}>
               <NativeIcon name="options-outline" size={20} color={COLORS.white} />
-              <Text style={styles.filterButtonText}>فلتر السيارات</Text>
+              <Text style={styles.filterButtonText}>بحث متقدم</Text>
               <Text style={styles.filterCount}>{filtered.length.toLocaleString('ar-SY')}</Text>
             </TouchableOpacity>
             <View style={styles.topBar}>

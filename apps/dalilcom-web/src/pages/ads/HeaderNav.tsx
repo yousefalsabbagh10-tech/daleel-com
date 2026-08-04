@@ -38,7 +38,7 @@ export function HeaderNav({ filteredCount }: HeaderNavProps) {
           }`}
         >
           <SlidersHorizontal size={18} />
-          <span className="text-xs font-semibold hidden md:inline">الفلاتر المتقدمة</span>
+          <span className="text-xs font-semibold hidden md:inline">بحث متقدم</span>
           {filteredCount !== 0 && (
             <span className="bg-[#C9A15A] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold leading-none">
               {filteredCount}

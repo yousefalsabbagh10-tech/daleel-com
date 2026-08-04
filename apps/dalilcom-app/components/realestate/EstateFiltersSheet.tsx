@@ -25,7 +25,7 @@ export function EstateFiltersSheet({ visible, filters, setFilters, onClose }: Pr
         <View style={styles.sheet}>
           <View style={styles.header}>
             <TouchableOpacity onPress={onClose}><NativeIcon name="close" size={24} color={COLORS.white} /></TouchableOpacity>
-            <Text style={styles.headerTitle}>فلاتر تصفية متقدمة</Text>
+            <Text style={styles.headerTitle}>بحث متقدم</Text>
             <TouchableOpacity onPress={() => setFilters(initialEstateFilters)}>
               <Text style={styles.reset}>إعادة تهيئة</Text>
             </TouchableOpacity>
@@ -49,7 +49,7 @@ export function EstateFiltersSheet({ visible, filters, setFilters, onClose }: Pr
             </View>
           </ScrollView>
           <View style={styles.footer}>
-            <TouchableOpacity style={styles.apply} onPress={onClose}><Text style={styles.applyText}>تحديث وتطبيق التصفية</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.apply} onPress={onClose}><Text style={styles.applyText}>تطبيق البحث المتقدم</Text></TouchableOpacity>
           </View>
         </View>
       </View>

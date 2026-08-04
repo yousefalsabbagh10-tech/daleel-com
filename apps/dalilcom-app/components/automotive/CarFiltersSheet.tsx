@@ -185,7 +185,7 @@ export function CarFiltersSheet({ visible, filters, brands, carModelsMap, setFil
         <View style={styles.sheet}>
           <View style={styles.header}>
             <TouchableOpacity onPress={onClose}><NativeIcon name="close" size={24} color={COLORS.white} /></TouchableOpacity>
-            <Text style={styles.headerTitle}>مواصفات المركبات</Text>
+            <Text style={styles.headerTitle}>بحث متقدم</Text>
             <TouchableOpacity onPress={() => setFilters(initialCarFilters)}>
               <Text style={styles.reset}>إعادة تهيئة</Text>
             </TouchableOpacity>
@@ -232,7 +232,7 @@ export function CarFiltersSheet({ visible, filters, brands, carModelsMap, setFil
             </View>
           </ScrollView>
           <View style={styles.footer}>
-            <TouchableOpacity style={styles.apply} onPress={onClose}><Text style={styles.applyText}>تحديث وتطبيق التصفية</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.apply} onPress={onClose}><Text style={styles.applyText}>تطبيق البحث المتقدم</Text></TouchableOpacity>
           </View>
         </View>
       </View>

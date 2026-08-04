@@ -52,7 +52,7 @@ export function StepCategorySelector({
     <div className="space-y-5 text-right" dir="rtl">
       <div>
         <h2 className="text-base sm:text-md font-extrabold text-[#0D3B46]">اختر نوع وتصنيف الإعلان</h2>
-        <p className="text-xs text-[#C9A15A] mt-1">ضع الإعلان ضمن فئته الدقيقة ليظهر في الفلتر الصحيح.</p>
+        <p className="text-xs text-[#C9A15A] mt-1">ضع الإعلان ضمن فئته الدقيقة ليظهر في نتائج البحث الصحيحة.</p>
       </div>
 
       <div className={cn('grid gap-4', settings.carsEnabled ? 'grid-cols-2' : 'grid-cols-1')}>

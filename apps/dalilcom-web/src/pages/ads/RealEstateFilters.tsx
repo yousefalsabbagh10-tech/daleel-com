@@ -28,7 +28,7 @@ export function RealEstateFilters() {
           <SlidersHorizontal size={14} className="text-[#0D3B46] animate-bounce" />
           تفاصيل العقار المخصصة فئوياً ⚡
         </h4>
-        <p className="text-[11px] text-[#C9A15A] leading-tight">اختر نوع التصنيف لتفعيل فلاتر ذكية ملائمة تماماً لطبيعة العقار</p>
+        <p className="text-[11px] text-[#C9A15A] leading-tight">اختر نوع التصنيف لتفعيل بحث متقدم ملائم تماماً لطبيعة العقار</p>
       </div>
       
       {/* Real Estate Purpose Tabs */}

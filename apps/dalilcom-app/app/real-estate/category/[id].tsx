@@ -43,7 +43,7 @@ export default function CategoryResultsPage() {
           <View style={styles.topBar}>
             <TouchableOpacity style={styles.filterBtn} onPress={() => setFilterOpen(true)}>
               <NativeIcon name="options-outline" size={19} color={COLORS.white} />
-              <Text style={styles.filterText}>الفلاتر</Text>
+              <Text style={styles.filterText}>بحث متقدم</Text>
             </TouchableOpacity>
             <View style={styles.resultBadge}>
               <Text style={styles.resultLabel}>النتائج المطابقة</Text>
@@ -64,7 +64,7 @@ function EmptyState({ onReset }: { onReset: () => void }) {
       <NativeIcon name="alert-circle-outline" size={38} color={COLORS.primary} />
       <Text style={styles.emptyTitle}>لا توجد نتائج مطابقة</Text>
       <TouchableOpacity style={styles.resetBtn} onPress={onReset}>
-        <Text style={styles.resetText}>تصفير الفلاتر</Text>
+        <Text style={styles.resetText}>تصفير البحث</Text>
       </TouchableOpacity>
     </View>
   );

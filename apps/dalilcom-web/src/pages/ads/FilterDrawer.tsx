@@ -43,7 +43,7 @@ export function FilterDrawer() {
               </button>
             )}
             <span className="font-extrabold text-[15px] font-sans">
-              {activeSubPanel ? 'تصفية فرعية' : 'فلاتر تصفية متقدمة ذكية'}
+              {activeSubPanel ? 'خيارات البحث' : 'بحث متقدم'}
             </span>
           </div>
 
@@ -150,7 +150,7 @@ export function FilterDrawer() {
             onClick={() => setIsFilterPanelOpen(false)}
             className="flex-1 py-3 bg-[#0D3B46] hover:bg-opacity-95 text-white rounded-xl text-center font-bold text-xs shadow-md cursor-pointer"
           >
-            تحديث وتطبيق التصفية
+            تطبيق البحث المتقدم
           </button>
           <button 
             onClick={() => setIsFilterPanelOpen(false)}

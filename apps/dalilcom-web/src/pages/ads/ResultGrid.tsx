@@ -22,7 +22,7 @@ export function ResultGrid({ filteredAds }: ResultGridProps) {
           <div className="text-right">
             <span className="font-bold text-[#C9A15A] text-[14px] block mb-0.5">تبويب المساعدة الذكي</span>
             <p className="text-[#C9A15A] text-[13px] leading-relaxed">
-              نصيحة: يمكنك استخدام **البحث الذكي بكلمة مفتاحية** (مثل: "فلل" أو "مرسيدس") بالاقتران مع الفلاتر الجانبية (الأوتوماتيك، عدد الغرف، الغرض) لتصفية النتائج بدقة وسرعة متناهية! تحديث البيانات يحصل فورياً مع كل تبديل في المعايير.
+              نصيحة: يمكنك استخدام **البحث الذكي بكلمة مفتاحية** (مثل: "فلل" أو "مرسيدس") بالاقتران مع البحث المتقدم (الأوتوماتيك، عدد الغرف، الغرض) للوصول إلى النتائج بدقة وسرعة متناهية! تحديث البيانات يحصل فورياً مع كل تبديل في المعايير.
             </p>
           </div>
           <button 
@@ -80,7 +80,7 @@ export function ResultGrid({ filteredAds }: ResultGridProps) {
           </div>
           <h3 className="text-lg font-extrabold text-[#2B2B2B] mb-2">لا توجد نتائج مطابقة تماماً للمواصفات</h3>
           <p className="text-[14px] text-[#C9A15A] text-center max-w-md leading-relaxed mb-6 font-semibold">
-            يرجى تعديل معايير الفلترة، أو تصفير السعر وتغيير الموقع من أجل العثور على تشكيلة أوسع من المنتجات.
+            يرجى تعديل معايير البحث المتقدم، أو تصفير السعر وتغيير الموقع من أجل العثور على تشكيلة أوسع من المنتجات.
           </p>
           <button
             onClick={resetFilters}
