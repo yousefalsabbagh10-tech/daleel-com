@@ -68,7 +68,7 @@ export default function CreateTab() {
       const path = form.category === 'cars' ? `/details/car/${ad.id}` : `/details/property/${ad.id}`;
       setForm(initialForm);
       setStep(0);
-      router.push(path as any);
+      router.replace(path as any);
     } catch (error: any) {
       Alert.alert('فشل الحفظ', error?.message || 'تعذر حفظ الإعلان');
     } finally {

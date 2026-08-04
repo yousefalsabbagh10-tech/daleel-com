@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react';
-import { Image, ImageBackground, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useRouter } from 'expo-router';
+import React, { useCallback, useMemo, useState } from 'react';
+import { Alert, BackHandler, Image, ImageBackground, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useFocusEffect, useRouter } from 'expo-router';
 import { NativeIcon } from '../../components/common/NativeIcon';
 import { useApp } from '../../context/AppContext';
 import { COLORS, SPACING, BORDER_RADIUS } from '../../constants/theme';
@@ -67,6 +67,20 @@ export default function HomeTab() {
     if (!query) return [];
     return getFilteredAds({ category: 'all', query }).slice(0, 8);
   }, [getFilteredAds, searchQuery]);
+
+  useFocusEffect(
+    useCallback(() => {
+      const subscription = BackHandler.addEventListener('hardwareBackPress', () => {
+        Alert.alert('الخروج من التطبيق', 'هل تريد إغلاق تطبيق دليلكم؟', [
+          { text: 'إلغاء', style: 'cancel' },
+          { text: 'خروج', style: 'destructive', onPress: () => BackHandler.exitApp() },
+        ]);
+        return true;
+      });
+
+      return () => subscription.remove();
+    }, []),
+  );
 
   return (
     <View style={styles.container}>

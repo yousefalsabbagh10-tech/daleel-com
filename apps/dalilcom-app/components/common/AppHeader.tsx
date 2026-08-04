@@ -18,11 +18,19 @@ export function AppHeaderLogo({ title }: { title?: string }) {
   );
 }
 
-export function BottomBackButton({ label = 'الرجوع' }: { label?: string }) {
+export function BottomBackButton({ label = 'الرجوع', fallbackHref = '/(tabs)' }: { label?: string; fallbackHref?: string }) {
   const router = useRouter();
+  const goBack = () => {
+    if (router.canGoBack()) {
+      router.back();
+      return;
+    }
+    router.replace(fallbackHref as any);
+  };
+
   return (
     <View style={styles.bottomWrap}>
-      <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+      <TouchableOpacity style={styles.backButton} onPress={goBack}>
         <NativeIcon name="chevron-forward" size={20} color={COLORS.white} />
         <Text style={styles.backText}>{label}</Text>
       </TouchableOpacity>
