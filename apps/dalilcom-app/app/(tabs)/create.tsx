@@ -148,6 +148,10 @@ function formFromAd(ad: AdItem): CreateAdForm {
     titleDeedType: ad.titleDeedType || '',
     propertyDirection: ad.propertyDirection || '',
     advertiserType: ad.advertiserType || '',
+    commercialType: ad.propType === 'مكتب' ? 'مكتب' : ad.propType === 'محل' ? 'محل تجاري رئيسي' : initialForm.commercialType,
+    commercialFrontage: '',
+    commercialLicense: '',
+    commercialFitOut: '',
     carBrand: ad.carBrand || '',
     carModel: ad.carModel || '',
     carYear: ad.carYear || initialForm.carYear,
@@ -186,6 +190,21 @@ function realEstateSpecs(form: CreateAdForm) {
       projectFinishing: form.projectFinishing,
       projectLandArea: form.projectLandArea,
       projectUnitsCount: form.projectUnitsCount,
+      advertiserType: form.advertiserType,
+    };
+  }
+  if (form.subcategory === 'المحلات التجارية') {
+    return {
+      propType: form.commercialType === 'مكتب' ? 'مكتب' : 'محل',
+      commercialType: form.commercialType,
+      reArea: form.area,
+      reFloor: form.floor,
+      reType: form.reType,
+      commercialFrontage: form.commercialFrontage,
+      shopHasLicense: form.commercialLicense,
+      officeFitted: form.commercialFitOut,
+      heatingType: form.heatingType,
+      hasParking: form.hasParking,
       advertiserType: form.advertiserType,
     };
   }

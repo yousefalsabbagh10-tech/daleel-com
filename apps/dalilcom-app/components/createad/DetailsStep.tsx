@@ -17,6 +17,9 @@ const furnishedOptions = ['غير مفروش', 'مفروش بالكامل', 'ش�
 const ageOptions = ['جديد / صفر', '1-5 سنوات', '5-10 سنوات', 'قديم مخدم'];
 const yesNoOptions = ['اختياري', 'نعم', 'لا'];
 const advertiserOptions = ['اختياري', 'المالك', 'وسيط', 'مكتب عقاري'];
+const commercialTypeOptions = ['محل تجاري رئيسي', 'مكتب', 'عيادة', 'مستودع', 'صالة عرض', 'مطعم / كافيه'];
+const commercialLicenseOptions = ['اختياري', 'مرخص تجاري', 'قابل للترخيص', 'غير مرخص'];
+const commercialFitOutOptions = ['اختياري', 'جاهز للعمل', 'نصف تجهيز', 'على العظم', 'بحاجة صيانة'];
 
 export function DetailsStep({ form, setField }: Props) {
   const set = (key: keyof CreateAdForm) => (value: string) => setField(key, value);
@@ -26,7 +29,28 @@ export function DetailsStep({ form, setField }: Props) {
       <Field label="وصف الإعلان" value={form.description} onChangeText={set('description')} placeholder="اكتب وصف واضح..." multiline />
       {form.category === 'cars' ? <CarFields form={form} setField={setField} /> : form.subcategory === 'مشاريع عقارية قيد التنفيذ'
         ? <ProjectFields form={form} setField={setField} />
+        : form.subcategory === 'المحلات التجارية'
+          ? <CommercialFields form={form} setField={setField} />
         : <RealEstateFields form={form} setField={setField} />}
+    </View>
+  );
+}
+
+function CommercialFields({ form, setField }: Props) {
+  const set = (key: keyof CreateAdForm) => (value: string) => setField(key, value);
+  const setOptional = (key: keyof CreateAdForm) => (value: string) => setField(key, value === 'اختياري' ? '' : value);
+  return (
+    <View>
+      <ChoiceWrap>{purposes.map(v => <Choice key={v} label={v} active={form.reType === v} onPress={() => setField('reType', v)} />)}</ChoiceWrap>
+      <SelectField label="نوع العقار التجاري" value={form.commercialType} options={commercialTypeOptions} onChange={set('commercialType')} />
+      <Field label="المساحة" value={form.area} onChangeText={set('area')} placeholder="مثال: 80 متر مربع" />
+      <Field label="الطابق / مستوى المحل" value={form.floor} onChangeText={set('floor')} placeholder="مثال: أرضي، طابق أول، قبو" />
+      <Field label="عرض الواجهة" value={form.commercialFrontage} onChangeText={set('commercialFrontage')} placeholder="مثال: واجهة 6 متر على الشارع" />
+      <SelectField label="الترخيص" value={form.commercialLicense} options={commercialLicenseOptions} onChange={setOptional('commercialLicense')} />
+      <SelectField label="التجهيز" value={form.commercialFitOut} options={commercialFitOutOptions} onChange={setOptional('commercialFitOut')} />
+      <Field label="نوع التدفئة / الطاقة" value={form.heatingType} onChangeText={set('heatingType')} placeholder="اختياري: كهرباء، مولدة، طاقة شمسية" />
+      <SelectField label="موقف سيارات" value={form.hasParking} options={yesNoOptions} onChange={setOptional('hasParking')} />
+      <SelectField label="نوع المعلن" value={form.advertiserType} options={advertiserOptions} onChange={setOptional('advertiserType')} />
     </View>
   );
 }
