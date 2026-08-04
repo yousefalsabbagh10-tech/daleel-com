@@ -4,7 +4,7 @@ import { useRouter } from 'expo-router';
 import { NativeIcon } from './NativeIcon';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constants/theme';
 
-const logoImage = require('../../assets/images/logo-mark.png');
+const logoImage = require('../../assets/images/logo-header.png');
 
 export function AppHeaderLogo({ title }: { title?: string }) {
   return (
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: COLORS.primary,
     paddingTop: 16,
-    paddingBottom: SPACING.md,
+    paddingBottom: 20,
     alignItems: 'center',
     gap: SPACING.sm,
   },
@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: 318,
-    height: 92,
+    height: 126,
   },
-  logoImage: { width: 214, height: 74 },
+  logoImage: { width: 252, height: 104 },
   pageTitle: { color: COLORS.white, fontSize: FONT_SIZES.lg, fontWeight: '900' },
   bottomWrap: {
     position: 'absolute',

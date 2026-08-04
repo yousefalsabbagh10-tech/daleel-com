@@ -7,7 +7,7 @@ import { COLORS, SPACING, BORDER_RADIUS } from '../../constants/theme';
 import { apiBaseUrl } from '../../services/api';
 
 const heroImage = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=900';
-const logoImage = require('../../assets/images/logo-mark.png');
+const logoImage = require('../../assets/images/logo-header.png');
 
 function LogoCard() {
   return (
