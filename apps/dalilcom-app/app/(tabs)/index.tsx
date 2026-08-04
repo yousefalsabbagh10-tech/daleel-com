@@ -4,7 +4,6 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { NativeIcon } from '../../components/common/NativeIcon';
 import { useApp } from '../../context/AppContext';
 import { COLORS, SPACING, BORDER_RADIUS } from '../../constants/theme';
-import { apiBaseUrl } from '../../services/api';
 
 const heroImage = 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=900';
 const logoImage = require('../../assets/images/logo-header.png');
@@ -173,18 +172,7 @@ export default function HomeTab() {
           <Text style={styles.latestTitle}>آخر الإعلانات ({state.ads.length})</Text>
         </View>
 
-        <View style={styles.apiStatus}>
-          <NativeIcon name={state.error ? 'alert-circle-outline' : 'checkmark-circle-outline'} size={17} color={state.error ? COLORS.gold : COLORS.primary} />
-          <View style={styles.apiStatusText}>
-            <Text style={styles.apiStatusTitle}>
-              {state.loading ? 'جاري الاتصال بالخادم...' : state.error ? 'تعذر تحميل البيانات' : `متصل بالخادم - ${state.ads.length} إعلانات`}
-            </Text>
-            <Text style={styles.apiStatusSub} numberOfLines={1}>{apiBaseUrl}</Text>
-          </View>
-        </View>
-
-        {state.error ? <Text style={styles.errorText}>{state.error}</Text> : null}
-        {!state.error && latestAds.length === 0 ? (
+        {latestAds.length === 0 ? (
           <Text style={styles.emptyText}>{state.loading ? 'جاري تحميل الإعلانات...' : 'لا توجد إعلانات حالياً'}</Text>
         ) : null}
 
@@ -244,11 +232,6 @@ const styles = StyleSheet.create({
   latestHeader: { marginTop: 24, marginBottom: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   latestTitle: { color: COLORS.gray900, fontSize: 20, fontWeight: '900', textAlign: 'right' },
   refreshButton: { width: 36, height: 36, borderRadius: 18, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center' },
-  apiStatus: { marginBottom: SPACING.md, borderRadius: BORDER_RADIUS.lg, borderWidth: 1, borderColor: COLORS.border, backgroundColor: COLORS.surfaceAlt, padding: SPACING.md, flexDirection: 'row-reverse', alignItems: 'center', gap: SPACING.sm },
-  apiStatusText: { flex: 1, alignItems: 'flex-end' },
-  apiStatusTitle: { color: COLORS.gray900, fontSize: 13, fontWeight: '900', textAlign: 'right' },
-  apiStatusSub: { color: COLORS.gray500, fontSize: 11, fontWeight: '700', marginTop: 3, textAlign: 'right' },
-  errorText: { color: '#0D3B46', backgroundColor: 'rgba(201,161,90,0.18)', borderRadius: 10, padding: SPACING.md, textAlign: 'right', fontWeight: '800' },
   emptyText: { color: COLORS.gray500, backgroundColor: COLORS.white, borderRadius: 10, padding: SPACING.md, textAlign: 'right', fontWeight: '800' },
   adRow: { minHeight: 108, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, marginBottom: SPACING.md, padding: SPACING.sm, flexDirection: 'row-reverse', alignItems: 'center', gap: SPACING.md, ...shadow },
   adImage: { width: 92, height: 78, borderRadius: BORDER_RADIUS.md, backgroundColor: COLORS.gray100 },
