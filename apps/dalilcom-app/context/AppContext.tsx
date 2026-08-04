@@ -15,6 +15,8 @@ type Action =
   | { type: 'TOGGLE_FAVORITE'; payload: string }
   | { type: 'SET_FAVORITES'; payload: string[] };
 
+const toId = (value: unknown) => String(value ?? '');
+
 function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case 'SET_LOADING':
@@ -74,14 +76,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const toggleFavorite = useCallback((id: string) => {
-    const exists = state.favorites.includes(id);
-    dispatch({ type: 'TOGGLE_FAVORITE', payload: id });
+    const adId = toId(id);
+    const exists = state.favorites.includes(adId);
+    dispatch({ type: 'TOGGLE_FAVORITE', payload: adId });
     const request = exists
-      ? api.delete(`/favorites/${encodeURIComponent(id)}`)
-      : api.post('/favorites', { ad_id: id });
+      ? api.delete(`/favorites/${encodeURIComponent(adId)}`)
+      : api.post('/favorites', { ad_id: adId });
 
     request.catch(() => {
-      dispatch({ type: 'TOGGLE_FAVORITE', payload: id });
+      dispatch({ type: 'TOGGLE_FAVORITE', payload: adId });
     });
   }, [state.favorites]);
 
@@ -117,7 +120,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       try {
         const rows = await listApi<any>('/favorites', { per_page: '500' });
         if (!cancelled) {
-          dispatch({ type: 'SET_FAVORITES', payload: rows.map(row => row.ad_id).filter(Boolean) });
+          dispatch({ type: 'SET_FAVORITES', payload: rows.map(row => toId(row.ad_id)).filter(Boolean) });
         }
       } catch {
         if (!cancelled) {

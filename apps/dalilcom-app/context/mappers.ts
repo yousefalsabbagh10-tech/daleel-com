@@ -10,7 +10,7 @@ export function mapAdFromApi(row: any): AdItem {
   const detailTexts = details.map((d: any) => d.detail_text || d);
   const mapDetail = detailTexts.find((d: string) => String(d).startsWith('map_url:'));
   return {
-    id: ad.id,
+    id: String(ad.id ?? ''),
     title: ad.title || '',
     price: Number(ad.price || 0),
     currency: ad.currency || 'SYP',

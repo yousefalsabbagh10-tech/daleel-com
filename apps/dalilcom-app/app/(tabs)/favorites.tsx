@@ -8,7 +8,8 @@ import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../../constants/them
 export default function FavoritesTab() {
   const router = useRouter();
   const { state } = useApp();
-  const ads = state.ads.filter(ad => state.favorites.includes(ad.id));
+  const favoriteIds = new Set(state.favorites.map(String));
+  const ads = state.ads.filter(ad => favoriteIds.has(String(ad.id)));
 
   const renderItem = ({ item }: { item: AdItem }) => (
     <TouchableOpacity
