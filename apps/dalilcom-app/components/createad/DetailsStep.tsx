@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Field, Choice, ChoiceWrap } from './Controls';
+import { Field, Choice, ChoiceWrap, SelectField } from './Controls';
 import { CreateAdForm } from './data';
 
 type Props = {
@@ -11,6 +11,12 @@ type Props = {
 const purposes = ['للبيع', 'للإيجار'];
 const gears = ['أوتوماتيك', 'عادي'];
 const fuels = ['بنزين', 'ديزل', 'كهرباء', 'هجين'];
+const roomOptions = ['استوديو / غرفة واحدة', '2 غرف', '3 غرف', '4 غرف', '5 غرف أو أكثر'];
+const bathOptions = ['1 حمام', '2 حمام', '3 حمامات أو أكثر'];
+const furnishedOptions = ['غير مفروش', 'مفروش بالكامل', 'شبه مفروش'];
+const ageOptions = ['جديد / صفر', '1-5 سنوات', '5-10 سنوات', 'قديم مخدم'];
+const yesNoOptions = ['اختياري', 'نعم', 'لا'];
+const advertiserOptions = ['اختياري', 'المالك', 'وسيط', 'مكتب عقاري'];
 
 export function DetailsStep({ form, setField }: Props) {
   const set = (key: keyof CreateAdForm) => (value: string) => setField(key, value);
@@ -27,22 +33,23 @@ export function DetailsStep({ form, setField }: Props) {
 
 function RealEstateFields({ form, setField }: Props) {
   const set = (key: keyof CreateAdForm) => (value: string) => setField(key, value);
+  const setOptional = (key: keyof CreateAdForm) => (value: string) => setField(key, value === 'اختياري' ? '' : value);
   return (
     <View>
       <ChoiceWrap>{purposes.map(v => <Choice key={v} label={v} active={form.reType === v} onPress={() => setField('reType', v)} />)}</ChoiceWrap>
-      <Field label="عدد الغرف" value={form.rooms} onChangeText={set('rooms')} />
-      <Field label="عدد الحمامات" value={form.baths} onChangeText={set('baths')} />
+      <SelectField label="عدد الغرف" value={form.rooms} options={roomOptions} onChange={set('rooms')} />
+      <SelectField label="عدد الحمامات" value={form.baths} options={bathOptions} onChange={set('baths')} />
       <Field label="المساحة" value={form.area} onChangeText={set('area')} />
       <Field label="الطابق" value={form.floor} onChangeText={set('floor')} />
       <Field label="عدد طوابق البناء" value={form.buildingTotalFloors} onChangeText={set('buildingTotalFloors')} keyboardType="numeric" />
-      <Field label="الفرش" value={form.furnished} onChangeText={set('furnished')} />
-      <Field label="عمر البناء" value={form.age} onChangeText={set('age')} />
+      <SelectField label="الفرش" value={form.furnished} options={furnishedOptions} onChange={set('furnished')} />
+      <SelectField label="عمر البناء" value={form.age} options={ageOptions} onChange={set('age')} />
       <Field label="نوع التدفئة" value={form.heatingType} onChangeText={set('heatingType')} />
       <Field label="الطابو / الملكية" value={form.titleDeedType} onChangeText={set('titleDeedType')} />
       <Field label="الاتجاه / الإطلالة" value={form.propertyDirection} onChangeText={set('propertyDirection')} />
-      <Field label="مصعد" value={form.hasElevator} onChangeText={set('hasElevator')} placeholder="نعم / لا" />
-      <Field label="موقف سيارات" value={form.hasParking} onChangeText={set('hasParking')} placeholder="نعم / لا" />
-      <Field label="نوع المعلن" value={form.advertiserType} onChangeText={set('advertiserType')} placeholder="المالك / وسيط" />
+      <SelectField label="مصعد" value={form.hasElevator} options={yesNoOptions} onChange={setOptional('hasElevator')} />
+      <SelectField label="موقف سيارات" value={form.hasParking} options={yesNoOptions} onChange={setOptional('hasParking')} />
+      <SelectField label="نوع المعلن" value={form.advertiserType} options={advertiserOptions} onChange={setOptional('advertiserType')} />
     </View>
   );
 }
