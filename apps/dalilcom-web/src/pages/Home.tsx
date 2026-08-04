@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Building2, CarFront, ChevronDown, ChevronLeft, Key, List, Tag } from 'lucide-react';
+import { Building2, CarFront, ChevronDown, ChevronLeft, Key, List, Search, Tag } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { AdCard } from '../components/AdCard';
@@ -42,6 +42,7 @@ export function HomePage() {
   const { settings } = useAppSettings();
   const [category, setCategory] = useState<'real-estate' | 'cars'>('real-estate');
   const [open, setOpen] = useState<'real-estate' | 'cars' | null>('real-estate');
+  const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
   const visibleCategory = settings.carsEnabled ? category : 'real-estate';
   const latest = ads.filter(ad => ad.category === visibleCategory);
@@ -58,8 +59,27 @@ export function HomePage() {
     setOpen(open === next ? null : next);
   };
 
+  const submitSearch = (event: React.FormEvent) => {
+    event.preventDefault();
+    const query = searchQuery.trim();
+    navigate(query ? `/ads?query=${encodeURIComponent(query)}` : '/ads');
+  };
+
   return (
     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <form onSubmit={submitSearch} className="max-w-3xl mx-auto -mt-2">
+        <div className="h-14 sm:h-16 rounded-2xl bg-white border border-[#E3C98D] shadow-sm flex items-center gap-3 px-4">
+          <button type="submit" className="w-10 h-10 rounded-full bg-[#0D3B46] text-white flex items-center justify-center shrink-0">
+            <Search size={19} />
+          </button>
+          <input
+            value={searchQuery}
+            onChange={event => setSearchQuery(event.target.value)}
+            placeholder="ابحث عن عقار، سيارة، منطقة، أو كلمة من الإعلان..."
+            className="flex-1 h-full bg-transparent outline-none text-right text-sm sm:text-base font-bold text-[#2B2B2B] placeholder:text-[#C9A15A]/80"
+          />
+        </div>
+      </form>
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="w-full lg:w-2/3">
           <h2 className="text-[17px] font-bold text-[#2B2B2B] mb-4 px-1">التصنيفات</h2>

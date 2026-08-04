@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, ImageBackground, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { Image, ImageBackground, RefreshControl, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { NativeIcon } from '../../components/common/NativeIcon';
 import { useApp } from '../../context/AppContext';
@@ -58,9 +58,15 @@ function QuickCard({ icon, title, onPress }: { icon: string; title: string; onPr
 export default function HomeTab() {
   const router = useRouter();
   const { state, refresh, getFilteredAds } = useApp();
+  const [searchQuery, setSearchQuery] = useState('');
   const realEstate = getFilteredAds({ category: 'real-estate' });
   const cars = getFilteredAds({ category: 'cars' });
   const latestAds = state.ads.slice(0, 6);
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim();
+    if (!query) return [];
+    return getFilteredAds({ category: 'all', query }).slice(0, 8);
+  }, [getFilteredAds, searchQuery]);
 
   return (
     <View style={styles.container}>
@@ -70,6 +76,43 @@ export default function HomeTab() {
         showsVerticalScrollIndicator={false}
         refreshControl={<RefreshControl refreshing={state.loading} onRefresh={refresh} tintColor={COLORS.primary} />}
       >
+        <View style={styles.searchBox}>
+          <NativeIcon name="search" size={21} color={COLORS.gold} />
+          <TextInput
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            placeholder="ابحث عن عقار، سيارة، منطقة..."
+            placeholderTextColor={COLORS.gray400}
+            style={styles.searchInput}
+            returnKeyType="search"
+          />
+        </View>
+
+        {searchQuery.trim() ? (
+          <View style={styles.searchResults}>
+            <Text style={styles.searchResultsTitle}>نتائج البحث ({searchResults.length.toLocaleString('ar-SY')})</Text>
+            {searchResults.length === 0 ? (
+              <Text style={styles.emptyText}>لا توجد نتائج مطابقة حالياً.</Text>
+            ) : (
+              searchResults.map(ad => (
+                <TouchableOpacity
+                  key={`search-${ad.id}`}
+                  activeOpacity={0.86}
+                  style={styles.adRow}
+                  onPress={() => router.push(ad.category === 'cars' ? `/details/car/${ad.id}` as any : `/details/property/${ad.id}` as any)}
+                >
+                  {ad.imageUrl ? <Image source={{ uri: ad.imageUrl }} style={styles.adImage} /> : <View style={styles.adImageFallback} />}
+                  <View style={styles.adInfo}>
+                    <Text style={styles.adTitle} numberOfLines={2}>{ad.title}</Text>
+                    <Text style={styles.adLocation} numberOfLines={1}>{ad.location}</Text>
+                    <Text style={styles.adPrice}>{ad.price.toLocaleString('ar-SY')} {ad.currency}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))
+            )}
+          </View>
+        ) : null}
+
         <Text style={styles.sectionTitle}>التصنيفات</Text>
         <CategoryCard
           active
@@ -159,6 +202,10 @@ const styles = StyleSheet.create({
   logoCard: { backgroundColor: COLORS.white, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', width: 318, height: 126 },
   logoImage: { width: 252, height: 104 },
   content: { padding: SPACING.lg, paddingBottom: 110 },
+  searchBox: { height: 58, backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, paddingHorizontal: SPACING.md, marginBottom: SPACING.lg, flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#E3C98D', ...shadow },
+  searchInput: { flex: 1, textAlign: 'right', fontSize: 15, color: COLORS.gray900, fontWeight: '800', paddingVertical: 0 },
+  searchResults: { marginBottom: SPACING.lg },
+  searchResultsTitle: { alignSelf: 'flex-end', color: COLORS.primary, fontSize: 17, fontWeight: '900', marginBottom: SPACING.md },
   sectionTitle: { alignSelf: 'flex-end', fontSize: 22, fontWeight: '900', color: COLORS.gray900, marginBottom: SPACING.lg },
   categoryCard: { backgroundColor: COLORS.white, borderRadius: BORDER_RADIUS.lg, minHeight: 92, flexDirection: 'row-reverse', alignItems: 'center', padding: SPACING.md, marginBottom: SPACING.md, borderWidth: 1, borderColor: COLORS.gray200, ...shadow },
   categoryActive: { borderWidth: 1.4, borderColor: COLORS.primary },
