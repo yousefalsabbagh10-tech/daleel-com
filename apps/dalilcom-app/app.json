@@ -16,7 +16,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.dalilcom.app"
+      "bundleIdentifier": "com.dalilcom.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "نستخدم موقعك الحالي فقط عند إنشاء الإعلان لحفظ نقطة الموقع الدقيقة على الخريطة."
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +28,10 @@
       },
       "package": "com.dalilcom.app",
       "versionCode": 11,
-      "permissions": []
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "plugins": [
       "expo-asset",
@@ -33,6 +39,12 @@
         "expo-image-picker",
         {
           "photosPermission": "The app accesses your photos to let you share them."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "نستخدم موقعك الحالي فقط عند إنشاء الإعلان لحفظ نقطة الموقع الدقيقة على الخريطة."
         }
       ]
     ],
