@@ -3,6 +3,7 @@ import { AdItem, AppState, Category } from './types';
 import { initialState } from './state';
 import { FilterParams, getFilteredAds } from './filters';
 import { mapAdFromApi } from './mappers';
+import { fallbackAds } from './fallbackAds';
 import { listApi } from '../services/api';
 import { api } from '../services/api';
 
@@ -69,8 +70,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     try {
       const data = await listApi<any>('/ads', { per_page: '200' });
       const items = data.map(mapAdFromApi);
-      dispatch({ type: 'SET_ADS', payload: items });
+      dispatch({ type: 'SET_ADS', payload: items.length > 0 ? items : fallbackAds });
     } catch (e: any) {
+      dispatch({ type: 'SET_ADS', payload: fallbackAds });
       dispatch({ type: 'SET_ERROR', payload: e.message || 'فشل تحميل الإعلانات' });
     }
   }, []);
